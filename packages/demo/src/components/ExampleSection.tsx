@@ -41,8 +41,8 @@ export function ExampleSection({
                       document.documentElement.getAttribute('data-theme') === 'dim'
 
   return (
-    <div className="border border-base-content/10 rounded-lg overflow-hidden">
-      <div className="p-6 bg-base-100">
+    <div className="border border-base-content/10 rounded-lg overflow-hidden break-inside-avoid mb-4">
+      <div className="p-4 bg-base-100">
         <div className="flex items-start justify-between mb-4">
           <div>
             <h3 className="text-lg font-semibold">{title}</h3>

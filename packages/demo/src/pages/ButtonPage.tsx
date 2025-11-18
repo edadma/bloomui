@@ -3,15 +3,16 @@ import { ExampleSection } from '../components/ExampleSection'
 
 export function ButtonPage() {
   return (
-    <div className="space-y-8">
-      <div>
+    <div>
+      <div className="mb-6">
         <h1 className="text-4xl font-bold mb-2">Button</h1>
         <p className="text-base-content/70">
           Button component with DaisyUI styling and multiple types.
         </p>
       </div>
 
-      <ExampleSection
+      <div className="columns-1 lg:columns-2 gap-x-4">
+        <ExampleSection
         title="Types"
         description="Use the type prop to set the button style."
         code={`import React from 'react'
@@ -114,6 +115,7 @@ export default App`}
           XS Accent
         </Button>
       </ExampleSection>
+      </div>
     </div>
   )
 }

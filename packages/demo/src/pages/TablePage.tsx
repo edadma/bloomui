@@ -71,15 +71,16 @@ const columns: ColumnType<User>[] = [
 
 export function TablePage() {
   return (
-    <div className="space-y-8">
-      <div>
+    <div>
+      <div className="mb-6">
         <h1 className="text-4xl font-bold mb-2">Table</h1>
         <p className="text-base-content/70">
           Feature-rich table component with DaisyUI styling.
         </p>
       </div>
 
-      <ExampleSection
+      <div className="columns-1 lg:columns-2 gap-x-4">
+        <ExampleSection
         title="Default Pagination"
         description="Tables have pagination enabled by default with 10 rows per page."
         code={`import React from 'react'
@@ -294,6 +295,7 @@ export default App`}
       >
         <Table columns={columns.slice(0, 3)} dataSource={userData.slice(0, 5)} size="xs" striped bordered pagination={false} />
       </ExampleSection>
+      </div>
     </div>
   )
 }

@@ -44,12 +44,9 @@ export function ThemeSwitcher() {
 
   return (
     <div className="flex items-center gap-2">
-      <label htmlFor="theme-select" className="text-sm">
-        Theme:
-      </label>
       <select
         id="theme-select"
-        className="select select-bordered select-sm"
+        className="select select-bordered"
         value={theme}
         onChange={(e) => setTheme(e.target.value)}
       >

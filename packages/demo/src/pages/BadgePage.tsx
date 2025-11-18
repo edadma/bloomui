@@ -3,15 +3,16 @@ import { ExampleSection } from '../components/ExampleSection'
 
 export function BadgePage() {
   return (
-    <div className="space-y-8">
-      <div>
+    <div>
+      <div className="mb-6">
         <h1 className="text-4xl font-bold mb-2">Badge</h1>
         <p className="text-base-content/70">
           Notification badges for showing counts and status indicators.
         </p>
       </div>
 
-      <ExampleSection
+      <div className="columns-1 lg:columns-2 gap-x-4">
+        <ExampleSection
         title="Basic"
         description="Display a count badge on an element."
         code={`import React from 'react'
@@ -179,6 +180,7 @@ export default App`}
         <Badge count={99} type="success" />
         <Badge count={999} type="warning" />
       </ExampleSection>
+      </div>
     </div>
   )
 }

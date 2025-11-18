@@ -3,15 +3,16 @@ import { ExampleSection } from '../components/ExampleSection'
 
 export function SpinPage() {
   return (
-    <div className="space-y-8">
-      <div>
+    <div>
+      <div className="mb-6">
         <h1 className="text-4xl font-bold mb-2">Spin</h1>
         <p className="text-base-content/70">
           Loading spinner component with multiple types and sizes.
         </p>
       </div>
 
-      <ExampleSection
+      <div className="columns-1 lg:columns-2 gap-x-4">
+        <ExampleSection
         title="Types"
         description="Different spinner animations to choose from."
         code={`import React from 'react'
@@ -127,6 +128,7 @@ export default App`}
         <Spin spinning={false} tip="Not spinning" />
         <Spin spinning={true} tip="Spinning" />
       </ExampleSection>
+      </div>
     </div>
   )
 }
