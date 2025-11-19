@@ -63,7 +63,7 @@ const App: React.FC = () => (
 
 export default App`}
         >
-          <Tooltip tip="Hello there!" open>
+          <Tooltip tip="Hello there!">
             <Button>Hover me</Button>
           </Tooltip>
         </ExampleSection>
@@ -94,16 +94,16 @@ const App: React.FC = () => (
 export default App`}
         >
           <div className="flex gap-4 flex-wrap">
-            <Tooltip tip="Top tooltip" position="top" open>
+            <Tooltip tip="Top tooltip" position="top">
               <Button>Top</Button>
             </Tooltip>
-            <Tooltip tip="Right tooltip" position="right" open>
+            <Tooltip tip="Right tooltip" position="right">
               <Button>Right</Button>
             </Tooltip>
-            <Tooltip tip="Bottom tooltip" position="bottom" open>
+            <Tooltip tip="Bottom tooltip" position="bottom">
               <Button>Bottom</Button>
             </Tooltip>
-            <Tooltip tip="Left tooltip" position="left" open>
+            <Tooltip tip="Left tooltip" position="left">
               <Button>Left</Button>
             </Tooltip>
           </div>
@@ -144,25 +144,25 @@ const App: React.FC = () => (
 export default App`}
         >
           <div className="flex flex-wrap gap-4">
-            <Tooltip tip="Primary" color="primary" open>
+            <Tooltip tip="Primary" color="primary">
               <Button type="primary">Primary</Button>
             </Tooltip>
-            <Tooltip tip="Secondary" color="secondary" open>
+            <Tooltip tip="Secondary" color="secondary">
               <Button type="secondary">Secondary</Button>
             </Tooltip>
-            <Tooltip tip="Accent" color="accent" open>
+            <Tooltip tip="Accent" color="accent">
               <Button type="accent">Accent</Button>
             </Tooltip>
-            <Tooltip tip="Info" color="info" open>
+            <Tooltip tip="Info" color="info">
               <Button type="info">Info</Button>
             </Tooltip>
-            <Tooltip tip="Success" color="success" open>
+            <Tooltip tip="Success" color="success">
               <Button type="success">Success</Button>
             </Tooltip>
-            <Tooltip tip="Warning" color="warning" open>
+            <Tooltip tip="Warning" color="warning">
               <Button type="warning">Warning</Button>
             </Tooltip>
-            <Tooltip tip="Error" color="error" open>
+            <Tooltip tip="Error" color="error">
               <Button type="error">Error</Button>
             </Tooltip>
           </div>
