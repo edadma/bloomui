@@ -12,6 +12,7 @@ import { FormPage } from './pages/FormPage'
 import { InputPage } from './pages/InputPage'
 import { LoadingPage } from './pages/LoadingPage'
 import { MenuPage } from './pages/MenuPage'
+import { NavbarPage } from './pages/NavbarPage'
 import { SelectPage } from './pages/SelectPage'
 import { TablePage } from './pages/TablePage'
 import { TextareaPage } from './pages/TextareaPage'
@@ -92,6 +93,9 @@ function AppContent() {
               <Menu.Item active={isActive('/menu')} onClick={() => navigate('/menu')}>
                 Menu
               </Menu.Item>
+              <Menu.Item active={isActive('/navbar')} onClick={() => navigate('/navbar')}>
+                Navbar
+              </Menu.Item>
 
               <Menu.Title>Feedback</Menu.Title>
               <Menu.Item active={isActive('/loading')} onClick={() => navigate('/loading')}>
@@ -117,6 +121,7 @@ function AppContent() {
               <Route path="/input" element={<InputPage />} />
               <Route path="/loading" element={<LoadingPage />} />
               <Route path="/menu" element={<MenuPage />} />
+              <Route path="/navbar" element={<NavbarPage />} />
               <Route path="/select" element={<SelectPage />} />
               <Route path="/table" element={<TablePage />} />
               <Route path="/textarea" element={<TextareaPage />} />
