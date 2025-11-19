@@ -31,6 +31,9 @@ export type { FooterProps, FooterTitleProps } from './components/Footer'
 export { Form, useFormInstance } from './components/Form'
 export type { FormProps, FormItemProps, FormInstance } from './components/Form'
 
+export { Hero } from './components/Hero'
+export type { HeroProps, HeroContentProps, HeroOverlayProps } from './components/Hero'
+
 export { Dropdown } from './components/Dropdown'
 export type { DropdownProps, DropdownTriggerProps, DropdownMenuProps, DropdownItemProps } from './components/Dropdown'
 
