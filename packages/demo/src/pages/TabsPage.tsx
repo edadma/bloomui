@@ -1,14 +1,28 @@
-import { Tabs } from '@edadma/petalui'
+import { Tabs, Input, Button } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
-import { useState } from 'react'
 
 const tabsApi: ApiProperty[] = [
   {
     property: 'children',
-    description: 'Tab buttons',
+    description: 'Tabs.Panel components',
     type: 'React.ReactNode',
+  },
+  {
+    property: 'activeKey',
+    description: 'Current active tab key (controlled)',
+    type: 'string',
+  },
+  {
+    property: 'defaultActiveKey',
+    description: 'Default active tab key (uncontrolled)',
+    type: 'string',
+  },
+  {
+    property: 'onChange',
+    description: 'Callback when tab changes',
+    type: '(key: string) => void',
   },
   {
     property: 'variant',
@@ -22,454 +36,306 @@ const tabsApi: ApiProperty[] = [
     default: "'md'",
   },
   {
-    property: 'position',
-    description: 'Position relative to content',
-    type: "'top' | 'bottom'",
-    default: "'top'",
-  },
-  {
     property: 'className',
     description: 'Additional CSS classes',
     type: 'string',
   },
 ]
 
-const tabApi: ApiProperty[] = [
+const tabPanelApi: ApiProperty[] = [
   {
-    property: 'children',
-    description: 'Tab label content',
+    property: 'tab',
+    description: 'Tab button label',
     type: 'React.ReactNode',
   },
   {
-    property: 'active',
-    description: 'Mark tab as active',
-    type: 'boolean',
-    default: 'false',
+    property: 'tabKey',
+    description: 'Unique identifier for the tab',
+    type: 'string',
   },
   {
     property: 'disabled',
-    description: 'Disable tab',
+    description: 'Disable the tab',
     type: 'boolean',
-    default: 'false',
   },
   {
-    property: 'onClick',
-    description: 'Click handler',
-    type: '() => void',
-  },
-  {
-    property: 'className',
-    description: 'Additional CSS classes',
-    type: 'string',
+    property: 'children',
+    description: 'Tab panel content',
+    type: 'React.ReactNode',
   },
 ]
 
 export function TabsPage() {
-  const [activeTab1, setActiveTab1] = useState('tab1')
-  const [activeTab2, setActiveTab2] = useState('home')
-  const [activeTab3, setActiveTab3] = useState('updates')
-  const [activeTab4, setActiveTab4] = useState('profile')
-  const [activeTab5, setActiveTab5] = useState('settings')
-
   return (
     <div>
       <div className="mb-6">
         <h1 className="text-4xl font-bold mb-2">Tabs</h1>
         <p className="text-base-content/70">
-          Tabbed interface for organizing and switching between content sections.
+          Organize content into separate views where only one view is visible at a time.
         </p>
       </div>
 
       <div className="columns-1 lg:columns-2 gap-x-4">
         <ExampleSection
-          title="Basic Tabs"
-          description="Simple tab navigation with active state."
-          code={`import React, { useState } from 'react'
+          title="Basic Usage"
+          description="Simple tabs - content switching is handled automatically."
+          code={`import React from 'react'
 import { Tabs } from '@edadma/petalui'
 
-const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('tab1')
-
-  return (
-    <Tabs>
-      <Tabs.Tab
-        active={activeTab === 'tab1'}
-        onClick={() => setActiveTab('tab1')}
-      >
-        Tab 1
-      </Tabs.Tab>
-      <Tabs.Tab
-        active={activeTab === 'tab2'}
-        onClick={() => setActiveTab('tab2')}
-      >
-        Tab 2
-      </Tabs.Tab>
-      <Tabs.Tab
-        active={activeTab === 'tab3'}
-        onClick={() => setActiveTab('tab3')}
-      >
-        Tab 3
-      </Tabs.Tab>
-    </Tabs>
-  )
-}
+const App: React.FC = () => (
+  <Tabs>
+    <Tabs.Panel tab="Tab 1" tabKey="1">
+      Content of Tab 1
+    </Tabs.Panel>
+    <Tabs.Panel tab="Tab 2" tabKey="2">
+      Content of Tab 2
+    </Tabs.Panel>
+    <Tabs.Panel tab="Tab 3" tabKey="3">
+      Content of Tab 3
+    </Tabs.Panel>
+  </Tabs>
+)
 
 export default App`}
         >
           <Tabs>
-            <Tabs.Tab active={activeTab1 === 'tab1'} onClick={() => setActiveTab1('tab1')}>
-              Tab 1
-            </Tabs.Tab>
-            <Tabs.Tab active={activeTab1 === 'tab2'} onClick={() => setActiveTab1('tab2')}>
-              Tab 2
-            </Tabs.Tab>
-            <Tabs.Tab active={activeTab1 === 'tab3'} onClick={() => setActiveTab1('tab3')}>
-              Tab 3
-            </Tabs.Tab>
+            <Tabs.Panel tab="Tab 1" tabKey="1">
+              Content of Tab 1
+            </Tabs.Panel>
+            <Tabs.Panel tab="Tab 2" tabKey="2">
+              Content of Tab 2
+            </Tabs.Panel>
+            <Tabs.Panel tab="Tab 3" tabKey="3">
+              Content of Tab 3
+            </Tabs.Panel>
           </Tabs>
         </ExampleSection>
 
         <ExampleSection
-          title="Boxed Tabs"
+          title="Settings Page"
+          description="Complete settings page with forms."
+          code={`import React from 'react'
+import { Tabs, Input, Button } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <Tabs defaultActiveKey="account" variant="border">
+    <Tabs.Panel tab="Account" tabKey="account">
+      <div className="space-y-4">
+        <div>
+          <label className="label">
+            <span className="label-text">Username</span>
+          </label>
+          <Input placeholder="john_doe" />
+        </div>
+        <Button type="primary">Save</Button>
+      </div>
+    </Tabs.Panel>
+    <Tabs.Panel tab="Security" tabKey="security">
+      <div className="space-y-4">
+        <div>
+          <label className="label">
+            <span className="label-text">Password</span>
+          </label>
+          <Input type="password" />
+        </div>
+        <Button type="primary">Update</Button>
+      </div>
+    </Tabs.Panel>
+  </Tabs>
+)
+
+export default App`}
+        >
+          <Tabs defaultActiveKey="account" variant="border">
+            <Tabs.Panel tab="Account" tabKey="account">
+              <div className="space-y-4">
+                <div>
+                  <label className="label">
+                    <span className="label-text">Username</span>
+                  </label>
+                  <Input placeholder="john_doe" />
+                </div>
+                <div>
+                  <label className="label">
+                    <span className="label-text">Email</span>
+                  </label>
+                  <Input type="email" placeholder="john@example.com" />
+                </div>
+                <Button type="primary">Save</Button>
+              </div>
+            </Tabs.Panel>
+            <Tabs.Panel tab="Security" tabKey="security">
+              <div className="space-y-4">
+                <div>
+                  <label className="label">
+                    <span className="label-text">Current Password</span>
+                  </label>
+                  <Input type="password" />
+                </div>
+                <div>
+                  <label className="label">
+                    <span className="label-text">New Password</span>
+                  </label>
+                  <Input type="password" />
+                </div>
+                <Button type="primary">Update</Button>
+              </div>
+            </Tabs.Panel>
+          </Tabs>
+        </ExampleSection>
+
+        <ExampleSection
+          title="Boxed Variant"
           description="Tabs with enclosed box styling."
-          code={`import React, { useState } from 'react'
+          code={`import React from 'react'
 import { Tabs } from '@edadma/petalui'
 
-const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('home')
-
-  return (
-    <Tabs variant="box">
-      <Tabs.Tab
-        active={activeTab === 'home'}
-        onClick={() => setActiveTab('home')}
-      >
-        Home
-      </Tabs.Tab>
-      <Tabs.Tab
-        active={activeTab === 'messages'}
-        onClick={() => setActiveTab('messages')}
-      >
-        Messages
-      </Tabs.Tab>
-      <Tabs.Tab
-        active={activeTab === 'settings'}
-        onClick={() => setActiveTab('settings')}
-      >
-        Settings
-      </Tabs.Tab>
-    </Tabs>
-  )
-}
+const App: React.FC = () => (
+  <Tabs variant="box">
+    <Tabs.Panel tab="Home" tabKey="home">
+      Home content
+    </Tabs.Panel>
+    <Tabs.Panel tab="Profile" tabKey="profile">
+      Profile content
+    </Tabs.Panel>
+    <Tabs.Panel tab="Settings" tabKey="settings">
+      Settings content
+    </Tabs.Panel>
+  </Tabs>
+)
 
 export default App`}
         >
           <Tabs variant="box">
-            <Tabs.Tab active={activeTab2 === 'home'} onClick={() => setActiveTab2('home')}>
-              Home
-            </Tabs.Tab>
-            <Tabs.Tab active={activeTab2 === 'messages'} onClick={() => setActiveTab2('messages')}>
-              Messages
-            </Tabs.Tab>
-            <Tabs.Tab active={activeTab2 === 'settings'} onClick={() => setActiveTab2('settings')}>
-              Settings
-            </Tabs.Tab>
+            <Tabs.Panel tab="Home" tabKey="home">
+              Home content
+            </Tabs.Panel>
+            <Tabs.Panel tab="Profile" tabKey="profile">
+              Profile content
+            </Tabs.Panel>
+            <Tabs.Panel tab="Settings" tabKey="settings">
+              Settings content
+            </Tabs.Panel>
           </Tabs>
         </ExampleSection>
 
         <ExampleSection
-          title="Bordered Tabs"
-          description="Tabs with bottom border highlight."
-          code={`import React, { useState } from 'react'
-import { Tabs } from '@edadma/petalui'
-
-const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('updates')
-
-  return (
-    <Tabs variant="border">
-      <Tabs.Tab
-        active={activeTab === 'overview'}
-        onClick={() => setActiveTab('overview')}
-      >
-        Overview
-      </Tabs.Tab>
-      <Tabs.Tab
-        active={activeTab === 'updates'}
-        onClick={() => setActiveTab('updates')}
-      >
-        Updates
-      </Tabs.Tab>
-      <Tabs.Tab
-        active={activeTab === 'reports'}
-        onClick={() => setActiveTab('reports')}
-      >
-        Reports
-      </Tabs.Tab>
-    </Tabs>
-  )
-}
-
-export default App`}
-        >
-          <Tabs variant="border">
-            <Tabs.Tab active={activeTab3 === 'overview'} onClick={() => setActiveTab3('overview')}>
-              Overview
-            </Tabs.Tab>
-            <Tabs.Tab active={activeTab3 === 'updates'} onClick={() => setActiveTab3('updates')}>
-              Updates
-            </Tabs.Tab>
-            <Tabs.Tab active={activeTab3 === 'reports'} onClick={() => setActiveTab3('reports')}>
-              Reports
-            </Tabs.Tab>
-          </Tabs>
-        </ExampleSection>
-
-        <ExampleSection
-          title="Lifted Tabs"
+          title="Lifted Variant"
           description="Tabs with 3D lifted appearance."
-          code={`import React, { useState } from 'react'
+          code={`import React from 'react'
 import { Tabs } from '@edadma/petalui'
 
-const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('profile')
-
-  return (
-    <Tabs variant="lift">
-      <Tabs.Tab
-        active={activeTab === 'profile'}
-        onClick={() => setActiveTab('profile')}
-      >
-        Profile
-      </Tabs.Tab>
-      <Tabs.Tab
-        active={activeTab === 'account'}
-        onClick={() => setActiveTab('account')}
-      >
-        Account
-      </Tabs.Tab>
-      <Tabs.Tab
-        active={activeTab === 'privacy'}
-        onClick={() => setActiveTab('privacy')}
-      >
-        Privacy
-      </Tabs.Tab>
-    </Tabs>
-  )
-}
+const App: React.FC = () => (
+  <Tabs variant="lift">
+    <Tabs.Panel tab="Overview" tabKey="1">
+      Overview content
+    </Tabs.Panel>
+    <Tabs.Panel tab="Reports" tabKey="2">
+      Reports content
+    </Tabs.Panel>
+    <Tabs.Panel tab="Analytics" tabKey="3">
+      Analytics content
+    </Tabs.Panel>
+  </Tabs>
+)
 
 export default App`}
         >
           <Tabs variant="lift">
-            <Tabs.Tab active={activeTab4 === 'profile'} onClick={() => setActiveTab4('profile')}>
-              Profile
-            </Tabs.Tab>
-            <Tabs.Tab active={activeTab4 === 'account'} onClick={() => setActiveTab4('account')}>
-              Account
-            </Tabs.Tab>
-            <Tabs.Tab active={activeTab4 === 'privacy'} onClick={() => setActiveTab4('privacy')}>
-              Privacy
-            </Tabs.Tab>
+            <Tabs.Panel tab="Overview" tabKey="1">
+              Overview content
+            </Tabs.Panel>
+            <Tabs.Panel tab="Reports" tabKey="2">
+              Reports content
+            </Tabs.Panel>
+            <Tabs.Panel tab="Analytics" tabKey="3">
+              Analytics content
+            </Tabs.Panel>
           </Tabs>
         </ExampleSection>
 
         <ExampleSection
-          title="Tab Sizes"
-          description="Different tab sizes from xs to xl."
-          code={`import React, { useState } from 'react'
+          title="Different Sizes"
+          description="Tabs in various sizes."
+          code={`import React from 'react'
 import { Tabs } from '@edadma/petalui'
 
-const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('tab2')
-
-  return (
-    <div className="flex flex-col gap-4">
-      <Tabs size="xs">
-        <Tabs.Tab active={activeTab === 'tab1'}>Tab XS</Tabs.Tab>
-        <Tabs.Tab>Tab XS</Tabs.Tab>
-      </Tabs>
-      <Tabs size="sm">
-        <Tabs.Tab active={activeTab === 'tab1'}>Tab SM</Tabs.Tab>
-        <Tabs.Tab>Tab SM</Tabs.Tab>
-      </Tabs>
-      <Tabs size="md">
-        <Tabs.Tab active={activeTab === 'tab1'}>Tab MD</Tabs.Tab>
-        <Tabs.Tab>Tab MD</Tabs.Tab>
-      </Tabs>
-      <Tabs size="lg">
-        <Tabs.Tab active={activeTab === 'tab1'}>Tab LG</Tabs.Tab>
-        <Tabs.Tab>Tab LG</Tabs.Tab>
-      </Tabs>
-      <Tabs size="xl">
-        <Tabs.Tab active={activeTab === 'tab1'}>Tab XL</Tabs.Tab>
-        <Tabs.Tab>Tab XL</Tabs.Tab>
-      </Tabs>
-    </div>
-  )
-}
+const App: React.FC = () => (
+  <div className="space-y-4">
+    <Tabs size="sm">
+      <Tabs.Panel tab="Small" tabKey="1">
+        Small tabs
+      </Tabs.Panel>
+      <Tabs.Panel tab="Tab 2" tabKey="2">
+        Content 2
+      </Tabs.Panel>
+    </Tabs>
+    <Tabs size="lg">
+      <Tabs.Panel tab="Large" tabKey="1">
+        Large tabs
+      </Tabs.Panel>
+      <Tabs.Panel tab="Tab 2" tabKey="2">
+        Content 2
+      </Tabs.Panel>
+    </Tabs>
+  </div>
+)
 
 export default App`}
         >
-          <div className="flex flex-col gap-4">
-            <Tabs size="xs">
-              <Tabs.Tab active>Tab XS</Tabs.Tab>
-              <Tabs.Tab>Tab XS</Tabs.Tab>
-            </Tabs>
+          <div className="space-y-4">
             <Tabs size="sm">
-              <Tabs.Tab active>Tab SM</Tabs.Tab>
-              <Tabs.Tab>Tab SM</Tabs.Tab>
-            </Tabs>
-            <Tabs size="md">
-              <Tabs.Tab active>Tab MD</Tabs.Tab>
-              <Tabs.Tab>Tab MD</Tabs.Tab>
+              <Tabs.Panel tab="Small" tabKey="1">
+                Small tabs
+              </Tabs.Panel>
+              <Tabs.Panel tab="Tab 2" tabKey="2">
+                Content 2
+              </Tabs.Panel>
             </Tabs>
             <Tabs size="lg">
-              <Tabs.Tab active>Tab LG</Tabs.Tab>
-              <Tabs.Tab>Tab LG</Tabs.Tab>
-            </Tabs>
-            <Tabs size="xl">
-              <Tabs.Tab active>Tab XL</Tabs.Tab>
-              <Tabs.Tab>Tab XL</Tabs.Tab>
+              <Tabs.Panel tab="Large" tabKey="1">
+                Large tabs
+              </Tabs.Panel>
+              <Tabs.Panel tab="Tab 2" tabKey="2">
+                Content 2
+              </Tabs.Panel>
             </Tabs>
           </div>
         </ExampleSection>
 
         <ExampleSection
           title="Disabled Tab"
-          description="Tabs with disabled state."
-          code={`import React, { useState } from 'react'
+          description="Disable specific tabs."
+          code={`import React from 'react'
 import { Tabs } from '@edadma/petalui'
 
-const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('settings')
-
-  return (
-    <Tabs variant="box">
-      <Tabs.Tab
-        active={activeTab === 'settings'}
-        onClick={() => setActiveTab('settings')}
-      >
-        Settings
-      </Tabs.Tab>
-      <Tabs.Tab
-        active={activeTab === 'security'}
-        onClick={() => setActiveTab('security')}
-      >
-        Security
-      </Tabs.Tab>
-      <Tabs.Tab disabled>
-        Disabled
-      </Tabs.Tab>
-    </Tabs>
-  )
-}
+const App: React.FC = () => (
+  <Tabs>
+    <Tabs.Panel tab="Active" tabKey="1">
+      Active content
+    </Tabs.Panel>
+    <Tabs.Panel tab="Disabled" tabKey="2" disabled>
+      Cannot see this
+    </Tabs.Panel>
+    <Tabs.Panel tab="Also Active" tabKey="3">
+      Active content
+    </Tabs.Panel>
+  </Tabs>
+)
 
 export default App`}
         >
-          <Tabs variant="box">
-            <Tabs.Tab active={activeTab5 === 'settings'} onClick={() => setActiveTab5('settings')}>
-              Settings
-            </Tabs.Tab>
-            <Tabs.Tab active={activeTab5 === 'security'} onClick={() => setActiveTab5('security')}>
-              Security
-            </Tabs.Tab>
-            <Tabs.Tab disabled>Disabled</Tabs.Tab>
+          <Tabs>
+            <Tabs.Panel tab="Active" tabKey="1">
+              Active content
+            </Tabs.Panel>
+            <Tabs.Panel tab="Disabled" tabKey="2" disabled>
+              Cannot see this
+            </Tabs.Panel>
+            <Tabs.Panel tab="Also Active" tabKey="3">
+              Active content
+            </Tabs.Panel>
           </Tabs>
-        </ExampleSection>
-
-        <ExampleSection
-          title="Tabs with Content"
-          description="Tabs with conditional content display."
-          code={`import React, { useState } from 'react'
-import { Tabs } from '@edadma/petalui'
-
-const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('profile')
-
-  return (
-    <>
-      <Tabs variant="border">
-        <Tabs.Tab
-          active={activeTab === 'profile'}
-          onClick={() => setActiveTab('profile')}
-        >
-          Profile
-        </Tabs.Tab>
-        <Tabs.Tab
-          active={activeTab === 'activity'}
-          onClick={() => setActiveTab('activity')}
-        >
-          Activity
-        </Tabs.Tab>
-        <Tabs.Tab
-          active={activeTab === 'notifications'}
-          onClick={() => setActiveTab('notifications')}
-        >
-          Notifications
-        </Tabs.Tab>
-      </Tabs>
-      <div className="p-4 bg-base-200 mt-2 rounded-box">
-        {activeTab === 'profile' && (
-          <div>
-            <h3 className="font-bold mb-2">Profile Content</h3>
-            <p>Your profile information and settings.</p>
-          </div>
-        )}
-        {activeTab === 'activity' && (
-          <div>
-            <h3 className="font-bold mb-2">Activity Content</h3>
-            <p>Recent activity and history.</p>
-          </div>
-        )}
-        {activeTab === 'notifications' && (
-          <div>
-            <h3 className="font-bold mb-2">Notifications Content</h3>
-            <p>Your notifications and alerts.</p>
-          </div>
-        )}
-      </div>
-    </>
-  )
-}
-
-export default App`}
-        >
-          <>
-            <Tabs variant="border">
-              <Tabs.Tab active={activeTab5 === 'profile'} onClick={() => setActiveTab5('profile')}>
-                Profile
-              </Tabs.Tab>
-              <Tabs.Tab active={activeTab5 === 'activity'} onClick={() => setActiveTab5('activity')}>
-                Activity
-              </Tabs.Tab>
-              <Tabs.Tab
-                active={activeTab5 === 'notifications'}
-                onClick={() => setActiveTab5('notifications')}
-              >
-                Notifications
-              </Tabs.Tab>
-            </Tabs>
-            <div className="p-4 bg-base-200 mt-2 rounded-box">
-              {activeTab5 === 'profile' && (
-                <div>
-                  <h3 className="font-bold mb-2">Profile Content</h3>
-                  <p>Your profile information and settings.</p>
-                </div>
-              )}
-              {activeTab5 === 'activity' && (
-                <div>
-                  <h3 className="font-bold mb-2">Activity Content</h3>
-                  <p>Recent activity and history.</p>
-                </div>
-              )}
-              {activeTab5 === 'notifications' && (
-                <div>
-                  <h3 className="font-bold mb-2">Notifications Content</h3>
-                  <p>Your notifications and alerts.</p>
-                </div>
-              )}
-            </div>
-          </>
         </ExampleSection>
       </div>
 
@@ -477,17 +343,23 @@ export default App`}
         <h2 className="text-2xl font-bold mb-4">Tabs API</h2>
         <ApiTable data={tabsApi} />
 
-        <h2 className="text-2xl font-bold mb-4 mt-8">Tabs.Tab API</h2>
-        <ApiTable data={tabApi} />
+        <h2 className="text-2xl font-bold mb-4 mt-8">Tabs.Panel API</h2>
+        <ApiTable data={tabPanelApi} />
 
         <div className="alert alert-info mt-8">
           <div>
-            <strong>Usage Tips:</strong>
+            <strong>Usage Pattern:</strong>
             <ul className="list-disc list-inside mt-2">
-              <li>Use controlled state with onClick and active props</li>
-              <li>Manage content visibility based on activeTab state</li>
-              <li>Variants: box, border, lift for different visual styles</li>
-              <li>Combine with conditional rendering for tab panels</li>
+              <li>
+                Use <code>Tabs.Panel</code> for each tab with <code>tab</code> and <code>tabKey</code> props
+              </li>
+              <li>Content switching is handled automatically by the Tabs component</li>
+              <li>
+                Use <code>defaultActiveKey</code> for uncontrolled tabs
+              </li>
+              <li>
+                Use <code>activeKey</code> + <code>onChange</code> for controlled tabs
+              </li>
             </ul>
           </div>
         </div>

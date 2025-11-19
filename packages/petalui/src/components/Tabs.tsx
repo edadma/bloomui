@@ -1,22 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export interface TabsProps {
   children: React.ReactNode
+  activeKey?: string
+  defaultActiveKey?: string
+  onChange?: (key: string) => void
   variant?: 'box' | 'border' | 'lift'
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-  position?: 'top' | 'bottom'
   className?: string
 }
 
-export interface TabProps {
-  children: React.ReactNode
-  active?: boolean
+export interface TabPanelProps {
+  tab: React.ReactNode
+  tabKey: string
   disabled?: boolean
-  onClick?: () => void
-  className?: string
+  children?: React.ReactNode
 }
 
-function TabsRoot({ children, variant, size, position, className = '' }: TabsProps) {
+function TabsRoot({
+  children,
+  activeKey,
+  defaultActiveKey,
+  onChange,
+  variant,
+  size,
+  className = '',
+}: TabsProps) {
+  // Get all panel children
+  const panels = React.Children.toArray(children).filter(
+    (child): child is React.ReactElement<TabPanelProps> =>
+      React.isValidElement(child) && child.type === TabPanel
+  )
+
+  const [internalActiveKey, setInternalActiveKey] = useState(
+    defaultActiveKey || panels[0]?.props.tabKey || ''
+  )
+  const currentActiveKey = activeKey !== undefined ? activeKey : internalActiveKey
+
+  const handleTabClick = (key: string) => {
+    if (activeKey === undefined) {
+      setInternalActiveKey(key)
+    }
+    onChange?.(key)
+  }
+
   const variantClasses = {
     box: 'tabs-box',
     border: 'tabs-border',
@@ -31,40 +58,40 @@ function TabsRoot({ children, variant, size, position, className = '' }: TabsPro
     xl: 'tabs-xl',
   }
 
-  const positionClasses = {
-    top: 'tabs-top',
-    bottom: 'tabs-bottom',
-  }
-
-  const classes = [
-    'tabs',
-    variant && variantClasses[variant],
-    size && sizeClasses[size],
-    position && positionClasses[position],
-    className,
-  ]
+  const classes = ['tabs', variant && variantClasses[variant], size && sizeClasses[size], className]
     .filter(Boolean)
     .join(' ')
 
+  const activePanel = panels.find((panel) => panel.props.tabKey === currentActiveKey)
+
   return (
-    <div role="tablist" className={classes}>
-      {children}
+    <div>
+      <div role="tablist" className={classes}>
+        {panels.map((panel) => (
+          <button
+            key={panel.props.tabKey}
+            role="tab"
+            className={`tab ${currentActiveKey === panel.props.tabKey ? 'tab-active' : ''} ${
+              panel.props.disabled ? 'tab-disabled' : ''
+            }`}
+            onClick={() => !panel.props.disabled && handleTabClick(panel.props.tabKey)}
+            disabled={panel.props.disabled}
+          >
+            {panel.props.tab}
+          </button>
+        ))}
+      </div>
+      {activePanel && <div className="mt-4">{activePanel.props.children}</div>}
     </div>
   )
 }
 
-function Tab({ children, active = false, disabled = false, onClick, className = '' }: TabProps) {
-  const classes = ['tab', active && 'tab-active', disabled && 'tab-disabled', className]
-    .filter(Boolean)
-    .join(' ')
-
-  return (
-    <button role="tab" className={classes} onClick={onClick} disabled={disabled}>
-      {children}
-    </button>
-  )
+function TabPanel({ children }: TabPanelProps) {
+  // This component is only used for type checking and is not rendered directly
+  // The actual rendering is done in TabsRoot
+  return <>{children}</>
 }
 
 export const Tabs = Object.assign(TabsRoot, {
-  Tab: Tab,
+  Panel: TabPanel,
 })
