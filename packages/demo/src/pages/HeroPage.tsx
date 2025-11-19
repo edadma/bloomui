@@ -199,28 +199,26 @@ const App: React.FC = () => (
         </p>
       </div>
       <Card className="w-full max-w-sm flex-shrink-0 shadow-2xl">
-        <Card.Body>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Email</span>
-            </label>
-            <Input type="email" placeholder="email@example.com" />
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Password</span>
-            </label>
-            <Input type="password" placeholder="password" />
-            <label className="label">
-              <a href="#" className="label-text-alt link link-hover">
-                Forgot password?
-              </a>
-            </label>
-          </div>
-          <div className="form-control mt-6">
-            <Button type="primary">Login</Button>
-          </div>
-        </Card.Body>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Email</span>
+          </label>
+          <Input type="email" placeholder="email@example.com" />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Password</span>
+          </label>
+          <Input type="password" placeholder="password" />
+          <label className="label">
+            <a href="#" className="label-text-alt link link-hover">
+              Forgot password?
+            </a>
+          </label>
+        </div>
+        <div className="form-control mt-6">
+          <Button type="primary">Login</Button>
+        </div>
       </Card>
     </Hero.Content>
   </Hero>
@@ -238,28 +236,26 @@ export default App`}
                 </p>
               </div>
               <Card className="w-full max-w-sm flex-shrink-0 shadow-2xl">
-                <Card.Body>
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Email</span>
-                    </label>
-                    <Input type="email" placeholder="email@example.com" />
-                  </div>
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Password</span>
-                    </label>
-                    <Input type="password" placeholder="password" />
-                    <label className="label">
-                      <a href="#" className="label-text-alt link link-hover">
-                        Forgot password?
-                      </a>
-                    </label>
-                  </div>
-                  <div className="form-control mt-6">
-                    <Button type="primary">Login</Button>
-                  </div>
-                </Card.Body>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Email</span>
+                  </label>
+                  <Input type="email" placeholder="email@example.com" />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Password</span>
+                  </label>
+                  <Input type="password" placeholder="password" />
+                  <label className="label">
+                    <a href="#" className="label-text-alt link link-hover">
+                      Forgot password?
+                    </a>
+                  </label>
+                </div>
+                <div className="form-control mt-6">
+                  <Button type="primary">Login</Button>
+                </div>
               </Card>
             </Hero.Content>
           </Hero>

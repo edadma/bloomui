@@ -69,9 +69,6 @@ function AppContent() {
               <Menu.Item active={isActive('/dropdown')} onClick={() => navigate('/dropdown')}>
                 Dropdown
               </Menu.Item>
-              <Menu.Item active={isActive('/join')} onClick={() => navigate('/join')}>
-                Join
-              </Menu.Item>
 
               <Menu.Title>Data Entry</Menu.Title>
               <Menu.Item active={isActive('/checkbox')} onClick={() => navigate('/checkbox')}>
@@ -143,6 +140,9 @@ function AppContent() {
               </Menu.Item>
               <Menu.Item active={isActive('/hero')} onClick={() => navigate('/hero')}>
                 Hero
+              </Menu.Item>
+              <Menu.Item active={isActive('/join')} onClick={() => navigate('/join')}>
+                Join
               </Menu.Item>
 
               <Menu.Title>Navigation</Menu.Title>

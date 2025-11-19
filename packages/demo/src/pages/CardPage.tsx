@@ -6,8 +6,33 @@ import type { ApiProperty } from '../components/ApiTable'
 const cardApi: ApiProperty[] = [
   {
     property: 'children',
-    description: 'Card content',
-    type: 'ReactNode',
+    description: 'Card body content',
+    type: 'React.ReactNode',
+  },
+  {
+    property: 'title',
+    description: 'Card title (renders automatically)',
+    type: 'React.ReactNode',
+  },
+  {
+    property: 'cover',
+    description: 'Cover image or media element',
+    type: 'React.ReactNode',
+  },
+  {
+    property: 'actions',
+    description: 'Action buttons or elements',
+    type: 'React.ReactNode',
+  },
+  {
+    property: 'className',
+    description: 'Additional CSS classes',
+    type: 'string',
+  },
+  {
+    property: 'style',
+    description: 'Inline styles',
+    type: 'React.CSSProperties',
   },
   {
     property: 'size',
@@ -23,78 +48,21 @@ const cardApi: ApiProperty[] = [
   },
   {
     property: 'side',
-    description: 'Place image beside content (horizontal layout)',
+    description: 'Place cover beside content (horizontal layout)',
     type: 'boolean',
     default: 'false',
   },
   {
     property: 'imageFull',
-    description: 'Make image a full background overlay',
+    description: 'Make cover image a full background overlay',
     type: 'boolean',
     default: 'false',
   },
   {
-    property: 'className',
-    description: 'Additional CSS classes',
-    type: 'string',
-  },
-]
-
-const cardBodyApi: ApiProperty[] = [
-  {
-    property: 'children',
-    description: 'Body content',
-    type: 'ReactNode',
-  },
-  {
-    property: 'className',
-    description: 'Additional CSS classes',
-    type: 'string',
-  },
-]
-
-const cardTitleApi: ApiProperty[] = [
-  {
-    property: 'children',
-    description: 'Title content',
-    type: 'ReactNode',
-  },
-  {
-    property: 'className',
-    description: 'Additional CSS classes',
-    type: 'string',
-  },
-]
-
-const cardActionsApi: ApiProperty[] = [
-  {
-    property: 'children',
-    description: 'Action buttons or elements',
-    type: 'ReactNode',
-  },
-  {
-    property: 'justify',
+    property: 'actionsJustify',
     description: 'Horizontal alignment of actions',
     type: "'start' | 'center' | 'end'",
     default: "'end'",
-  },
-  {
-    property: 'className',
-    description: 'Additional CSS classes',
-    type: 'string',
-  },
-]
-
-const cardFigureApi: ApiProperty[] = [
-  {
-    property: 'children',
-    description: 'Figure content (usually an image)',
-    type: 'ReactNode',
-  },
-  {
-    property: 'className',
-    description: 'Additional CSS classes',
-    type: 'string',
   },
 ]
 
@@ -116,58 +84,42 @@ export function CardPage() {
 import { Card } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <Card className="w-96">
-    <Card.Body>
-      <Card.Title>Card Title</Card.Title>
-      <p>This is a basic card with some content inside it.</p>
-    </Card.Body>
+  <Card title="Card Title" className="w-96">
+    <p>This is a basic card with some content inside it.</p>
   </Card>
 )
 
 export default App`}
         >
-          <Card className="w-96">
-            <Card.Body>
-              <Card.Title>Card Title</Card.Title>
-              <p>This is a basic card with some content inside it.</p>
-            </Card.Body>
+          <Card title="Card Title" className="w-96">
+            <p>This is a basic card with some content inside it.</p>
           </Card>
         </ExampleSection>
 
         <ExampleSection
           title="Card with Image"
-          description="Card with an image at the top."
+          description="Card with a cover image at the top."
           code={`import React from 'react'
 import { Card } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <Card className="w-96">
-    <Card.Figure>
-      <img
-        src="https://picsum.photos/400/200"
-        alt="Placeholder"
-      />
-    </Card.Figure>
-    <Card.Body>
-      <Card.Title>Image Card</Card.Title>
-      <p>A card with an image positioned at the top.</p>
-    </Card.Body>
+  <Card
+    title="Image Card"
+    cover={<img src="https://picsum.photos/400/200" alt="Placeholder" />}
+    className="w-96"
+  >
+    <p>A card with an image positioned at the top.</p>
   </Card>
 )
 
 export default App`}
         >
-          <Card className="w-96">
-            <Card.Figure>
-              <img
-                src="https://picsum.photos/400/200"
-                alt="Placeholder"
-              />
-            </Card.Figure>
-            <Card.Body>
-              <Card.Title>Image Card</Card.Title>
-              <p>A card with an image positioned at the top.</p>
-            </Card.Body>
+          <Card
+            title="Image Card"
+            cover={<img src="https://picsum.photos/400/200" alt="Placeholder" />}
+            className="w-96"
+          >
+            <p>A card with an image positioned at the top.</p>
           </Card>
         </ExampleSection>
 
@@ -178,29 +130,33 @@ export default App`}
 import { Card, Button } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <Card className="w-96">
-    <Card.Body>
-      <Card.Title>Action Card</Card.Title>
-      <p>Card with buttons in the actions area.</p>
-      <Card.Actions>
+  <Card
+    title="Action Card"
+    actions={
+      <>
         <Button type="primary">Accept</Button>
         <Button type="ghost">Decline</Button>
-      </Card.Actions>
-    </Card.Body>
+      </>
+    }
+    className="w-96"
+  >
+    <p>Card with buttons in the actions area.</p>
   </Card>
 )
 
 export default App`}
         >
-          <Card className="w-96">
-            <Card.Body>
-              <Card.Title>Action Card</Card.Title>
-              <p>Card with buttons in the actions area.</p>
-              <Card.Actions>
+          <Card
+            title="Action Card"
+            actions={
+              <>
                 <Button type="primary">Accept</Button>
                 <Button type="ghost">Decline</Button>
-              </Card.Actions>
-            </Card.Body>
+              </>
+            }
+            className="w-96"
+          >
+            <p>Card with buttons in the actions area.</p>
           </Card>
         </ExampleSection>
 
@@ -211,21 +167,15 @@ export default App`}
 import { Card } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <Card className="w-96" bordered>
-    <Card.Body>
-      <Card.Title>Bordered Card</Card.Title>
-      <p>This card has a border around it.</p>
-    </Card.Body>
+  <Card title="Bordered Card" className="w-96" bordered>
+    <p>This card has a border around it.</p>
   </Card>
 )
 
 export default App`}
         >
-          <Card className="w-96" bordered>
-            <Card.Body>
-              <Card.Title>Bordered Card</Card.Title>
-              <p>This card has a border around it.</p>
-            </Card.Body>
+          <Card title="Bordered Card" className="w-96" bordered>
+            <p>This card has a border around it.</p>
           </Card>
         </ExampleSection>
 
@@ -237,23 +187,14 @@ import { Card } from '@edadma/petalui'
 
 const App: React.FC = () => (
   <div className="flex flex-col gap-4">
-    <Card className="w-96" size="xs" bordered>
-      <Card.Body>
-        <Card.Title>Extra Small</Card.Title>
-        <p>Compact card with minimal padding.</p>
-      </Card.Body>
+    <Card title="Extra Small" size="xs" bordered className="w-96">
+      <p>Compact card with minimal padding.</p>
     </Card>
-    <Card className="w-96" size="sm" bordered>
-      <Card.Body>
-        <Card.Title>Small</Card.Title>
-        <p>Small card with reduced padding.</p>
-      </Card.Body>
+    <Card title="Small" size="sm" bordered className="w-96">
+      <p>Small card with reduced padding.</p>
     </Card>
-    <Card className="w-96" size="lg" bordered>
-      <Card.Body>
-        <Card.Title>Large</Card.Title>
-        <p>Large card with increased padding.</p>
-      </Card.Body>
+    <Card title="Large" size="lg" bordered className="w-96">
+      <p>Large card with increased padding.</p>
     </Card>
   </div>
 )
@@ -261,23 +202,14 @@ const App: React.FC = () => (
 export default App`}
         >
           <div className="flex flex-col gap-4 w-96">
-            <Card size="xs" bordered>
-              <Card.Body>
-                <Card.Title>Extra Small</Card.Title>
-                <p>Compact card with minimal padding.</p>
-              </Card.Body>
+            <Card title="Extra Small" size="xs" bordered>
+              <p>Compact card with minimal padding.</p>
             </Card>
-            <Card size="sm" bordered>
-              <Card.Body>
-                <Card.Title>Small</Card.Title>
-                <p>Small card with reduced padding.</p>
-              </Card.Body>
+            <Card title="Small" size="sm" bordered>
+              <p>Small card with reduced padding.</p>
             </Card>
-            <Card size="lg" bordered>
-              <Card.Body>
-                <Card.Title>Large</Card.Title>
-                <p>Large card with increased padding.</p>
-              </Card.Body>
+            <Card title="Large" size="lg" bordered>
+              <p>Large card with increased padding.</p>
             </Card>
           </div>
         </ExampleSection>
@@ -289,41 +221,39 @@ export default App`}
 import { Card, Button } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <Card className="w-96" side>
-    <Card.Figure>
+  <Card
+    title="Side Card"
+    cover={
       <img
         src="https://picsum.photos/200/300"
         alt="Placeholder"
         className="w-32 h-full object-cover"
       />
-    </Card.Figure>
-    <Card.Body>
-      <Card.Title>Side Card</Card.Title>
-      <p>Image positioned beside the content.</p>
-      <Card.Actions>
-        <Button type="primary">Buy Now</Button>
-      </Card.Actions>
-    </Card.Body>
+    }
+    actions={<Button type="primary">Buy Now</Button>}
+    side
+    className="w-96"
+  >
+    <p>Image positioned beside the content.</p>
   </Card>
 )
 
 export default App`}
         >
-          <Card className="w-96" side>
-            <Card.Figure>
+          <Card
+            title="Side Card"
+            cover={
               <img
                 src="https://picsum.photos/200/300"
                 alt="Placeholder"
                 className="w-32 h-full object-cover"
               />
-            </Card.Figure>
-            <Card.Body>
-              <Card.Title>Side Card</Card.Title>
-              <p>Image positioned beside the content.</p>
-              <Card.Actions>
-                <Button type="primary">Buy Now</Button>
-              </Card.Actions>
-            </Card.Body>
+            }
+            actions={<Button type="primary">Buy Now</Button>}
+            side
+            className="w-96"
+          >
+            <p>Image positioned beside the content.</p>
           </Card>
         </ExampleSection>
 
@@ -334,131 +264,88 @@ export default App`}
 import { Card, Button } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <Card className="w-96 h-64" imageFull>
-    <Card.Figure>
-      <img
-        src="https://picsum.photos/400/300"
-        alt="Placeholder"
-      />
-    </Card.Figure>
-    <Card.Body className="text-neutral-content">
-      <Card.Title>Overlay Card</Card.Title>
-      <p>Text appears over the background image.</p>
-      <Card.Actions>
-        <Button type="primary">View Details</Button>
-      </Card.Actions>
-    </Card.Body>
+  <Card
+    title="Overlay Card"
+    cover={<img src="https://picsum.photos/400/300" alt="Placeholder" />}
+    actions={<Button type="primary">View Details</Button>}
+    imageFull
+    className="w-96 h-64 text-neutral-content"
+  >
+    <p>Text appears over the background image.</p>
   </Card>
 )
 
 export default App`}
         >
-          <Card className="w-96 h-64" imageFull>
-            <Card.Figure>
-              <img
-                src="https://picsum.photos/400/300"
-                alt="Placeholder"
-              />
-            </Card.Figure>
-            <Card.Body className="text-neutral-content">
-              <Card.Title>Overlay Card</Card.Title>
-              <p>Text appears over the background image.</p>
-              <Card.Actions>
-                <Button type="primary">View Details</Button>
-              </Card.Actions>
-            </Card.Body>
+          <Card
+            title="Overlay Card"
+            cover={<img src="https://picsum.photos/400/300" alt="Placeholder" />}
+            actions={<Button type="primary">View Details</Button>}
+            imageFull
+            className="w-96 h-64 text-neutral-content"
+          >
+            <p>Text appears over the background image.</p>
           </Card>
         </ExampleSection>
 
         <ExampleSection
-          title="Card with Badge"
-          description="Card with badge in title."
+          title="Card with Badge in Title"
+          description="Card with badge in title using ReactNode."
           code={`import React from 'react'
 import { Card, Badge, Button } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <Card className="w-96" bordered>
-    <Card.Body>
-      <Card.Title>
+  <Card
+    title={
+      <>
         New Product
         <Badge type="primary" content="NEW" size="sm" />
-      </Card.Title>
-      <p>Check out our latest offering with special features.</p>
-      <Card.Actions>
-        <Button type="primary">Learn More</Button>
-      </Card.Actions>
-    </Card.Body>
+      </>
+    }
+    actions={<Button type="primary">Learn More</Button>}
+    bordered
+    className="w-96"
+  >
+    <p>Check out our latest offering with special features.</p>
   </Card>
 )
 
 export default App`}
         >
-          <Card className="w-96" bordered>
-            <Card.Body>
-              <Card.Title>
+          <Card
+            title={
+              <>
                 New Product
                 <Badge type="primary" content="NEW" size="sm" />
-              </Card.Title>
-              <p>Check out our latest offering with special features.</p>
-              <Card.Actions>
-                <Button type="primary">Learn More</Button>
-              </Card.Actions>
-            </Card.Body>
-          </Card>
-        </ExampleSection>
-
-        <ExampleSection
-          title="Centered Content"
-          description="Card with centered text and items."
-          code={`import React from 'react'
-import { Card, Button } from '@edadma/petalui'
-
-const App: React.FC = () => (
-  <Card className="w-96" bordered>
-    <Card.Body className="items-center text-center">
-      <Card.Title>Centered Card</Card.Title>
-      <p>All content is centered in this card.</p>
-      <Card.Actions>
-        <Button type="primary">Action</Button>
-        <Button type="ghost">Cancel</Button>
-      </Card.Actions>
-    </Card.Body>
-  </Card>
-)
-
-export default App`}
-        >
-          <Card className="w-96" bordered>
-            <Card.Body className="items-center text-center">
-              <Card.Title>Centered Card</Card.Title>
-              <p>All content is centered in this card.</p>
-              <Card.Actions>
-                <Button type="primary">Action</Button>
-                <Button type="ghost">Cancel</Button>
-              </Card.Actions>
-            </Card.Body>
+              </>
+            }
+            actions={<Button type="primary">Learn More</Button>}
+            bordered
+            className="w-96"
+          >
+            <p>Check out our latest offering with special features.</p>
           </Card>
         </ExampleSection>
 
         <ExampleSection
           title="Custom Colors"
-          description="Card with custom background colors."
+          description="Card with custom background colors using className."
           code={`import React from 'react'
 import { Card } from '@edadma/petalui'
 
 const App: React.FC = () => (
   <div className="flex flex-col gap-4">
-    <Card className="w-96 bg-primary text-primary-content">
-      <Card.Body>
-        <Card.Title>Primary Card</Card.Title>
-        <p>Card with primary background color.</p>
-      </Card.Body>
+    <Card
+      title="Primary Card"
+      className="w-96 bg-primary text-primary-content"
+    >
+      <p>Card with primary background color.</p>
     </Card>
-    <Card className="w-96 bg-neutral text-neutral-content">
-      <Card.Body>
-        <Card.Title>Neutral Card</Card.Title>
-        <p>Card with neutral background color.</p>
-      </Card.Body>
+    <Card
+      title="Neutral Card"
+      className="w-96 bg-neutral text-neutral-content"
+    >
+      <p>Card with neutral background color.</p>
     </Card>
   </div>
 )
@@ -466,62 +353,13 @@ const App: React.FC = () => (
 export default App`}
         >
           <div className="flex flex-col gap-4 w-96">
-            <Card className="bg-primary text-primary-content">
-              <Card.Body>
-                <Card.Title>Primary Card</Card.Title>
-                <p>Card with primary background color.</p>
-              </Card.Body>
+            <Card title="Primary Card" className="bg-primary text-primary-content">
+              <p>Card with primary background color.</p>
             </Card>
-            <Card className="bg-neutral text-neutral-content">
-              <Card.Body>
-                <Card.Title>Neutral Card</Card.Title>
-                <p>Card with neutral background color.</p>
-              </Card.Body>
+            <Card title="Neutral Card" className="bg-neutral text-neutral-content">
+              <p>Card with neutral background color.</p>
             </Card>
           </div>
-        </ExampleSection>
-
-        <ExampleSection
-          title="Image at Bottom"
-          description="Card with image positioned at the bottom."
-          code={`import React from 'react'
-import { Card, Button } from '@edadma/petalui'
-
-const App: React.FC = () => (
-  <Card className="w-96" bordered>
-    <Card.Body>
-      <Card.Title>Bottom Image</Card.Title>
-      <p>The image appears below the content.</p>
-      <Card.Actions>
-        <Button type="primary" size="sm">View</Button>
-      </Card.Actions>
-    </Card.Body>
-    <Card.Figure>
-      <img
-        src="https://picsum.photos/400/150"
-        alt="Placeholder"
-      />
-    </Card.Figure>
-  </Card>
-)
-
-export default App`}
-        >
-          <Card className="w-96" bordered>
-            <Card.Body>
-              <Card.Title>Bottom Image</Card.Title>
-              <p>The image appears below the content.</p>
-              <Card.Actions>
-                <Button type="primary" size="sm">View</Button>
-              </Card.Actions>
-            </Card.Body>
-            <Card.Figure>
-              <img
-                src="https://picsum.photos/400/150"
-                alt="Placeholder"
-              />
-            </Card.Figure>
-          </Card>
         </ExampleSection>
 
         <ExampleSection
@@ -532,23 +370,23 @@ import { Card, Button } from '@edadma/petalui'
 
 const App: React.FC = () => (
   <div className="flex flex-col gap-4">
-    <Card className="w-96" bordered>
-      <Card.Body>
-        <Card.Title>Left Actions</Card.Title>
-        <p>Actions aligned to the left.</p>
-        <Card.Actions justify="start">
-          <Button type="primary" size="sm">Left</Button>
-        </Card.Actions>
-      </Card.Body>
+    <Card
+      title="Left Actions"
+      actions={<Button type="primary" size="sm">Left</Button>}
+      actionsJustify="start"
+      bordered
+      className="w-96"
+    >
+      <p>Actions aligned to the left.</p>
     </Card>
-    <Card className="w-96" bordered>
-      <Card.Body>
-        <Card.Title>Center Actions</Card.Title>
-        <p>Actions aligned to the center.</p>
-        <Card.Actions justify="center">
-          <Button type="primary" size="sm">Center</Button>
-        </Card.Actions>
-      </Card.Body>
+    <Card
+      title="Center Actions"
+      actions={<Button type="primary" size="sm">Center</Button>}
+      actionsJustify="center"
+      bordered
+      className="w-96"
+    >
+      <p>Actions aligned to the center.</p>
     </Card>
   </div>
 )
@@ -556,51 +394,82 @@ const App: React.FC = () => (
 export default App`}
         >
           <div className="flex flex-col gap-4 w-96">
-            <Card bordered>
-              <Card.Body>
-                <Card.Title>Left Actions</Card.Title>
-                <p>Actions aligned to the left.</p>
-                <Card.Actions justify="start">
-                  <Button type="primary" size="sm">Left</Button>
-                </Card.Actions>
-              </Card.Body>
+            <Card
+              title="Left Actions"
+              actions={<Button type="primary" size="sm">Left</Button>}
+              actionsJustify="start"
+              bordered
+            >
+              <p>Actions aligned to the left.</p>
             </Card>
-            <Card bordered>
-              <Card.Body>
-                <Card.Title>Center Actions</Card.Title>
-                <p>Actions aligned to the center.</p>
-                <Card.Actions justify="center">
-                  <Button type="primary" size="sm">Center</Button>
-                </Card.Actions>
-              </Card.Body>
+            <Card
+              title="Center Actions"
+              actions={<Button type="primary" size="sm">Center</Button>}
+              actionsJustify="center"
+              bordered
+            >
+              <p>Actions aligned to the center.</p>
             </Card>
           </div>
+        </ExampleSection>
+
+        <ExampleSection
+          title="With Inline Styles"
+          description="Card with inline styles using style prop."
+          code={`import React from 'react'
+import { Card } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <Card
+    title="Custom Styled Card"
+    style={{ border: '2px dashed currentColor' }}
+    className="w-96"
+  >
+    <p>This card uses inline styles for custom borders.</p>
+  </Card>
+)
+
+export default App`}
+        >
+          <Card
+            title="Custom Styled Card"
+            style={{ border: '2px dashed currentColor' }}
+            className="w-96"
+          >
+            <p>This card uses inline styles for custom borders.</p>
+          </Card>
         </ExampleSection>
       </div>
 
       <div className="mt-12">
         <h2 className="text-2xl font-bold mb-4">Card API</h2>
         <ApiTable data={cardApi} />
-      </div>
 
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">Card.Body API</h2>
-        <ApiTable data={cardBodyApi} />
-      </div>
-
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">Card.Title API</h2>
-        <ApiTable data={cardTitleApi} />
-      </div>
-
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">Card.Actions API</h2>
-        <ApiTable data={cardActionsApi} />
-      </div>
-
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">Card.Figure API</h2>
-        <ApiTable data={cardFigureApi} />
+        <div className="alert alert-info mt-8">
+          <div>
+            <strong>Usage Tips:</strong>
+            <ul className="list-disc list-inside mt-2">
+              <li>
+                Pass content directly as children - no need for Card.Body wrapper
+              </li>
+              <li>
+                Use <code>title</code> prop instead of Card.Title component
+              </li>
+              <li>
+                Use <code>cover</code> prop for images instead of Card.Figure
+              </li>
+              <li>
+                Use <code>actions</code> prop for buttons instead of Card.Actions
+              </li>
+              <li>
+                Combine with Tailwind utility classes via <code>className</code> for custom styling
+              </li>
+              <li>
+                Use <code>style</code> prop for inline styles when needed
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   )

@@ -169,30 +169,26 @@ export default App`}
 import { Menu, Card } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <Card bordered>
-    <Card.Body className="p-0">
-      <Menu>
-        <Menu.Item active>Inbox</Menu.Item>
-        <Menu.Item>Sent</Menu.Item>
-        <Menu.Item>Drafts</Menu.Item>
-        <Menu.Item>Trash</Menu.Item>
-      </Menu>
-    </Card.Body>
+  <Card bordered className="[&>.card-body]:p-0">
+    <Menu>
+      <Menu.Item active>Inbox</Menu.Item>
+      <Menu.Item>Sent</Menu.Item>
+      <Menu.Item>Drafts</Menu.Item>
+      <Menu.Item>Trash</Menu.Item>
+    </Menu>
   </Card>
 )
 
 export default App`}
         >
           <div className="w-64">
-            <Card bordered>
-              <Card.Body className="p-0">
-                <Menu>
-                  <Menu.Item active>Inbox</Menu.Item>
-                  <Menu.Item>Sent</Menu.Item>
-                  <Menu.Item>Drafts</Menu.Item>
-                  <Menu.Item>Trash</Menu.Item>
-                </Menu>
-              </Card.Body>
+            <Card bordered className="[&>.card-body]:p-0">
+              <Menu>
+                <Menu.Item active>Inbox</Menu.Item>
+                <Menu.Item>Sent</Menu.Item>
+                <Menu.Item>Drafts</Menu.Item>
+                <Menu.Item>Trash</Menu.Item>
+              </Menu>
             </Card>
           </div>
         </ExampleSection>

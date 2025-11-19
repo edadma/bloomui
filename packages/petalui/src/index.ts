@@ -17,7 +17,7 @@ export { Checkbox } from './components/Checkbox'
 export type { CheckboxProps } from './components/Checkbox'
 
 export { Card } from './components/Card'
-export type { CardProps, CardBodyProps, CardTitleProps, CardActionsProps, CardFigureProps } from './components/Card'
+export type { CardProps } from './components/Card'
 
 export { Collapse } from './components/Collapse'
 export type { CollapseProps, CollapseTitleProps, CollapseContentProps } from './components/Collapse'

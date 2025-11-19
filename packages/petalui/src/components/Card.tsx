@@ -2,41 +2,30 @@ import React from 'react'
 
 export interface CardProps {
   children: React.ReactNode
+  title?: React.ReactNode
+  cover?: React.ReactNode
+  actions?: React.ReactNode
   className?: string
+  style?: React.CSSProperties
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   bordered?: boolean
   side?: boolean
   imageFull?: boolean
+  actionsJustify?: 'start' | 'center' | 'end'
 }
 
-export interface CardBodyProps {
-  children: React.ReactNode
-  className?: string
-}
-
-export interface CardTitleProps {
-  children: React.ReactNode
-  className?: string
-}
-
-export interface CardActionsProps {
-  children: React.ReactNode
-  className?: string
-  justify?: 'start' | 'center' | 'end'
-}
-
-export interface CardFigureProps {
-  children: React.ReactNode
-  className?: string
-}
-
-function CardRoot({
+export function Card({
   children,
+  title,
+  cover,
+  actions,
   className = '',
+  style,
   size,
   bordered = false,
   side = false,
   imageFull = false,
+  actionsJustify = 'end',
 }: CardProps) {
   const sizeClasses: Record<string, string> = {
     xs: 'card-xs',
@@ -58,38 +47,20 @@ function CardRoot({
     .filter(Boolean)
     .join(' ')
 
-  return <div className={classes}>{children}</div>
-}
-
-function CardBody({ children, className = '' }: CardBodyProps) {
-  return <div className={`card-body ${className}`}>{children}</div>
-}
-
-function CardTitle({ children, className = '' }: CardTitleProps) {
-  return <h2 className={`card-title ${className}`}>{children}</h2>
-}
-
-function CardActions({ children, className = '', justify = 'end' }: CardActionsProps) {
   const justifyClasses: Record<string, string> = {
     start: 'justify-start',
     center: 'justify-center',
     end: 'justify-end',
   }
 
-  const classes = ['card-actions', justifyClasses[justify], className]
-    .filter(Boolean)
-    .join(' ')
-
-  return <div className={classes}>{children}</div>
+  return (
+    <div className={classes} style={style}>
+      {cover && <figure>{cover}</figure>}
+      <div className="card-body">
+        {title && <h2 className="card-title">{title}</h2>}
+        {children}
+        {actions && <div className={`card-actions ${justifyClasses[actionsJustify]}`}>{actions}</div>}
+      </div>
+    </div>
+  )
 }
-
-function CardFigure({ children, className = '' }: CardFigureProps) {
-  return <figure className={className}>{children}</figure>
-}
-
-export const Card = Object.assign(CardRoot, {
-  Body: CardBody,
-  Title: CardTitle,
-  Actions: CardActions,
-  Figure: CardFigure,
-})
