@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import { Menu, Navbar } from '@edadma/petalui'
 import { ThemeSwitcher } from './ThemeSwitcher'
+import { AlertPage } from './pages/AlertPage'
 import { AvatarPage } from './pages/AvatarPage'
 import { BadgePage } from './pages/BadgePage'
 import { ButtonPage } from './pages/ButtonPage'
@@ -9,6 +10,7 @@ import { CheckboxPage } from './pages/CheckboxPage'
 import { DrawerPage } from './pages/DrawerPage'
 import { DropdownPage } from './pages/DropdownPage'
 import { FieldsetPage } from './pages/FieldsetPage'
+import { FooterPage } from './pages/FooterPage'
 import { FormPage } from './pages/FormPage'
 import { InputPage } from './pages/InputPage'
 import { LoadingPage } from './pages/LoadingPage'
@@ -20,6 +22,7 @@ import { TablePage } from './pages/TablePage'
 import { TextareaPage } from './pages/TextareaPage'
 import { TimelinePage } from './pages/TimelinePage'
 import { TogglePage } from './pages/TogglePage'
+import { TooltipPage } from './pages/TooltipPage'
 
 function AppContent() {
   const navigate = useNavigate()
@@ -105,13 +108,22 @@ function AppContent() {
               <Menu.Item active={isActive('/menu')} onClick={() => navigate('/menu')}>
                 Menu
               </Menu.Item>
+              <Menu.Item active={isActive('/footer')} onClick={() => navigate('/footer')}>
+                Footer
+              </Menu.Item>
               <Menu.Item active={isActive('/navbar')} onClick={() => navigate('/navbar')}>
                 Navbar
               </Menu.Item>
 
               <Menu.Title>Feedback</Menu.Title>
+              <Menu.Item active={isActive('/alert')} onClick={() => navigate('/alert')}>
+                Alert
+              </Menu.Item>
               <Menu.Item active={isActive('/loading')} onClick={() => navigate('/loading')}>
                 Loading
+              </Menu.Item>
+              <Menu.Item active={isActive('/tooltip')} onClick={() => navigate('/tooltip')}>
+                Tooltip
               </Menu.Item>
             </Menu>
           </div>
@@ -122,6 +134,7 @@ function AppContent() {
           <div className="max-w-[1920px] mx-auto">
             <Routes>
               <Route path="/" element={<ButtonPage />} />
+              <Route path="/alert" element={<AlertPage />} />
               <Route path="/avatar" element={<AvatarPage />} />
               <Route path="/badge" element={<BadgePage />} />
               <Route path="/button" element={<ButtonPage />} />
@@ -130,6 +143,7 @@ function AppContent() {
               <Route path="/drawer" element={<DrawerPage />} />
               <Route path="/dropdown" element={<DropdownPage />} />
               <Route path="/fieldset" element={<FieldsetPage />} />
+              <Route path="/footer" element={<FooterPage />} />
               <Route path="/form" element={<FormPage />} />
               <Route path="/input" element={<InputPage />} />
               <Route path="/loading" element={<LoadingPage />} />
@@ -141,6 +155,7 @@ function AppContent() {
               <Route path="/textarea" element={<TextareaPage />} />
               <Route path="/timeline" element={<TimelinePage />} />
               <Route path="/toggle" element={<TogglePage />} />
+              <Route path="/tooltip" element={<TooltipPage />} />
             </Routes>
           </div>
         </main>

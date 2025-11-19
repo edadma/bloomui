@@ -1,3 +1,6 @@
+export { Alert } from './components/Alert'
+export type { AlertProps } from './components/Alert'
+
 export { Avatar, AvatarGroup } from './components/Avatar'
 export type { AvatarProps, AvatarGroupProps } from './components/Avatar'
 
@@ -18,6 +21,9 @@ export type { DrawerProps } from './components/Drawer'
 
 export { Fieldset } from './components/Fieldset'
 export type { FieldsetProps, FieldsetLegendProps } from './components/Fieldset'
+
+export { Footer } from './components/Footer'
+export type { FooterProps, FooterTitleProps } from './components/Footer'
 
 export { Form, useFormInstance } from './components/Form'
 export type { FormProps, FormItemProps, FormInstance } from './components/Form'
@@ -54,3 +60,6 @@ export type { TimelineProps, TimelineItemProps, TimelineStartProps, TimelineMidd
 
 export { Toggle } from './components/Toggle'
 export type { ToggleProps } from './components/Toggle'
+
+export { Tooltip } from './components/Tooltip'
+export type { TooltipProps } from './components/Tooltip'
