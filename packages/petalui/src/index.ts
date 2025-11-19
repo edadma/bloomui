@@ -70,6 +70,9 @@ export type { NavbarProps } from './components/Navbar'
 export { Radio } from './components/Radio'
 export type { RadioProps, RadioGroupProps } from './components/Radio'
 
+export { Rating } from './components/Rating'
+export type { RatingProps, RatingItemProps } from './components/Rating'
+
 export { Select } from './components/Select'
 export type { SelectProps } from './components/Select'
 

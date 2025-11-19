@@ -25,6 +25,7 @@ import { MenuPage } from './pages/MenuPage'
 import { ModalPage } from './pages/ModalPage'
 import { NavbarPage } from './pages/NavbarPage'
 import { RadioPage } from './pages/RadioPage'
+import { RatingPage } from './pages/RatingPage'
 import { SelectPage } from './pages/SelectPage'
 import { StatPage } from './pages/StatPage'
 import { StepsPage } from './pages/StepsPage'
@@ -93,6 +94,9 @@ function AppContent() {
               </Menu.Item>
               <Menu.Item active={isActive('/radio')} onClick={() => navigate('/radio')}>
                 Radio
+              </Menu.Item>
+              <Menu.Item active={isActive('/rating')} onClick={() => navigate('/rating')}>
+                Rating
               </Menu.Item>
               <Menu.Item active={isActive('/select')} onClick={() => navigate('/select')}>
                 Select
@@ -204,6 +208,7 @@ function AppContent() {
               <Route path="/modal" element={<ModalPage />} />
               <Route path="/navbar" element={<NavbarPage />} />
               <Route path="/radio" element={<RadioPage />} />
+              <Route path="/rating" element={<RatingPage />} />
               <Route path="/select" element={<SelectPage />} />
               <Route path="/stat" element={<StatPage />} />
               <Route path="/steps" element={<StepsPage />} />
