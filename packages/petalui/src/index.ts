@@ -1,3 +1,6 @@
+export { Avatar, AvatarGroup } from './components/Avatar'
+export type { AvatarProps, AvatarGroupProps } from './components/Avatar'
+
 export { Badge } from './components/Badge'
 export type { BadgeProps } from './components/Badge'
 

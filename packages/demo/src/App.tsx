@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import { Menu, Navbar } from '@edadma/petalui'
 import { ThemeSwitcher } from './ThemeSwitcher'
+import { AvatarPage } from './pages/AvatarPage'
 import { BadgePage } from './pages/BadgePage'
 import { ButtonPage } from './pages/ButtonPage'
 import { CardPage } from './pages/CardPage'
@@ -78,6 +79,9 @@ function AppContent() {
               </Menu.Item>
 
               <Menu.Title>Data Display</Menu.Title>
+              <Menu.Item active={isActive('/avatar')} onClick={() => navigate('/avatar')}>
+                Avatar
+              </Menu.Item>
               <Menu.Item active={isActive('/badge')} onClick={() => navigate('/badge')}>
                 Badge
               </Menu.Item>
@@ -118,6 +122,7 @@ function AppContent() {
           <div className="max-w-[1920px] mx-auto">
             <Routes>
               <Route path="/" element={<ButtonPage />} />
+              <Route path="/avatar" element={<AvatarPage />} />
               <Route path="/badge" element={<BadgePage />} />
               <Route path="/button" element={<ButtonPage />} />
               <Route path="/card" element={<CardPage />} />
