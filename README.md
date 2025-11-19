@@ -20,11 +20,27 @@ pnpm add @edadma/petalui
 yarn add @edadma/petalui
 ```
 
+## Prerequisites
+
+PetalUI requires Tailwind CSS and DaisyUI to be configured in your project:
+
+```bash
+npm install -D tailwindcss daisyui
+```
+
+Configure your `tailwind.config.js`:
+
+```js
+export default {
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  plugins: [require('daisyui')],
+}
+```
+
 ## Usage
 
 ```tsx
 import { Button, Badge, Table } from '@edadma/petalui'
-import '@edadma/petalui/styles.css'
 
 function App() {
   return (
@@ -41,9 +57,12 @@ function App() {
 
 - **Badge** - Notification badges with count and dot indicators
 - **Button** - Buttons with multiple types and sizes
+- **Card** - Composable card component with body, title, actions, and figure
 - **Drawer** - Sidebar navigation drawer
+- **Dropdown** - Composable dropdown menu with trigger and items
+- **Loading** - Loading spinners with overlay support
+- **Menu** - Vertical menu component for navigation
 - **Navbar** - Navigation bar component
-- **Spin** - Loading spinners with overlay support
 - **Table** - Feature-rich data table with pagination
 
 ## Development
