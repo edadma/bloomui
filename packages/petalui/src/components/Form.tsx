@@ -165,12 +165,11 @@ function FormItem({
               </label>
             )}
             {enhancedChild}
-            {(errorMessage || help) && (
-              <label className="label">
-                {errorMessage && <span className="label-text-alt text-error">{errorMessage}</span>}
-                {!errorMessage && help && <span className="label-text-alt">{help}</span>}
-              </label>
-            )}
+            <label className="label">
+              <span className="label-text-alt text-error min-h-[1.25rem]">
+                {errorMessage || (help && <span className="text-base-content/70">{help}</span>) || '\u00A0'}
+              </span>
+            </label>
           </div>
         )
       }}

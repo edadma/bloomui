@@ -2,6 +2,7 @@ import React from 'react'
 
 export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
   type?: 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'error' | 'neutral' | 'ghost' | 'link'
+  htmlType?: 'button' | 'submit' | 'reset'
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   outline?: boolean
   dash?: boolean
@@ -15,6 +16,7 @@ export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonE
 export const Button: React.FC<ButtonProps> = ({
   children,
   type,
+  htmlType = 'button',
   size = 'md',
   outline = false,
   dash = false,
@@ -70,7 +72,7 @@ export const Button: React.FC<ButtonProps> = ({
     .join(' ')
 
   return (
-    <button className={classes} {...props}>
+    <button type={htmlType} className={classes} {...props}>
       {loading && <span className="loading loading-spinner"></span>}
       {children}
     </button>

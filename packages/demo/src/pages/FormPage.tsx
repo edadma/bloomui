@@ -1,4 +1,4 @@
-import { Form, Input, Checkbox } from '@edadma/petalui'
+import { Form, Input, Checkbox, Button } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -104,9 +104,9 @@ const App: React.FC = () => {
       </Form.Item>
 
       <Form.Item>
-        <button type="submit" className="btn btn-primary">
+        <Button htmlType="submit" type="primary">
           Submit
-        </button>
+        </Button>
       </Form.Item>
     </Form>
   )
@@ -124,9 +124,9 @@ export default App`}
             </Form.Item>
 
             <Form.Item>
-              <button type="submit" className="btn btn-primary">
+              <Button htmlType="submit" type="primary">
                 Submit
-              </button>
+              </Button>
             </Form.Item>
           </Form>
         </ExampleSection>
@@ -171,9 +171,9 @@ const App: React.FC = () => {
       </Form.Item>
 
       <Form.Item>
-        <button type="submit" className="btn btn-primary">
+        <Button htmlType="submit" type="primary">
           Submit
-        </button>
+        </Button>
       </Form.Item>
     </Form>
   )
@@ -209,9 +209,9 @@ export default App`}
             </Form.Item>
 
             <Form.Item>
-              <button type="submit" className="btn btn-primary">
+              <Button htmlType="submit" type="primary">
                 Submit
-              </button>
+              </Button>
             </Form.Item>
           </Form>
         </ExampleSection>
@@ -220,7 +220,7 @@ export default App`}
           title="With Checkbox"
           description="Form with checkbox using valuePropName."
           code={`import React from 'react'
-import { Form, Input, Checkbox } from '@edadma/petalui'
+import { Form, Input, Checkbox, Button } from '@edadma/petalui'
 
 const App: React.FC = () => {
   const handleSubmit = (values: any) => {
@@ -248,9 +248,9 @@ const App: React.FC = () => {
       </Form.Item>
 
       <Form.Item>
-        <button type="submit" className="btn btn-primary w-full">
+        <Button htmlType="submit" type="primary" shape="block">
           Sign In
-        </button>
+        </Button>
       </Form.Item>
     </Form>
   )
@@ -278,9 +278,9 @@ export default App`}
             </Form.Item>
 
             <Form.Item>
-              <button type="submit" className="btn btn-primary w-full">
+              <Button htmlType="submit" type="primary" shape="block">
                 Sign In
-              </button>
+              </Button>
             </Form.Item>
           </Form>
         </ExampleSection>
@@ -320,9 +320,9 @@ const App: React.FC = () => {
       </Form.Item>
 
       <Form.Item>
-        <button type="submit" className="btn btn-primary">
+        <Button htmlType="submit" type="primary">
           Submit
-        </button>
+        </Button>
       </Form.Item>
     </Form>
   )
@@ -353,9 +353,9 @@ export default App`}
             </Form.Item>
 
             <Form.Item>
-              <button type="submit" className="btn btn-primary">
+              <Button htmlType="submit" type="primary">
                 Submit
-              </button>
+              </Button>
             </Form.Item>
           </Form>
         </ExampleSection>
@@ -377,9 +377,9 @@ const App: React.FC = () => (
     </Form.Item>
 
     <Form.Item>
-      <button type="submit" className="btn btn-primary btn-lg">
+      <Button htmlType="submit" type="primary" size="lg">
         Submit
-      </button>
+      </Button>
     </Form.Item>
   </Form>
 )
@@ -396,9 +396,9 @@ export default App`}
             </Form.Item>
 
             <Form.Item>
-              <button type="submit" className="btn btn-primary btn-lg">
+              <Button htmlType="submit" type="primary" size="lg">
                 Submit
-              </button>
+              </Button>
             </Form.Item>
           </Form>
         </ExampleSection>

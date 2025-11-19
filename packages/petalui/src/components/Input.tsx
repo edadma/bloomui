@@ -43,6 +43,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     const inputClasses = [
       'input',
+      'w-full',
       bordered && 'input-bordered',
       ghost && 'input-ghost',
       size && sizeClasses[size],
