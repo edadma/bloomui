@@ -24,9 +24,11 @@ function MenuRoot({ children, className = '' }: MenuProps) {
 }
 
 function MenuItem({ children, onClick, active = false, className = '' }: MenuItemProps) {
+  const itemClasses = [active && 'active bg-primary text-primary-content', className].filter(Boolean).join(' ')
+
   return (
-    <li className={className}>
-      <a className={active ? 'active' : ''} onClick={onClick}>
+    <li>
+      <a className={itemClasses} onClick={onClick}>
         {children}
       </a>
     </li>
