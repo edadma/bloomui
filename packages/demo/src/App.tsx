@@ -10,12 +10,15 @@ import { CheckboxPage } from './pages/CheckboxPage'
 import { DrawerPage } from './pages/DrawerPage'
 import { DropdownPage } from './pages/DropdownPage'
 import { FieldsetPage } from './pages/FieldsetPage'
+import { FileInputPage } from './pages/FileInputPage'
 import { FooterPage } from './pages/FooterPage'
 import { FormPage } from './pages/FormPage'
 import { InputPage } from './pages/InputPage'
+import { LabelPage } from './pages/LabelPage'
 import { LoadingPage } from './pages/LoadingPage'
 import { MenuPage } from './pages/MenuPage'
 import { NavbarPage } from './pages/NavbarPage'
+import { RadioPage } from './pages/RadioPage'
 import { SelectPage } from './pages/SelectPage'
 import { StatPage } from './pages/StatPage'
 import { TablePage } from './pages/TablePage'
@@ -65,11 +68,20 @@ function AppContent() {
               <Menu.Item active={isActive('/fieldset')} onClick={() => navigate('/fieldset')}>
                 Fieldset
               </Menu.Item>
+              <Menu.Item active={isActive('/file-input')} onClick={() => navigate('/file-input')}>
+                File Input
+              </Menu.Item>
               <Menu.Item active={isActive('/form')} onClick={() => navigate('/form')}>
                 Form
               </Menu.Item>
               <Menu.Item active={isActive('/input')} onClick={() => navigate('/input')}>
                 Input
+              </Menu.Item>
+              <Menu.Item active={isActive('/label')} onClick={() => navigate('/label')}>
+                Label
+              </Menu.Item>
+              <Menu.Item active={isActive('/radio')} onClick={() => navigate('/radio')}>
+                Radio
               </Menu.Item>
               <Menu.Item active={isActive('/select')} onClick={() => navigate('/select')}>
                 Select
@@ -143,12 +155,15 @@ function AppContent() {
               <Route path="/drawer" element={<DrawerPage />} />
               <Route path="/dropdown" element={<DropdownPage />} />
               <Route path="/fieldset" element={<FieldsetPage />} />
+              <Route path="/file-input" element={<FileInputPage />} />
               <Route path="/footer" element={<FooterPage />} />
               <Route path="/form" element={<FormPage />} />
               <Route path="/input" element={<InputPage />} />
+              <Route path="/label" element={<LabelPage />} />
               <Route path="/loading" element={<LoadingPage />} />
               <Route path="/menu" element={<MenuPage />} />
               <Route path="/navbar" element={<NavbarPage />} />
+              <Route path="/radio" element={<RadioPage />} />
               <Route path="/select" element={<SelectPage />} />
               <Route path="/stat" element={<StatPage />} />
               <Route path="/table" element={<TablePage />} />

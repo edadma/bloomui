@@ -22,6 +22,9 @@ export type { DrawerProps } from './components/Drawer'
 export { Fieldset } from './components/Fieldset'
 export type { FieldsetProps, FieldsetLegendProps } from './components/Fieldset'
 
+export { FileInput } from './components/FileInput'
+export type { FileInputProps } from './components/FileInput'
+
 export { Footer } from './components/Footer'
 export type { FooterProps, FooterTitleProps } from './components/Footer'
 
@@ -34,6 +37,9 @@ export type { DropdownProps, DropdownTriggerProps, DropdownMenuProps, DropdownIt
 export { Input } from './components/Input'
 export type { InputProps } from './components/Input'
 
+export { Label } from './components/Label'
+export type { LabelProps, FloatingLabelProps } from './components/Label'
+
 export { Loading } from './components/Loading'
 export type { LoadingProps } from './components/Loading'
 
@@ -42,6 +48,9 @@ export type { MenuProps, MenuItemProps, MenuTitleProps } from './components/Menu
 
 export { Navbar } from './components/Navbar'
 export type { NavbarProps } from './components/Navbar'
+
+export { Radio } from './components/Radio'
+export type { RadioProps } from './components/Radio'
 
 export { Select } from './components/Select'
 export type { SelectProps } from './components/Select'
