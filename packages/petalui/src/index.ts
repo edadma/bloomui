@@ -40,6 +40,9 @@ export type { FooterProps, FooterTitleProps } from './components/Footer'
 export { Form, useFormInstance } from './components/Form'
 export type { FormProps, FormItemProps, FormInstance } from './components/Form'
 
+export { Grid, Row, Col } from './components/Grid'
+export type { RowProps, ColProps } from './components/Grid'
+
 export { Hero } from './components/Hero'
 export type { HeroProps } from './components/Hero'
 

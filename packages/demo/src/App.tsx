@@ -16,6 +16,7 @@ import { FieldsetPage } from './pages/FieldsetPage'
 import { FileInputPage } from './pages/FileInputPage'
 import { FooterPage } from './pages/FooterPage'
 import { FormPage } from './pages/FormPage'
+import { GridPage } from './pages/GridPage'
 import { HeroPage } from './pages/HeroPage'
 import { InputPage } from './pages/InputPage'
 import { JoinPage } from './pages/JoinPage'
@@ -142,6 +143,9 @@ function AppContent() {
               <Menu.Item active={isActive('/footer')} onClick={() => navigate('/footer')}>
                 Footer
               </Menu.Item>
+              <Menu.Item active={isActive('/grid')} onClick={() => navigate('/grid')}>
+                Grid
+              </Menu.Item>
               <Menu.Item active={isActive('/hero')} onClick={() => navigate('/hero')}>
                 Hero
               </Menu.Item>
@@ -203,6 +207,7 @@ function AppContent() {
               <Route path="/file-input" element={<FileInputPage />} />
               <Route path="/footer" element={<FooterPage />} />
               <Route path="/form" element={<FormPage />} />
+              <Route path="/grid" element={<GridPage />} />
               <Route path="/hero" element={<HeroPage />} />
               <Route path="/input" element={<InputPage />} />
               <Route path="/join" element={<JoinPage />} />
