@@ -120,6 +120,9 @@ function AppContent() {
               <Menu.Item active={isActive('/drawer')} onClick={() => navigate('/drawer')}>
                 Drawer
               </Menu.Item>
+              <Menu.Item active={isActive('/footer')} onClick={() => navigate('/footer')}>
+                Footer
+              </Menu.Item>
               <Menu.Item active={isActive('/hero')} onClick={() => navigate('/hero')}>
                 Hero
               </Menu.Item>
@@ -127,9 +130,6 @@ function AppContent() {
               <Menu.Title>Navigation</Menu.Title>
               <Menu.Item active={isActive('/menu')} onClick={() => navigate('/menu')}>
                 Menu
-              </Menu.Item>
-              <Menu.Item active={isActive('/footer')} onClick={() => navigate('/footer')}>
-                Footer
               </Menu.Item>
               <Menu.Item active={isActive('/navbar')} onClick={() => navigate('/navbar')}>
                 Navbar
