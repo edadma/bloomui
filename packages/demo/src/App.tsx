@@ -22,10 +22,12 @@ import { InputPage } from './pages/InputPage'
 import { JoinPage } from './pages/JoinPage'
 import { LabelPage } from './pages/LabelPage'
 import { LinkPage } from './pages/LinkPage'
+import { ListPage } from './pages/ListPage'
 import { LoadingPage } from './pages/LoadingPage'
 import { MenuPage } from './pages/MenuPage'
 import { ModalPage } from './pages/ModalPage'
 import { NavbarPage } from './pages/NavbarPage'
+import { ProgressPage } from './pages/ProgressPage'
 import { RadioPage } from './pages/RadioPage'
 import { RatingPage } from './pages/RatingPage'
 import { SelectPage } from './pages/SelectPage'
@@ -120,6 +122,9 @@ function AppContent() {
               <Menu.Item active={isActive('/collapse')} onClick={() => navigate('/collapse')}>
                 Collapse
               </Menu.Item>
+              <Menu.Item active={isActive('/list')} onClick={() => navigate('/list')}>
+                List
+              </Menu.Item>
               <Menu.Item active={isActive('/stat')} onClick={() => navigate('/stat')}>
                 Stats
               </Menu.Item>
@@ -180,6 +185,9 @@ function AppContent() {
               <Menu.Item active={isActive('/modal')} onClick={() => navigate('/modal')}>
                 Modal
               </Menu.Item>
+              <Menu.Item active={isActive('/progress')} onClick={() => navigate('/progress')}>
+                Progress
+              </Menu.Item>
               <Menu.Item active={isActive('/tooltip')} onClick={() => navigate('/tooltip')}>
                 Tooltip
               </Menu.Item>
@@ -213,10 +221,12 @@ function AppContent() {
               <Route path="/join" element={<JoinPage />} />
               <Route path="/label" element={<LabelPage />} />
               <Route path="/link" element={<LinkPage />} />
+              <Route path="/list" element={<ListPage />} />
               <Route path="/loading" element={<LoadingPage />} />
               <Route path="/menu" element={<MenuPage />} />
               <Route path="/modal" element={<ModalPage />} />
               <Route path="/navbar" element={<NavbarPage />} />
+              <Route path="/progress" element={<ProgressPage />} />
               <Route path="/radio" element={<RadioPage />} />
               <Route path="/rating" element={<RatingPage />} />
               <Route path="/select" element={<SelectPage />} />

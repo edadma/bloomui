@@ -61,6 +61,9 @@ export type { LabelProps, FloatingLabelProps } from './components/Label'
 export { Link } from './components/Link'
 export type { LinkProps } from './components/Link'
 
+export { List } from './components/List'
+export type { ListProps, ListRowProps } from './components/List'
+
 export { Loading } from './components/Loading'
 export type { LoadingProps } from './components/Loading'
 
@@ -72,6 +75,9 @@ export type { ModalProps, ModalFuncProps } from './components/Modal'
 
 export { Navbar } from './components/Navbar'
 export type { NavbarProps } from './components/Navbar'
+
+export { Progress } from './components/Progress'
+export type { ProgressProps } from './components/Progress'
 
 export { Radio } from './components/Radio'
 export type { RadioProps, RadioGroupProps } from './components/Radio'
