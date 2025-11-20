@@ -12,6 +12,7 @@ import { CollapsePage } from './pages/CollapsePage'
 import { DividerPage } from './pages/DividerPage'
 import { DrawerPage } from './pages/DrawerPage'
 import { DropdownPage } from './pages/DropdownPage'
+import { EmptyPage } from './pages/EmptyPage'
 import { FieldsetPage } from './pages/FieldsetPage'
 import { FileInputPage } from './pages/FileInputPage'
 import { FooterPage } from './pages/FooterPage'
@@ -123,6 +124,9 @@ function AppContent() {
               <Menu.Item active={isActive('/collapse')} onClick={() => navigate('/collapse')}>
                 Collapse
               </Menu.Item>
+              <Menu.Item active={isActive('/empty')} onClick={() => navigate('/empty')}>
+                Empty
+              </Menu.Item>
               <Menu.Item active={isActive('/list')} onClick={() => navigate('/list')}>
                 List
               </Menu.Item>
@@ -215,6 +219,7 @@ function AppContent() {
               <Route path="/divider" element={<DividerPage />} />
               <Route path="/drawer" element={<DrawerPage />} />
               <Route path="/dropdown" element={<DropdownPage />} />
+              <Route path="/empty" element={<EmptyPage />} />
               <Route path="/fieldset" element={<FieldsetPage />} />
               <Route path="/file-input" element={<FileInputPage />} />
               <Route path="/footer" element={<FooterPage />} />

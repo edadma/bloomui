@@ -95,6 +95,7 @@ function App() {
 - **Badge** - Notification badges with colors and variants
 - **Card** - Composable card component with body, title, actions, and figure
 - **Collapse** - Collapsible content panels
+- **Empty** - Empty state placeholder with custom images and actions
 - **List** - Vertical list layout with customizable rows
 - **Stats** - Statistics display with figures and actions
 - **Steps** - Step progress indicator
