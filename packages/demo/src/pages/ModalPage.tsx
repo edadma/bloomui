@@ -643,10 +643,12 @@ export default App`}
       </div>
 
       <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-4">Modal API</h2>
+        <h2 className="text-2xl font-bold mb-4">API</h2>
+
+        <h3 className="text-xl font-bold mb-4">Modal</h3>
         <ApiTable data={modalApi} />
 
-        <h2 className="text-2xl font-bold mb-4 mt-8">Static Methods API</h2>
+        <h3 className="text-xl font-bold mb-4 mt-8">Static Methods</h3>
         <p className="mb-4 text-base-content/70">
           All static methods (Modal.confirm, Modal.info, Modal.success, Modal.warning, Modal.error) accept the
           following configuration:

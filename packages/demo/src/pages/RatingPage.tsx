@@ -365,10 +365,12 @@ export default App`}
       </div>
 
       <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-4">Rating API</h2>
+        <h2 className="text-2xl font-bold mb-4">API</h2>
+
+        <h3 className="text-xl font-bold mb-4">Rating</h3>
         <ApiTable data={ratingApi} />
 
-        <h2 className="text-2xl font-bold mb-4 mt-8">Rating.Item API</h2>
+        <h3 className="text-xl font-bold mb-4 mt-8">Rating.Item</h3>
         <ApiTable data={ratingItemApi} />
 
         <div className="alert alert-info mt-8">

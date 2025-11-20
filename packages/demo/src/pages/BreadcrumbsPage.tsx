@@ -183,10 +183,12 @@ export default App`}
       </div>
 
       <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-4">Breadcrumbs API</h2>
+        <h2 className="text-2xl font-bold mb-4">API</h2>
+
+        <h3 className="text-xl font-bold mb-4">Breadcrumbs</h3>
         <ApiTable data={breadcrumbsApi} />
 
-        <h2 className="text-2xl font-bold mb-4 mt-8">Breadcrumbs.Item API</h2>
+        <h3 className="text-xl font-bold mb-4 mt-8">Breadcrumbs.Item</h3>
         <ApiTable data={breadcrumbsItemApi} />
 
         <div className="alert alert-info mt-8">

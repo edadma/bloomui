@@ -348,10 +348,12 @@ export default App`}
       </div>
 
       <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-4">Timeline API</h2>
+        <h2 className="text-2xl font-bold mb-4">API</h2>
+
+        <h3 className="text-xl font-bold mb-4">Timeline</h3>
         <ApiTable data={timelineApi} />
 
-        <h2 className="text-2xl font-bold mb-4 mt-8">Timeline.Item API</h2>
+        <h3 className="text-xl font-bold mb-4 mt-8">Timeline.Item</h3>
         <ApiTable data={timelineItemApi} />
 
         <div className="alert alert-info mt-8">

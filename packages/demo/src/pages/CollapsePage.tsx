@@ -340,13 +340,15 @@ export default App`}
       </div>
 
       <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-4">Collapse API</h2>
+        <h2 className="text-2xl font-bold mb-4">API</h2>
+
+        <h3 className="text-xl font-bold mb-4">Collapse</h3>
         <ApiTable data={collapseApi} />
 
-        <h2 className="text-2xl font-bold mb-4 mt-8">Collapse.Title API</h2>
+        <h3 className="text-xl font-bold mb-4 mt-8">Collapse.Title</h3>
         <ApiTable data={collapseTitleApi} />
 
-        <h2 className="text-2xl font-bold mb-4 mt-8">Collapse.Content API</h2>
+        <h3 className="text-xl font-bold mb-4 mt-8">Collapse.Content</h3>
         <ApiTable data={collapseContentApi} />
 
         <div className="alert alert-info mt-8">

@@ -185,10 +185,12 @@ export default App`}
       </div>
 
       <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-4">Steps API</h2>
+        <h2 className="text-2xl font-bold mb-4">API</h2>
+
+        <h3 className="text-xl font-bold mb-4">Steps</h3>
         <ApiTable data={stepsApi} />
 
-        <h2 className="text-2xl font-bold mb-4 mt-8">Steps.Step API</h2>
+        <h3 className="text-xl font-bold mb-4 mt-8">Steps.Step</h3>
         <ApiTable data={stepApi} />
 
         <div className="alert alert-info mt-8">

@@ -228,10 +228,12 @@ export default App`}
       </div>
 
       <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-4">Footer API</h2>
+        <h2 className="text-2xl font-bold mb-4">API</h2>
+
+        <h3 className="text-xl font-bold mb-4">Footer</h3>
         <ApiTable data={footerApi} />
 
-        <h2 className="text-2xl font-bold mb-4 mt-8">Subcomponents</h2>
+        <h3 className="text-xl font-bold mb-4 mt-8">Subcomponents</h3>
         <div className="overflow-x-auto">
           <table className="table">
             <thead>

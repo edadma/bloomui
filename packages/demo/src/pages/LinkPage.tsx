@@ -153,7 +153,9 @@ export default App`}
       </div>
 
       <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-4">Link API</h2>
+        <h2 className="text-2xl font-bold mb-4">API</h2>
+
+        <h3 className="text-xl font-bold mb-4">Link</h3>
         <ApiTable data={linkApi} />
 
         <div className="alert alert-info mt-8">

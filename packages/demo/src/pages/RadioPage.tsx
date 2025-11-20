@@ -381,10 +381,12 @@ export default App`}
       </div>
 
       <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-4">Radio.Group API</h2>
+        <h2 className="text-2xl font-bold mb-4">API</h2>
+
+        <h3 className="text-xl font-bold mb-4">Radio.Group</h3>
         <ApiTable data={radioGroupApi} />
 
-        <h2 className="text-2xl font-bold mb-4 mt-8">Radio API</h2>
+        <h3 className="text-xl font-bold mb-4 mt-8">Radio</h3>
         <ApiTable data={radioApi} />
 
         <div className="alert alert-info mt-8">

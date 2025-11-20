@@ -405,12 +405,12 @@ export default App`}
       </div>
 
       <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-4">Form API</h2>
-        <ApiTable data={formApi} />
-      </div>
+        <h2 className="text-2xl font-bold mb-4">API</h2>
 
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">Form.Item API</h2>
+        <h3 className="text-xl font-bold mb-4">Form</h3>
+        <ApiTable data={formApi} />
+
+        <h3 className="text-xl font-bold mb-4 mt-8">Form.Item</h3>
         <ApiTable data={formItemApi} />
       </div>
     </div>

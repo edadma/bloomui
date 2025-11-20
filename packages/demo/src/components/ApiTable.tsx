@@ -6,14 +6,12 @@ export interface ApiProperty {
 }
 
 export interface ApiTableProps {
-  title?: string
   data: ApiProperty[]
 }
 
-export function ApiTable({ title = 'API', data }: ApiTableProps) {
+export function ApiTable({ data }: ApiTableProps) {
   return (
-    <div className="mt-12">
-      <h2 className="text-2xl font-bold mb-4">{title}</h2>
+    <div>
       <div className="overflow-x-auto border border-base-content/10 rounded-lg">
         <table className="table">
           <thead>

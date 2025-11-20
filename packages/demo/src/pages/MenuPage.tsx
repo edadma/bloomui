@@ -290,17 +290,15 @@ export default App`}
       </div>
 
       <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-4">Menu API</h2>
+        <h2 className="text-2xl font-bold mb-4">API</h2>
+
+        <h3 className="text-xl font-bold mb-4">Menu</h3>
         <ApiTable data={menuApi} />
-      </div>
 
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">Menu.Item API</h2>
+        <h3 className="text-xl font-bold mb-4 mt-8">Menu.Item</h3>
         <ApiTable data={menuItemApi} />
-      </div>
 
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">Menu.Title API</h2>
+        <h3 className="text-xl font-bold mb-4 mt-8">Menu.Title</h3>
         <ApiTable data={menuTitleApi} />
       </div>
     </div>

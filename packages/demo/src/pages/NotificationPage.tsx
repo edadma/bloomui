@@ -461,10 +461,12 @@ export default App`}
       </div>
 
       <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-4">Configuration API</h2>
+        <h2 className="text-2xl font-bold mb-4">API</h2>
+
+        <h3 className="text-xl font-bold mb-4">Configuration</h3>
         <ApiTable data={notificationApi} />
 
-        <h2 className="text-2xl font-bold mb-4 mt-8">Methods</h2>
+        <h3 className="text-xl font-bold mb-4 mt-8">Methods</h3>
         <ApiTable data={methodsApi} />
 
         <div className="alert alert-info mt-8">

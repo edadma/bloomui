@@ -241,7 +241,9 @@ export default App`}
       </div>
 
       <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-4">Textarea API</h2>
+        <h2 className="text-2xl font-bold mb-4">API</h2>
+
+        <h3 className="text-xl font-bold mb-4">Textarea</h3>
         <ApiTable data={textareaApi} />
       </div>
     </div>
