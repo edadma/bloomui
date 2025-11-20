@@ -112,6 +112,9 @@ export type { TabsProps, TabPanelProps } from './components/Tabs'
 export { Textarea } from './components/Textarea'
 export type { TextareaProps } from './components/Textarea'
 
+export { TimePicker } from './components/TimePicker'
+export type { TimePickerProps } from './components/TimePicker'
+
 export { Timeline } from './components/Timeline'
 export type { TimelineProps, TimelineItemProps } from './components/Timeline'
 

@@ -39,6 +39,7 @@ import { StepsPage } from './pages/StepsPage'
 import { TablePage } from './pages/TablePage'
 import { TabsPage } from './pages/TabsPage'
 import { TextareaPage } from './pages/TextareaPage'
+import { TimePickerPage } from './pages/TimePickerPage'
 import { TimelinePage } from './pages/TimelinePage'
 import { TogglePage } from './pages/TogglePage'
 import { TooltipPage } from './pages/TooltipPage'
@@ -110,6 +111,9 @@ function AppContent() {
               </Menu.Item>
               <Menu.Item active={isActive('/textarea')} onClick={() => navigate('/textarea')}>
                 Textarea
+              </Menu.Item>
+              <Menu.Item active={isActive('/timepicker')} onClick={() => navigate('/timepicker')}>
+                TimePicker
               </Menu.Item>
               <Menu.Item active={isActive('/toggle')} onClick={() => navigate('/toggle')}>
                 Toggle
@@ -250,6 +254,7 @@ function AppContent() {
               <Route path="/table" element={<TablePage />} />
               <Route path="/tabs" element={<TabsPage />} />
               <Route path="/textarea" element={<TextareaPage />} />
+              <Route path="/timepicker" element={<TimePickerPage />} />
               <Route path="/timeline" element={<TimelinePage />} />
               <Route path="/toggle" element={<TogglePage />} />
               <Route path="/tooltip" element={<TooltipPage />} />
