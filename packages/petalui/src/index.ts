@@ -14,7 +14,7 @@ export { Button } from './components/Button'
 export type { ButtonProps } from './components/Button'
 
 export { Checkbox } from './components/Checkbox'
-export type { CheckboxProps } from './components/Checkbox'
+export type { CheckboxProps, CheckboxGroupProps, CheckboxOptionType } from './components/Checkbox'
 
 export { Card } from './components/Card'
 export type { CardProps } from './components/Card'

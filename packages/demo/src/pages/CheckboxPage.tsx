@@ -43,6 +43,40 @@ const checkboxApi: ApiProperty[] = [
   },
 ]
 
+const checkboxGroupApi: ApiProperty[] = [
+  {
+    property: 'value',
+    description: 'Array of checked values (controlled)',
+    type: '(string | number)[]',
+  },
+  {
+    property: 'defaultValue',
+    description: 'Default array of checked values (uncontrolled)',
+    type: '(string | number)[]',
+  },
+  {
+    property: 'onChange',
+    description: 'Callback when checked values change',
+    type: '(values: (string | number)[]) => void',
+  },
+  {
+    property: 'options',
+    description: 'Generate checkboxes from array. Can be strings, numbers, or objects',
+    type: '(string | number | CheckboxOptionType)[]',
+  },
+  {
+    property: 'disabled',
+    description: 'Disable all checkboxes in group',
+    type: 'boolean',
+    default: 'false',
+  },
+  {
+    property: 'className',
+    description: 'Additional CSS classes',
+    type: 'string',
+  },
+]
+
 export function CheckboxPage() {
   const handleSubmit = (values: any) => {
     alert(JSON.stringify(values, null, 2))
@@ -65,18 +99,12 @@ export function CheckboxPage() {
 import { Checkbox } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex items-center gap-2">
-    <Checkbox />
-    <span>Remember me</span>
-  </div>
+  <Checkbox>Remember me</Checkbox>
 )
 
 export default App`}
         >
-          <div className="flex items-center gap-2">
-            <Checkbox />
-            <span>Remember me</span>
-          </div>
+          <Checkbox>Remember me</Checkbox>
         </ExampleSection>
 
         <ExampleSection
@@ -86,18 +114,12 @@ export default App`}
 import { Checkbox } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex items-center gap-2">
-    <Checkbox checked />
-    <span>Checked</span>
-  </div>
+  <Checkbox checked readOnly>Checked</Checkbox>
 )
 
 export default App`}
         >
-          <div className="flex items-center gap-2">
-            <Checkbox checked readOnly />
-            <span>Checked</span>
-          </div>
+          <Checkbox checked readOnly>Checked</Checkbox>
         </ExampleSection>
 
         <ExampleSection
@@ -135,68 +157,26 @@ import { Checkbox } from '@edadma/petalui'
 
 const App: React.FC = () => (
   <div className="flex flex-col gap-2">
-    <div className="flex items-center gap-2">
-      <Checkbox color="primary" checked readOnly />
-      <span>Primary</span>
-    </div>
-    <div className="flex items-center gap-2">
-      <Checkbox color="secondary" checked readOnly />
-      <span>Secondary</span>
-    </div>
-    <div className="flex items-center gap-2">
-      <Checkbox color="accent" checked readOnly />
-      <span>Accent</span>
-    </div>
-    <div className="flex items-center gap-2">
-      <Checkbox color="success" checked readOnly />
-      <span>Success</span>
-    </div>
-    <div className="flex items-center gap-2">
-      <Checkbox color="warning" checked readOnly />
-      <span>Warning</span>
-    </div>
-    <div className="flex items-center gap-2">
-      <Checkbox color="info" checked readOnly />
-      <span>Info</span>
-    </div>
-    <div className="flex items-center gap-2">
-      <Checkbox color="error" checked readOnly />
-      <span>Error</span>
-    </div>
+    <Checkbox color="primary" checked readOnly>Primary</Checkbox>
+    <Checkbox color="secondary" checked readOnly>Secondary</Checkbox>
+    <Checkbox color="accent" checked readOnly>Accent</Checkbox>
+    <Checkbox color="success" checked readOnly>Success</Checkbox>
+    <Checkbox color="warning" checked readOnly>Warning</Checkbox>
+    <Checkbox color="info" checked readOnly>Info</Checkbox>
+    <Checkbox color="error" checked readOnly>Error</Checkbox>
   </div>
 )
 
 export default App`}
         >
           <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2">
-              <Checkbox color="primary" checked readOnly />
-              <span>Primary</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Checkbox color="secondary" checked readOnly />
-              <span>Secondary</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Checkbox color="accent" checked readOnly />
-              <span>Accent</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Checkbox color="success" checked readOnly />
-              <span>Success</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Checkbox color="warning" checked readOnly />
-              <span>Warning</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Checkbox color="info" checked readOnly />
-              <span>Info</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Checkbox color="error" checked readOnly />
-              <span>Error</span>
-            </div>
+            <Checkbox color="primary" checked readOnly>Primary</Checkbox>
+            <Checkbox color="secondary" checked readOnly>Secondary</Checkbox>
+            <Checkbox color="accent" checked readOnly>Accent</Checkbox>
+            <Checkbox color="success" checked readOnly>Success</Checkbox>
+            <Checkbox color="warning" checked readOnly>Warning</Checkbox>
+            <Checkbox color="info" checked readOnly>Info</Checkbox>
+            <Checkbox color="error" checked readOnly>Error</Checkbox>
           </div>
         </ExampleSection>
 
@@ -208,28 +188,16 @@ import { Checkbox } from '@edadma/petalui'
 
 const App: React.FC = () => (
   <div className="flex flex-col gap-2">
-    <div className="flex items-center gap-2">
-      <Checkbox disabled />
-      <span>Disabled unchecked</span>
-    </div>
-    <div className="flex items-center gap-2">
-      <Checkbox disabled checked readOnly />
-      <span>Disabled checked</span>
-    </div>
+    <Checkbox disabled>Disabled unchecked</Checkbox>
+    <Checkbox disabled checked readOnly>Disabled checked</Checkbox>
   </div>
 )
 
 export default App`}
         >
           <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2">
-              <Checkbox disabled />
-              <span>Disabled unchecked</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Checkbox disabled checked readOnly />
-              <span>Disabled checked</span>
-            </div>
+            <Checkbox disabled>Disabled unchecked</Checkbox>
+            <Checkbox disabled checked readOnly>Disabled checked</Checkbox>
           </div>
         </ExampleSection>
 
@@ -240,18 +208,86 @@ export default App`}
 import { Checkbox } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex items-center gap-2">
-    <Checkbox indeterminate />
-    <span>Indeterminate</span>
-  </div>
+  <Checkbox indeterminate>Indeterminate</Checkbox>
 )
 
 export default App`}
         >
-          <div className="flex items-center gap-2">
-            <Checkbox indeterminate />
-            <span>Indeterminate</span>
-          </div>
+          <Checkbox indeterminate>Indeterminate</Checkbox>
+        </ExampleSection>
+
+        <ExampleSection
+          title="Checkbox Group"
+          description="Group checkboxes together with automatic value management."
+          code={`import React, { useState } from 'react'
+import { Checkbox } from '@edadma/petalui'
+
+const App: React.FC = () => {
+  const [checkedList, setCheckedList] = useState(['Apple', 'Pear'])
+
+  return (
+    <div>
+      <Checkbox.Group
+        value={checkedList}
+        onChange={setCheckedList}
+        className="flex flex-col gap-2"
+      >
+        <Checkbox value="Apple">Apple</Checkbox>
+        <Checkbox value="Pear">Pear</Checkbox>
+        <Checkbox value="Orange">Orange</Checkbox>
+      </Checkbox.Group>
+      <div className="mt-4 text-sm">
+        Selected: {checkedList.join(', ')}
+      </div>
+    </div>
+  )
+}
+
+export default App`}
+        >
+          <Checkbox.Group
+            defaultValue={['Apple', 'Pear']}
+            className="flex flex-col gap-2"
+          >
+            <Checkbox value="Apple">Apple</Checkbox>
+            <Checkbox value="Pear">Pear</Checkbox>
+            <Checkbox value="Orange">Orange</Checkbox>
+          </Checkbox.Group>
+        </ExampleSection>
+
+        <ExampleSection
+          title="Checkbox Group with Options"
+          description="Generate checkboxes from an options array."
+          code={`import React, { useState } from 'react'
+import { Checkbox } from '@edadma/petalui'
+
+const options = ['Apple', 'Pear', 'Orange']
+
+const App: React.FC = () => {
+  const [value, setValue] = useState(['Pear'])
+
+  return (
+    <div>
+      <Checkbox.Group
+        options={options}
+        value={value}
+        onChange={setValue}
+        className="flex flex-col gap-2"
+      />
+      <div className="mt-4 text-sm">
+        Selected: {value.join(', ')}
+      </div>
+    </div>
+  )
+}
+
+export default App`}
+        >
+          <Checkbox.Group
+            options={['Apple', 'Pear', 'Orange']}
+            defaultValue={['Pear']}
+            className="flex flex-col gap-2"
+          />
         </ExampleSection>
 
         <ExampleSection
@@ -271,24 +307,15 @@ const App: React.FC = () => {
       initialValues={{ newsletter: true }}
     >
       <Form.Item name="terms" valuePropName="checked">
-        <div className="flex items-center gap-2">
-          <Checkbox />
-          <span>I agree to the terms and conditions</span>
-        </div>
+        <Checkbox>I agree to the terms and conditions</Checkbox>
       </Form.Item>
 
       <Form.Item name="newsletter" valuePropName="checked">
-        <div className="flex items-center gap-2">
-          <Checkbox />
-          <span>Subscribe to newsletter</span>
-        </div>
+        <Checkbox>Subscribe to newsletter</Checkbox>
       </Form.Item>
 
       <Form.Item name="updates" valuePropName="checked">
-        <div className="flex items-center gap-2">
-          <Checkbox />
-          <span>Receive product updates</span>
-        </div>
+        <Checkbox>Receive product updates</Checkbox>
       </Form.Item>
 
       <Form.Item>
@@ -307,24 +334,15 @@ export default App`}
             initialValues={{ newsletter: true }}
           >
             <Form.Item name="terms" valuePropName="checked">
-              <div className="flex items-center gap-2">
-                <Checkbox />
-                <span>I agree to the terms and conditions</span>
-              </div>
+              <Checkbox>I agree to the terms and conditions</Checkbox>
             </Form.Item>
 
             <Form.Item name="newsletter" valuePropName="checked">
-              <div className="flex items-center gap-2">
-                <Checkbox />
-                <span>Subscribe to newsletter</span>
-              </div>
+              <Checkbox>Subscribe to newsletter</Checkbox>
             </Form.Item>
 
             <Form.Item name="updates" valuePropName="checked">
-              <div className="flex items-center gap-2">
-                <Checkbox />
-                <span>Receive product updates</span>
-              </div>
+              <Checkbox>Receive product updates</Checkbox>
             </Form.Item>
 
             <Form.Item>
@@ -339,6 +357,22 @@ export default App`}
       <div className="mt-12">
         <h2 className="text-2xl font-bold mb-4">Checkbox API</h2>
         <ApiTable data={checkboxApi} />
+
+        <h2 className="text-2xl font-bold mb-4 mt-8">Checkbox.Group API</h2>
+        <ApiTable data={checkboxGroupApi} />
+
+        <div className="alert alert-info mt-8">
+          <div>
+            <strong>Usage Tips:</strong>
+            <ul className="list-disc list-inside mt-2">
+              <li>Use Checkbox.Group to manage multiple related checkboxes with automatic state handling</li>
+              <li>Use options prop for simple lists - it generates checkboxes with labels automatically</li>
+              <li>For custom layouts, use children and apply your own styling with className</li>
+              <li>Set disabled on Checkbox.Group to disable all checkboxes at once</li>
+              <li>Each checkbox in a group needs a unique value prop</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   )
