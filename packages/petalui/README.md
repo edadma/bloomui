@@ -78,6 +78,7 @@ function App() {
 - **Dropdown** - Composable dropdown menu with trigger, items, and dividers
 
 ### Data Entry
+- **Autocomplete** - Search and select with keyboard navigation and filtering
 - **Checkbox** - Checkboxes with sizes, colors, and indeterminate state
 - **DatePicker** - Interactive calendar date picker with custom formatting
 - **Fieldset** - Fieldset container with legend
@@ -86,18 +87,24 @@ function App() {
 - **Input** - Text inputs with multiple types, sizes, and colors
 - **Label** - Form labels with required indicator and floating labels
 - **Radio** - Radio buttons with group support
+- **Range** - Range slider with min, max, and step support
 - **Rating** - Star rating component
 - **Select** - Select dropdown with sizes and colors
 - **Textarea** - Multiline text input
+- **TimePicker** - Time input with hour and minute selection
 - **Toggle** - Toggle switches with sizes and colors
 
 ### Data Display
 - **Avatar** - User avatars with sizes, shapes, and group support
 - **Badge** - Notification badges with colors and variants
 - **Card** - Composable card component with body, title, actions, and figure
+- **Carousel** - Image carousel with navigation and indicators
+- **Chat** - Chat message bubbles with avatars and timestamps
 - **Collapse** - Collapsible content panels
 - **Empty** - Empty state placeholder with custom images and actions
+- **Image** - Image component with fallback and preview support
 - **List** - Vertical list layout with customizable rows
+- **Skeleton** - Loading placeholder with animated shimmer effect
 - **Stats** - Statistics display with figures and actions
 - **Steps** - Step progress indicator
 - **Table** - Feature-rich data table with sorting and pagination
@@ -123,7 +130,9 @@ function App() {
 - **Loading** - Loading spinners with sizes and overlay support
 - **Modal** - Modal dialogs with imperative API
 - **Notification** - Toast notifications with auto-dismiss and stacking
+- **Popconfirm** - Confirmation popover for actions
 - **Progress** - Progress bars with colors and indeterminate state
+- **RadialProgress** - Circular progress indicator
 - **Tooltip** - Tooltips with multiple placements
 
 ## Demo

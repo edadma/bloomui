@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { TimePicker, Form, Button } from '@edadma/petalui'
+import { TimePicker, Form, Button, Modal } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -60,10 +60,13 @@ const timePickerApi: ApiProperty[] = [
 export function TimePickerPage() {
   const [time1, setTime1] = useState<Date | null>(null)
   const [time2, setTime2] = useState<Date | null>(null)
+  const [submittedData, setSubmittedData] = useState<any>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleSubmit = (values: any) => {
     console.log('Form values:', values)
-    alert(JSON.stringify(values, null, 2))
+    setSubmittedData(values)
+    setIsModalOpen(true)
   }
 
   return (
@@ -342,6 +345,20 @@ export default App`}
 
         <ApiTable title="TimePicker" data={timePickerApi} />
       </div>
+
+      <Modal
+        open={isModalOpen}
+        onCancel={() => setIsModalOpen(false)}
+        title="Form Submitted"
+        footer={null}
+      >
+        <div className="py-4">
+          <p className="mb-4">Form data:</p>
+          <pre className="bg-base-200 p-4 rounded-lg overflow-auto max-h-96">
+            {JSON.stringify(submittedData, null, 2)}
+          </pre>
+        </div>
+      </Modal>
     </div>
   )
 }

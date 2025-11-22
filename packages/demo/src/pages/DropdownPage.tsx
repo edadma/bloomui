@@ -1,4 +1,4 @@
-import { Dropdown, Button } from '@edadma/petalui'
+import { Dropdown, Button, notification } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -174,9 +174,9 @@ export default App`}
               <Button type="primary">Actions</Button>
             </Dropdown.Trigger>
             <Dropdown.Menu>
-              <Dropdown.Item onClick={() => alert('Edit')}>Edit</Dropdown.Item>
-              <Dropdown.Item onClick={() => alert('Delete')}>Delete</Dropdown.Item>
-              <Dropdown.Item onClick={() => alert('Share')}>Share</Dropdown.Item>
+              <Dropdown.Item onClick={() => notification.info({ message: 'Edit clicked' })}>Edit</Dropdown.Item>
+              <Dropdown.Item onClick={() => notification.info({ message: 'Delete clicked' })}>Delete</Dropdown.Item>
+              <Dropdown.Item onClick={() => notification.info({ message: 'Share clicked' })}>Share</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </ExampleSection>
@@ -571,13 +571,13 @@ const App: React.FC = () => (
       <Button type="secondary">File Menu</Button>
     </Dropdown.Trigger>
     <Dropdown.Menu>
-      <Dropdown.Item onClick={() => alert('New')}>New</Dropdown.Item>
-      <Dropdown.Item onClick={() => alert('Open')}>Open</Dropdown.Item>
-      <Dropdown.Item disabled onClick={() => alert('Save')}>
+      <Dropdown.Item onClick={() => notification.info({ message: 'New clicked' })}>New</Dropdown.Item>
+      <Dropdown.Item onClick={() => notification.info({ message: 'Open clicked' })}>Open</Dropdown.Item>
+      <Dropdown.Item disabled onClick={() => notification.info({ message: 'Save clicked' })}>
         Save (Disabled)
       </Dropdown.Item>
       <Dropdown.Divider />
-      <Dropdown.Item onClick={() => alert('Export')}>Export</Dropdown.Item>
+      <Dropdown.Item onClick={() => notification.info({ message: 'Export clicked' })}>Export</Dropdown.Item>
     </Dropdown.Menu>
   </Dropdown>
 )
@@ -589,13 +589,13 @@ export default App`}
               <Button type="secondary">File Menu</Button>
             </Dropdown.Trigger>
             <Dropdown.Menu>
-              <Dropdown.Item onClick={() => alert('New')}>New</Dropdown.Item>
-              <Dropdown.Item onClick={() => alert('Open')}>Open</Dropdown.Item>
-              <Dropdown.Item disabled onClick={() => alert('Save')}>
+              <Dropdown.Item onClick={() => notification.info({ message: 'New clicked' })}>New</Dropdown.Item>
+              <Dropdown.Item onClick={() => notification.info({ message: 'Open clicked' })}>Open</Dropdown.Item>
+              <Dropdown.Item disabled onClick={() => notification.info({ message: 'Save clicked' })}>
                 Save (Disabled)
               </Dropdown.Item>
               <Dropdown.Divider />
-              <Dropdown.Item onClick={() => alert('Export')}>Export</Dropdown.Item>
+              <Dropdown.Item onClick={() => notification.info({ message: 'Export clicked' })}>Export</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </ExampleSection>
@@ -604,7 +604,7 @@ export default App`}
           title="Danger Actions"
           description="Highlight destructive actions with danger styling."
           code={`import React from 'react'
-import { Dropdown, Button } from '@edadma/petalui'
+import { Dropdown, Button, notification } from '@edadma/petalui'
 
 const App: React.FC = () => (
   <Dropdown>
@@ -612,11 +612,11 @@ const App: React.FC = () => (
       <Button type="ghost">Item Actions</Button>
     </Dropdown.Trigger>
     <Dropdown.Menu>
-      <Dropdown.Item onClick={() => alert('Edit')}>Edit</Dropdown.Item>
-      <Dropdown.Item onClick={() => alert('Duplicate')}>Duplicate</Dropdown.Item>
-      <Dropdown.Item onClick={() => alert('Archive')}>Archive</Dropdown.Item>
+      <Dropdown.Item onClick={() => notification.info({ message: 'Edit clicked' })}>Edit</Dropdown.Item>
+      <Dropdown.Item onClick={() => notification.info({ message: 'Duplicate clicked' })}>Duplicate</Dropdown.Item>
+      <Dropdown.Item onClick={() => notification.info({ message: 'Archive clicked' })}>Archive</Dropdown.Item>
       <Dropdown.Divider />
-      <Dropdown.Item danger onClick={() => alert('Delete')}>
+      <Dropdown.Item danger onClick={() => notification.info({ message: 'Delete clicked' })}>
         Delete
       </Dropdown.Item>
     </Dropdown.Menu>
@@ -630,11 +630,11 @@ export default App`}
               <Button type="ghost">Item Actions</Button>
             </Dropdown.Trigger>
             <Dropdown.Menu>
-              <Dropdown.Item onClick={() => alert('Edit')}>Edit</Dropdown.Item>
-              <Dropdown.Item onClick={() => alert('Duplicate')}>Duplicate</Dropdown.Item>
-              <Dropdown.Item onClick={() => alert('Archive')}>Archive</Dropdown.Item>
+              <Dropdown.Item onClick={() => notification.info({ message: 'Edit clicked' })}>Edit</Dropdown.Item>
+              <Dropdown.Item onClick={() => notification.info({ message: 'Duplicate clicked' })}>Duplicate</Dropdown.Item>
+              <Dropdown.Item onClick={() => notification.info({ message: 'Archive clicked' })}>Archive</Dropdown.Item>
               <Dropdown.Divider />
-              <Dropdown.Item danger onClick={() => alert('Delete')}>
+              <Dropdown.Item danger onClick={() => notification.info({ message: 'Delete clicked' })}>
                 Delete
               </Dropdown.Item>
             </Dropdown.Menu>

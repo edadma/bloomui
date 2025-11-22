@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Autocomplete, Form, Button } from '@edadma/petalui'
+import { Autocomplete, Form, Button, Modal } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -117,10 +117,13 @@ export function AutocompletePage() {
   const [country, setCountry] = useState('')
   const [language, setLanguage] = useState('')
   const [email, setEmail] = useState('')
+  const [submittedData, setSubmittedData] = useState<any>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleSubmit = (values: any) => {
     console.log('Form values:', values)
-    alert(JSON.stringify(values, null, 2))
+    setSubmittedData(values)
+    setIsModalOpen(true)
   }
 
   return (
@@ -600,6 +603,20 @@ export default App`}
           </ul>
         </div>
       </div>
+
+      <Modal
+        open={isModalOpen}
+        onCancel={() => setIsModalOpen(false)}
+        title="Form Submitted"
+        footer={null}
+      >
+        <div className="py-4">
+          <p className="mb-4">Form data:</p>
+          <pre className="bg-base-200 p-4 rounded-lg overflow-auto max-h-96">
+            {JSON.stringify(submittedData, null, 2)}
+          </pre>
+        </div>
+      </Modal>
     </div>
   )
 }

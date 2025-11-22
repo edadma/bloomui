@@ -155,7 +155,10 @@ export function NotificationPage() {
       message: 'Click Me!',
       description: 'Click this notification to trigger an action',
       onClick: () => {
-        alert('Notification clicked!')
+        notification.success({
+          message: 'Notification Clicked!',
+          description: 'The onClick callback was triggered',
+        })
       },
       onClose: () => {
         console.log('Notification closed')
@@ -401,7 +404,10 @@ const App: React.FC = () => (
         message: 'Click Me!',
         description: 'Click to trigger an action',
         onClick: () => {
-          alert('Notification clicked!')
+          notification.success({
+            message: 'Notification Clicked!',
+            description: 'The onClick callback was triggered',
+          })
         },
         onClose: () => {
           console.log('Notification closed')

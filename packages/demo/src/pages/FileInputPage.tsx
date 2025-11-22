@@ -1,4 +1,5 @@
-import { FileInput, Fieldset, Form } from '@edadma/petalui'
+import { useState } from 'react'
+import { FileInput, Fieldset, Form, Modal } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -41,9 +42,13 @@ const fileInputApi: ApiProperty[] = [
 ]
 
 export function FileInputPage() {
+  const [submittedData, setSubmittedData] = useState<any>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   const handleSubmit = (values: { file?: FileList }) => {
     if (values.file && values.file.length > 0) {
-      alert(`Selected file: ${values.file[0].name}`)
+      setSubmittedData({ fileName: values.file[0].name, fileSize: values.file[0].size })
+      setIsModalOpen(true)
     }
   }
 
@@ -191,9 +196,7 @@ import { FileInput, Form, Button } from '@edadma/petalui'
 
 const App: React.FC = () => {
   const handleSubmit = (values: { file?: FileList }) => {
-    if (values.file && values.file.length > 0) {
-      alert(\`Selected file: \${values.file[0].name}\`)
-    }
+    console.log(values)
   }
 
   return (
@@ -234,6 +237,20 @@ export default App`}
 
         <ApiTable title="FileInput" data={fileInputApi} />
       </div>
+
+      <Modal
+        open={isModalOpen}
+        onCancel={() => setIsModalOpen(false)}
+        title="Form Submitted"
+        footer={null}
+      >
+        <div className="py-4">
+          <p className="mb-4">Form data:</p>
+          <pre className="bg-base-200 p-4 rounded-lg overflow-auto max-h-96">
+            {JSON.stringify(submittedData, null, 2)}
+          </pre>
+        </div>
+      </Modal>
     </div>
   )
 }

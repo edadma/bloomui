@@ -1,13 +1,30 @@
 import React, { createContext, useContext, cloneElement, isValidElement } from 'react'
-import { useForm, UseFormReturn, FieldValues, SubmitHandler, UseFormProps, Controller } from 'react-hook-form'
+import { useForm, UseFormReturn, FieldValues, SubmitHandler, UseFormProps, Controller, useFieldArray, FieldArrayPath, FieldArray } from 'react-hook-form'
 
 interface FormContextValue {
   form: UseFormReturn<any>
   layout?: 'vertical' | 'horizontal' | 'inline'
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  listName?: string
 }
 
 const FormContext = createContext<FormContextValue | undefined>(undefined)
+
+// Built-in type validators
+const TYPE_VALIDATORS = {
+  email: {
+    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+    message: 'Please enter a valid email address',
+  },
+  url: {
+    value: /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/,
+    message: 'Please enter a valid URL',
+  },
+  number: {
+    value: /^-?\d+(\.\d+)?$/,
+    message: 'Please enter a valid number',
+  },
+}
 
 export interface FormProps<TFieldValues extends FieldValues = FieldValues>
   extends Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onSubmit'> {
@@ -20,12 +37,13 @@ export interface FormProps<TFieldValues extends FieldValues = FieldValues>
 }
 
 export interface FormItemProps {
-  name?: string
+  name?: string | string[]
   label?: string
   help?: string
   required?: boolean
   rules?: {
     required?: boolean | string
+    type?: 'email' | 'url' | 'number'
     min?: number | { value: number; message: string }
     max?: number | { value: number; message: string }
     pattern?: { value: RegExp; message: string }
@@ -34,6 +52,18 @@ export interface FormItemProps {
   valuePropName?: string
   className?: string
   children: React.ReactElement
+}
+
+export interface FormListProps<TFieldValues extends FieldValues = FieldValues> {
+  name: FieldArrayPath<TFieldValues>
+  children: (
+    fields: FieldArray<TFieldValues>[],
+    operations: {
+      add: (value?: any) => void
+      remove: (index: number) => void
+      move: (from: number, to: number) => void
+    }
+  ) => React.ReactNode
 }
 
 function useFormContext() {
@@ -86,14 +116,35 @@ function FormItem({
   className = '',
   children,
 }: FormItemProps) {
-  const { form, size } = useFormContext()
+  const { form, size, listName } = useFormContext()
 
   if (!name) {
     // Render without form control if no name provided
     return <div className={`form-control w-full ${className}`}>{children}</div>
   }
 
-  const error = form.formState.errors[name]
+  // Handle nested field names (for Form.List)
+  let fieldName: string
+  if (Array.isArray(name)) {
+    // If we're inside a Form.List, prepend the list name
+    const fullPath = listName ? [listName, ...name] : name
+    fieldName = fullPath.join('.')
+  } else {
+    fieldName = name
+  }
+
+  // Get error by traversing the error object path
+  const getErrorByPath = (path: string) => {
+    const keys = path.split('.')
+    let error: any = form.formState.errors
+    for (const key of keys) {
+      if (!error) break
+      error = error[key]
+    }
+    return error
+  }
+
+  const error = getErrorByPath(fieldName)
   const errorMessage = error?.message as string | undefined
 
   // Build validation rules
@@ -101,6 +152,12 @@ function FormItem({
   if (required || rules?.required) {
     validationRules.required = typeof rules?.required === 'string' ? rules.required : required ? 'This field is required' : false
   }
+
+  // Add type validator
+  if (rules?.type && TYPE_VALIDATORS[rules.type]) {
+    validationRules.pattern = TYPE_VALIDATORS[rules.type]
+  }
+
   if (rules?.min) {
     validationRules.min = typeof rules.min === 'object' ? rules.min : { value: rules.min, message: `Minimum value is ${rules.min}` }
   }
@@ -116,7 +173,7 @@ function FormItem({
 
   return (
     <Controller
-      name={name}
+      name={fieldName}
       control={form.control}
       rules={validationRules}
       render={({ field }) => {
@@ -185,13 +242,76 @@ function FormItem({
   )
 }
 
-// Hook to use form instance
+function FormList<TFieldValues extends FieldValues = FieldValues>({
+  name,
+  children,
+}: FormListProps<TFieldValues>) {
+  const { form, layout, size } = useFormContext()
+
+  const { fields, append, remove, move } = useFieldArray({
+    control: form.control,
+    name,
+  })
+
+  // Add name (index) to each field for proper path construction
+  const fieldsWithName = fields.map((field, index) => ({
+    ...field,
+    name: index,
+  }))
+
+  return (
+    <FormContext.Provider value={{ form, layout, size, listName: name as string }}>
+      {children(fieldsWithName as any, {
+        add: append,
+        remove,
+        move,
+      })}
+    </FormContext.Provider>
+  )
+}
+
+// Enhanced hook to expose full form API
 export function useFormInstance<TFieldValues extends FieldValues = FieldValues>() {
-  return useForm<TFieldValues>()
+  const formInstance = useForm<TFieldValues>()
+
+  // Add convenience methods to the instance
+  const enhancedInstance = formInstance as typeof formInstance & {
+    setFieldValue: typeof formInstance.setValue
+    getFieldValue: (name: any) => any
+    getFieldsValue: typeof formInstance.getValues
+    setFieldsValue: (values: any) => void
+    validateFields: typeof formInstance.trigger
+    resetFields: typeof formInstance.reset
+    isFieldTouched: (name: string) => boolean
+    getFieldError: (name: string) => string | undefined
+  }
+
+  // Add the alias methods
+  enhancedInstance.setFieldValue = formInstance.setValue
+  enhancedInstance.getFieldValue = (name: any) => formInstance.getValues(name)
+  enhancedInstance.getFieldsValue = formInstance.getValues
+  enhancedInstance.setFieldsValue = (values: any) => {
+    Object.keys(values).forEach((key) => {
+      formInstance.setValue(key as any, values[key])
+    })
+  }
+  enhancedInstance.validateFields = formInstance.trigger
+  enhancedInstance.resetFields = formInstance.reset
+  enhancedInstance.isFieldTouched = (name: string) => {
+    const touched = formInstance.formState.touchedFields as any
+    return !!touched[name]
+  }
+  enhancedInstance.getFieldError = (name: string) => {
+    const errors = formInstance.formState.errors as any
+    return errors[name]?.message as string | undefined
+  }
+
+  return enhancedInstance
 }
 
 export const Form = Object.assign(FormRoot, {
   Item: FormItem,
+  List: FormList,
   useForm: useFormInstance,
 })
 

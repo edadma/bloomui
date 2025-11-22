@@ -1,4 +1,5 @@
-import { Toggle, Form, Button } from '@edadma/petalui'
+import { useState } from 'react'
+import { Toggle, Form, Button, Modal } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -38,8 +39,12 @@ const toggleApi: ApiProperty[] = [
 ]
 
 export function TogglePage() {
+  const [submittedData, setSubmittedData] = useState<any>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   const handleSubmit = (values: any) => {
-    alert(JSON.stringify(values, null, 2))
+    setSubmittedData(values)
+    setIsModalOpen(true)
   }
 
   return (
@@ -300,6 +305,20 @@ export default App`}
 
         <ApiTable title="Toggle" data={toggleApi} />
       </div>
+
+      <Modal
+        open={isModalOpen}
+        onCancel={() => setIsModalOpen(false)}
+        title="Form Submitted"
+        footer={null}
+      >
+        <div className="py-4">
+          <p className="mb-4">Form data:</p>
+          <pre className="bg-base-200 p-4 rounded-lg overflow-auto max-h-96">
+            {JSON.stringify(submittedData, null, 2)}
+          </pre>
+        </div>
+      </Modal>
     </div>
   )
 }
