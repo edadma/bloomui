@@ -479,7 +479,7 @@ export default App`}
           <div>
             <strong>Usage Tips:</strong>
             <ul className="list-disc list-inside mt-2">
-              <li>No provider needed - import and use directly anywhere in your app</li>
+              <li>Import and use directly anywhere in your app</li>
               <li>Notifications auto-dismiss in FIFO order (first shown, first dismissed)</li>
               <li>Default duration is 4.5 seconds, set to 0 to disable auto-close</li>
               <li>Click anywhere on notification to trigger onClick callback</li>

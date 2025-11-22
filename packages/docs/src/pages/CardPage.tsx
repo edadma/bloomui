@@ -451,16 +451,16 @@ export default App`}
             <strong>Usage Tips:</strong>
             <ul className="list-disc list-inside mt-2">
               <li>
-                Pass content directly as children - no need for Card.Body wrapper
+                Pass content directly as children
               </li>
               <li>
-                Use <code>title</code> prop instead of Card.Title component
+                Use <code>title</code> prop for card headings
               </li>
               <li>
-                Use <code>cover</code> prop for images instead of Card.Figure
+                Use <code>cover</code> prop for images or media
               </li>
               <li>
-                Use <code>actions</code> prop for buttons instead of Card.Actions
+                Use <code>actions</code> prop for buttons or action elements
               </li>
               <li>
                 Combine with Tailwind utility classes via <code>className</code> for custom styling

@@ -658,8 +658,8 @@ export default App`}
           <div>
             <strong>Usage Tips:</strong>
             <ul className="list-disc list-inside mt-2">
-              <li>Pass content directly as children - no need for Modal.Box wrapper</li>
-              <li>Use title prop instead of manual heading elements</li>
+              <li>Pass content directly as children</li>
+              <li>Use title prop for modal headings</li>
               <li>Provide onOk and/or onCancel for automatic button rendering</li>
               <li>Use footer prop for custom footer buttons (or pass null to hide footer)</li>
               <li>Press ESC key to close modal</li>
