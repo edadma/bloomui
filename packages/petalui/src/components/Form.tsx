@@ -223,7 +223,7 @@ function FormItem({
         return (
           <div className={`form-control w-full ${className}`}>
             {label && (
-              <label className="label">
+              <label className="label pb-2">
                 <span className="label-text">
                   {label}
                   {required && <span className="text-error ml-1">*</span>}
