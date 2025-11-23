@@ -82,6 +82,7 @@ function FormRoot<TFieldValues extends FieldValues = FieldValues>({
   size,
   children,
   className = '',
+  noValidate = true,
   ...props
 }: FormProps<TFieldValues>) {
   const internalForm = useForm<TFieldValues>({
@@ -99,7 +100,7 @@ function FormRoot<TFieldValues extends FieldValues = FieldValues>({
 
   return (
     <FormContext.Provider value={{ form, layout, size }}>
-      <form onSubmit={handleSubmit} className={className} {...props}>
+      <form onSubmit={handleSubmit} className={className} noValidate={noValidate} {...props}>
         {children}
       </form>
     </FormContext.Provider>
