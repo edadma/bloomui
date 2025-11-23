@@ -63,7 +63,7 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
     const newInputValue = e.target.value
     setInputValue(newInputValue)
     setIsOpen(true)
-    setHighlightedIndex(-1)
+    setHighlightedIndex(0)
 
     if (allowCustomValue) {
       onChange?.(newInputValue)
@@ -82,6 +82,7 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (!isOpen && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
       setIsOpen(true)
+      setHighlightedIndex(0)
       return
     }
 
@@ -92,7 +93,7 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
         break
       case 'ArrowUp':
         e.preventDefault()
-        setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : -1))
+        setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : 0))
         break
       case 'Enter':
         e.preventDefault()
@@ -112,6 +113,9 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
 
   const handleFocus = () => {
     setIsOpen(true)
+    if (filteredOptions.length > 0) {
+      setHighlightedIndex(0)
+    }
   }
 
   const handleBlur = (e: React.FocusEvent) => {

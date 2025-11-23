@@ -277,6 +277,8 @@ function App() {
                         <Radio value="javascript">JavaScript</Radio>
                         <Radio value="typescript">TypeScript</Radio>
                         <Radio value="python">Python</Radio>
+                        <Radio value="rust">Rust</Radio>
+                        <Radio value="scala">Scala</Radio>
                         <Radio value="java">Java</Radio>
                         <Radio value="go">Go</Radio>
                       </Space>
