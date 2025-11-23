@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Textarea, Form, Button, Modal } from '@edadma/petalui'
+import { Textarea, Form, Button, Modal, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -103,37 +103,37 @@ export default App`}
           title="Sizes"
           description="Five sizes: xs, sm, md, lg, and xl."
           code={`import React from 'react'
-import { Textarea } from '@edadma/petalui'
+import { Textarea, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-2">
+  <Space size="xs">
     <Textarea size="xs" placeholder="Extra small" />
     <Textarea size="sm" placeholder="Small" />
     <Textarea size="md" placeholder="Medium (default)" />
     <Textarea size="lg" placeholder="Large" />
     <Textarea size="xl" placeholder="Extra large" />
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-2">
+          <Space size="xs">
             <Textarea size="xs" placeholder="Extra small" />
             <Textarea size="sm" placeholder="Small" />
             <Textarea size="md" placeholder="Medium (default)" />
             <Textarea size="lg" placeholder="Large" />
             <Textarea size="xl" placeholder="Extra large" />
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
           title="Colors"
           description="Color variants for different states."
           code={`import React from 'react'
-import { Textarea } from '@edadma/petalui'
+import { Textarea, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-2">
+  <Space size="xs">
     <Textarea color="primary" placeholder="Primary" />
     <Textarea color="secondary" placeholder="Secondary" />
     <Textarea color="accent" placeholder="Accent" />
@@ -141,12 +141,12 @@ const App: React.FC = () => (
     <Textarea color="success" placeholder="Success" />
     <Textarea color="warning" placeholder="Warning" />
     <Textarea color="error" placeholder="Error" />
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-2">
+          <Space size="xs">
             <Textarea color="primary" placeholder="Primary" />
             <Textarea color="secondary" placeholder="Secondary" />
             <Textarea color="accent" placeholder="Accent" />
@@ -154,7 +154,7 @@ export default App`}
             <Textarea color="success" placeholder="Success" />
             <Textarea color="warning" placeholder="Warning" />
             <Textarea color="error" placeholder="Error" />
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Fieldset, Input, Select, Checkbox, Button, Form, Modal } from '@edadma/petalui'
+import { Fieldset, Input, Select, Checkbox, Button, Form, Modal, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -59,12 +59,12 @@ export function FieldsetPage() {
           title="Basic Fieldset"
           description="Simple fieldset with legend and inputs."
           code={`import React from 'react'
-import { Fieldset, Input } from '@edadma/petalui'
+import { Fieldset, Input, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
   <Fieldset>
     <Fieldset.Legend>Personal Information</Fieldset.Legend>
-    <div className="flex flex-col gap-4">
+    <Space>
       <label className="label">
         <span className="label-text">Name</span>
       </label>
@@ -74,7 +74,7 @@ const App: React.FC = () => (
         <span className="label-text">Email</span>
       </label>
       <Input type="email" placeholder="Enter your email" />
-    </div>
+    </Space>
   </Fieldset>
 )
 
@@ -82,7 +82,7 @@ export default App`}
         >
           <Fieldset>
             <Fieldset.Legend>Personal Information</Fieldset.Legend>
-            <div className="flex flex-col gap-4">
+            <Space>
               <label className="label">
                 <span className="label-text">Name</span>
               </label>
@@ -92,7 +92,7 @@ export default App`}
                 <span className="label-text">Email</span>
               </label>
               <Input type="email" placeholder="Enter your email" />
-            </div>
+            </Space>
           </Fieldset>
         </ExampleSection>
 
@@ -100,12 +100,12 @@ export default App`}
           title="With Styling"
           description="Fieldset with border and background."
           code={`import React from 'react'
-import { Fieldset, Select } from '@edadma/petalui'
+import { Fieldset, Select, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
   <Fieldset className="border border-base-300 bg-base-200 rounded-box p-4">
     <Fieldset.Legend>Preferences</Fieldset.Legend>
-    <div className="flex flex-col gap-4">
+    <Space>
       <label className="label">
         <span className="label-text">Language</span>
       </label>
@@ -123,7 +123,7 @@ const App: React.FC = () => (
         <option value="dark">Dark</option>
         <option value="auto">Auto</option>
       </Select>
-    </div>
+    </Space>
   </Fieldset>
 )
 
@@ -131,7 +131,7 @@ export default App`}
         >
           <Fieldset className="border border-base-300 bg-base-200 rounded-box p-4">
             <Fieldset.Legend>Preferences</Fieldset.Legend>
-            <div className="flex flex-col gap-4">
+            <Space>
               <label className="label">
                 <span className="label-text">Language</span>
               </label>
@@ -149,7 +149,7 @@ export default App`}
                 <option value="dark">Dark</option>
                 <option value="auto">Auto</option>
               </Select>
-            </div>
+            </Space>
           </Fieldset>
         </ExampleSection>
 
@@ -157,21 +157,21 @@ export default App`}
           title="Multiple Fieldsets"
           description="Grouping different sections of a form."
           code={`import React from 'react'
-import { Fieldset, Input, Checkbox } from '@edadma/petalui'
+import { Fieldset, Input, Checkbox, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-6">
+  <Space size="lg">
     <Fieldset className="border border-base-300 rounded-box p-4">
       <Fieldset.Legend>Account Details</Fieldset.Legend>
-      <div className="flex flex-col gap-4">
+      <Space>
         <Input placeholder="Username" />
         <Input type="password" placeholder="Password" />
-      </div>
+      </Space>
     </Fieldset>
 
     <Fieldset className="border border-base-300 rounded-box p-4">
       <Fieldset.Legend>Notifications</Fieldset.Legend>
-      <div className="flex flex-col gap-2">
+      <Space size="xs">
         <div className="flex items-center gap-2">
           <Checkbox />
           <span>Email notifications</span>
@@ -180,25 +180,25 @@ const App: React.FC = () => (
           <Checkbox />
           <span>SMS notifications</span>
         </div>
-      </div>
+      </Space>
     </Fieldset>
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-6">
+          <Space size="lg">
             <Fieldset className="border border-base-300 rounded-box p-4">
               <Fieldset.Legend>Account Details</Fieldset.Legend>
-              <div className="flex flex-col gap-4">
+              <Space>
                 <Input placeholder="Username" />
                 <Input type="password" placeholder="Password" />
-              </div>
+              </Space>
             </Fieldset>
 
             <Fieldset className="border border-base-300 rounded-box p-4">
               <Fieldset.Legend>Notifications</Fieldset.Legend>
-              <div className="flex flex-col gap-2">
+              <Space size="xs">
                 <div className="flex items-center gap-2">
                   <Checkbox />
                   <span>Email notifications</span>
@@ -207,25 +207,25 @@ export default App`}
                   <Checkbox />
                   <span>SMS notifications</span>
                 </div>
-              </div>
+              </Space>
             </Fieldset>
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
           title="Disabled Fieldset"
           description="Disable all controls within a fieldset."
           code={`import React from 'react'
-import { Fieldset, Input, Button } from '@edadma/petalui'
+import { Fieldset, Input, Button, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
   <Fieldset disabled className="border border-base-300 rounded-box p-4">
     <Fieldset.Legend>Disabled Section</Fieldset.Legend>
-    <div className="flex flex-col gap-4">
+    <Space>
       <Input placeholder="This is disabled" />
       <Input placeholder="This too" />
       <Button type="primary">Can't click me</Button>
-    </div>
+    </Space>
   </Fieldset>
 )
 
@@ -233,11 +233,11 @@ export default App`}
         >
           <Fieldset disabled className="border border-base-300 rounded-box p-4">
             <Fieldset.Legend>Disabled Section</Fieldset.Legend>
-            <div className="flex flex-col gap-4">
+            <Space>
               <Input placeholder="This is disabled" />
               <Input placeholder="This too" />
               <Button type="primary">Can't click me</Button>
-            </div>
+            </Space>
           </Fieldset>
         </ExampleSection>
 
@@ -256,7 +256,7 @@ const App: React.FC = () => {
     <Form onFinish={handleSubmit}>
       <Fieldset className="border border-base-300 rounded-box p-4 mb-4">
         <Fieldset.Legend>Shipping Address</Fieldset.Legend>
-        <div className="flex flex-col gap-4">
+        <Space>
           <Form.Item name="address" label="Street Address" required>
             <Input />
           </Form.Item>
@@ -271,7 +271,7 @@ const App: React.FC = () => {
               <option value="uk">United Kingdom</option>
             </Select>
           </Form.Item>
-        </div>
+        </Space>
       </Fieldset>
 
       <Form.Item>
@@ -288,7 +288,7 @@ export default App`}
           <Form onFinish={handleSubmit}>
             <Fieldset className="border border-base-300 rounded-box p-4 mb-4">
               <Fieldset.Legend>Shipping Address</Fieldset.Legend>
-              <div className="flex flex-col gap-4">
+              <Space>
                 <Form.Item name="address" label="Street Address" required>
                   <Input />
                 </Form.Item>
@@ -303,7 +303,7 @@ export default App`}
                     <option value="uk">United Kingdom</option>
                   </Select>
                 </Form.Item>
-              </div>
+              </Space>
             </Fieldset>
 
             <Form.Item>

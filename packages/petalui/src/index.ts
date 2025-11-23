@@ -127,6 +127,9 @@ export type { SelectProps } from './components/Select'
 export { Skeleton } from './components/Skeleton'
 export type { SkeletonProps } from './components/Skeleton'
 
+export { Space } from './components/Space'
+export type { SpaceProps } from './components/Space'
+
 export { Stats } from './components/Stat'
 export type { StatsProps, StatProps } from './components/Stat'
 

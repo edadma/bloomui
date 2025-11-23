@@ -1,4 +1,4 @@
-import { Skeleton } from '@edadma/petalui'
+import { Skeleton, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -53,26 +53,26 @@ export function SkeletonPage() {
           title="Basic"
           description="Simple skeleton shapes with different dimensions."
           code={`import React from 'react'
-import { Skeleton } from '@edadma/petalui'
+import { Skeleton, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4">
+  <Space>
     <Skeleton className="h-32 w-full" />
     <Skeleton className="h-4 w-28" />
     <Skeleton className="h-4 w-full" />
     <Skeleton className="h-4 w-full" />
-  </div>
+  </Space>
 )
 
 export default App`}
           noColumnBreak
         >
-          <div className="flex flex-col gap-4">
+          <Space>
             <Skeleton className="h-32 w-full" />
             <Skeleton className="h-4 w-28" />
             <Skeleton className="h-4 w-full" />
             <Skeleton className="h-4 w-full" />
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
@@ -103,30 +103,30 @@ export default App`}
           title="Text Variant"
           description="Skeleton that animates text color instead of background."
           code={`import React from 'react'
-import { Skeleton } from '@edadma/petalui'
+import { Skeleton, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-2">
+  <Space size="xs">
     <Skeleton variant="text" className="text-2xl">
       Loading heading...
     </Skeleton>
     <Skeleton variant="text">
       Loading paragraph text that will be replaced with actual content...
     </Skeleton>
-  </div>
+  </Space>
 )
 
 export default App`}
           noColumnBreak
         >
-          <div className="flex flex-col gap-2">
+          <Space size="xs">
             <Skeleton variant="text" className="text-2xl">
               Loading heading...
             </Skeleton>
             <Skeleton variant="text">
               Loading paragraph text that will be replaced with actual content...
             </Skeleton>
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
@@ -157,15 +157,15 @@ export default App`}
           title="Avatar with Text"
           description="Common pattern for user profiles."
           code={`import React from 'react'
-import { Skeleton } from '@edadma/petalui'
+import { Skeleton, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
   <div className="flex gap-4">
     <Skeleton circle className="h-12 w-12 shrink-0" />
-    <div className="flex flex-col gap-2 flex-1">
+    <Space size="xs" className="flex-1">
       <Skeleton className="h-4 w-20" />
       <Skeleton className="h-4 w-full" />
-    </div>
+    </Space>
   </div>
 )
 
@@ -174,10 +174,10 @@ export default App`}
         >
           <div className="flex gap-4">
             <Skeleton circle className="h-12 w-12 shrink-0" />
-            <div className="flex flex-col gap-2 flex-1">
+            <Space size="xs" className="flex-1">
               <Skeleton className="h-4 w-20" />
               <Skeleton className="h-4 w-full" />
-            </div>
+            </Space>
           </div>
         </ExampleSection>
 
@@ -217,36 +217,36 @@ export default App`}
           title="List Skeleton"
           description="Loading placeholder for list items."
           code={`import React from 'react'
-import { Skeleton } from '@edadma/petalui'
+import { Skeleton, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4">
+  <Space>
     {[1, 2, 3].map((i) => (
       <div key={i} className="flex gap-4">
         <Skeleton circle className="h-12 w-12 shrink-0" />
-        <div className="flex flex-col gap-2 flex-1">
+        <Space size="xs" className="flex-1">
           <Skeleton className="h-4 w-1/4" />
           <Skeleton className="h-4 w-full" />
-        </div>
+        </Space>
       </div>
     ))}
-  </div>
+  </Space>
 )
 
 export default App`}
           noColumnBreak
         >
-          <div className="flex flex-col gap-4">
+          <Space>
             {[1, 2, 3].map((i) => (
               <div key={i} className="flex gap-4">
                 <Skeleton circle className="h-12 w-12 shrink-0" />
-                <div className="flex flex-col gap-2 flex-1">
+                <Space size="xs" className="flex-1">
                   <Skeleton className="h-4 w-1/4" />
                   <Skeleton className="h-4 w-full" />
-                </div>
+                </Space>
               </div>
             ))}
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection

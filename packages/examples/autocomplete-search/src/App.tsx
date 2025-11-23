@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Navbar, Hero, ThemeController, Autocomplete, Card } from '@edadma/petalui'
+import { Navbar, Hero, ThemeController, Autocomplete, Card, Space } from '@edadma/petalui'
 
 const THEMES = [
   'light',
@@ -85,13 +85,14 @@ function App() {
         end={<ThemeController.Dropdown themes={THEMES} />}
       />
 
-      <Hero className="bg-base-200 !min-h-[calc(100vh-4rem)]" contentClassName="text-center" wrapperClassName="max-w-2xl space-y-6">
-        <h1 className="text-5xl font-bold">Country Search</h1>
-        <p className="text-lg">
-          Search and explore countries using the RESTCountries API with real-time autocomplete filtering.
-        </p>
+      <Hero className="bg-base-200 !min-h-[calc(100vh-4rem)]" contentClassName="text-center" wrapperClassName="max-w-2xl">
+        <Space size="lg">
+          <h1 className="text-5xl font-bold">Country Search</h1>
+          <p className="text-lg">
+            Search and explore countries using the RESTCountries API with real-time autocomplete filtering.
+          </p>
 
-        <div className="w-full max-w-md mx-auto">
+          <div className="w-full max-w-md mx-auto">
           <label className="label">
             <span className="label-text">Search for a country</span>
           </label>
@@ -125,11 +126,12 @@ function App() {
           </Card>
         )}
 
-        {!selectedCountry && !loading && (
-          <div className="text-base-content/60">
-            Select a country from the autocomplete to see details
-          </div>
-        )}
+          {!selectedCountry && !loading && (
+            <div className="text-base-content/60">
+              Select a country from the autocomplete to see details
+            </div>
+          )}
+        </Space>
       </Hero>
     </>
   )

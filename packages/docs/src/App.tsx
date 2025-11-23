@@ -42,6 +42,7 @@ import { RangePage } from './pages/RangePage'
 import { RatingPage } from './pages/RatingPage'
 import { SelectPage } from './pages/SelectPage'
 import { SkeletonPage } from './pages/SkeletonPage'
+import { SpacePage } from './pages/SpacePage'
 import { StatPage } from './pages/StatPage'
 import { StepsPage } from './pages/StepsPage'
 import { TablePage } from './pages/TablePage'
@@ -238,6 +239,9 @@ function AppContent() {
               <Menu.Item active={isActive('/join')} onClick={() => navigate('/join')}>
                 Join
               </Menu.Item>
+              <Menu.Item active={isActive('/space')} onClick={() => navigate('/space')}>
+                Space
+              </Menu.Item>
 
               <Menu.Title>Navigation</Menu.Title>
               <Menu.Item active={isActive('/breadcrumbs')} onClick={() => navigate('/breadcrumbs')}>
@@ -335,6 +339,7 @@ function AppContent() {
               <Route path="/rating" element={<RatingPage />} />
               <Route path="/select" element={<SelectPage />} />
               <Route path="/skeleton" element={<SkeletonPage />} />
+              <Route path="/space" element={<SpacePage />} />
               <Route path="/stat" element={<StatPage />} />
               <Route path="/steps" element={<StepsPage />} />
               <Route path="/table" element={<TablePage />} />

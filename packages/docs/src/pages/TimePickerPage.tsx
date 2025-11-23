@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { TimePicker, Form, Button, Modal } from '@edadma/petalui'
+import { TimePicker, Form, Button, Modal, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -172,25 +172,25 @@ export default App`}
           title="Different Sizes"
           description="Time picker in various sizes."
           code={`import React from 'react'
-import { TimePicker } from '@edadma/petalui'
+import { TimePicker, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4">
+  <Space>
     <TimePicker size="xs" placeholder="Extra small" />
     <TimePicker size="sm" placeholder="Small" />
     <TimePicker size="md" placeholder="Medium" />
     <TimePicker size="lg" placeholder="Large" />
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-4">
+          <Space>
             <TimePicker size="xs" placeholder="Extra small" />
             <TimePicker size="sm" placeholder="Small" />
             <TimePicker size="md" placeholder="Medium" />
             <TimePicker size="lg" placeholder="Large" />
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection

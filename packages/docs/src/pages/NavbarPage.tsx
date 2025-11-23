@@ -1,4 +1,4 @@
-import { Navbar, Button, Dropdown, Badge } from '@edadma/petalui'
+import { Navbar, Button, Dropdown, Badge, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -287,10 +287,10 @@ export default App`}
           title="Colored Background"
           description="Different background colors."
           code={`import React from 'react'
-import { Navbar, Button } from '@edadma/petalui'
+import { Navbar, Button, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4">
+  <Space>
     <Navbar
       className="bg-primary text-primary-content"
       start={<span className="text-xl font-bold">Primary</span>}
@@ -306,12 +306,12 @@ const App: React.FC = () => (
       start={<span className="text-xl font-bold">Base-300</span>}
       end={<Button type="primary">Action</Button>}
     />
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-4">
+          <Space>
             <Navbar
               className="bg-primary text-primary-content"
               start={<span className="text-xl font-bold">Primary</span>}
@@ -327,7 +327,7 @@ export default App`}
               start={<span className="text-xl font-bold">Base-300</span>}
               end={<Button type="primary">Action</Button>}
             />
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection

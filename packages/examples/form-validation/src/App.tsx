@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Navbar, ThemeController, Form, Input, Button, Card } from '@edadma/petalui'
+import { Navbar, ThemeController, Form, Input, Button, Card, Space } from '@edadma/petalui'
 
 interface FormValues {
   username: string
@@ -36,7 +36,7 @@ function App() {
       />
 
       <div className="p-6">
-        <div className="max-w-3xl mx-auto space-y-6">
+        <Space size="lg" className="max-w-3xl mx-auto">
           <div className="text-center">
             <h1 className="text-5xl font-bold">Form Validation</h1>
             <p className="text-lg mt-4">
@@ -142,7 +142,7 @@ function App() {
               </pre>
             </Card>
           )}
-        </div>
+        </Space>
       </div>
     </>
   )

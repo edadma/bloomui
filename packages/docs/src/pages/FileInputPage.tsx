@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FileInput, Fieldset, Form, Modal } from '@edadma/petalui'
+import { FileInput, Fieldset, Form, Modal, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -81,37 +81,37 @@ export default App`}
           title="Sizes"
           description="Different input sizes from xs to xl."
           code={`import React from 'react'
-import { FileInput } from '@edadma/petalui'
+import { FileInput, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4">
+  <Space>
     <FileInput size="xs" />
     <FileInput size="sm" />
     <FileInput size="md" />
     <FileInput size="lg" />
     <FileInput size="xl" />
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-4">
+          <Space>
             <FileInput size="xs" />
             <FileInput size="sm" />
             <FileInput size="md" />
             <FileInput size="lg" />
             <FileInput size="xl" />
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
           title="Colors"
           description="Colored file input variants."
           code={`import React from 'react'
-import { FileInput } from '@edadma/petalui'
+import { FileInput, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4">
+  <Space>
     <FileInput color="primary" />
     <FileInput color="secondary" />
     <FileInput color="accent" />
@@ -119,12 +119,12 @@ const App: React.FC = () => (
     <FileInput color="success" />
     <FileInput color="warning" />
     <FileInput color="error" />
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-4">
+          <Space>
             <FileInput color="primary" />
             <FileInput color="secondary" />
             <FileInput color="accent" />
@@ -132,7 +132,7 @@ export default App`}
             <FileInput color="success" />
             <FileInput color="warning" />
             <FileInput color="error" />
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection

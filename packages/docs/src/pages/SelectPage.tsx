@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Select, Form, Button, Modal } from '@edadma/petalui'
+import { Select, Form, Button, Modal, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -120,10 +120,10 @@ export default App`}
           title="Sizes"
           description="Five sizes: xs, sm, md, lg, and xl."
           code={`import React from 'react'
-import { Select } from '@edadma/petalui'
+import { Select, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-2">
+  <Space size="xs">
     <Select size="xs">
       <option>Extra small</option>
     </Select>
@@ -139,12 +139,12 @@ const App: React.FC = () => (
     <Select size="xl">
       <option>Extra large</option>
     </Select>
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-2">
+          <Space size="xs">
             <Select size="xs">
               <option>Extra small</option>
             </Select>
@@ -160,17 +160,17 @@ export default App`}
             <Select size="xl">
               <option>Extra large</option>
             </Select>
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
           title="Colors"
           description="Color variants for different states."
           code={`import React from 'react'
-import { Select } from '@edadma/petalui'
+import { Select, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-2">
+  <Space size="xs">
     <Select color="primary">
       <option>Primary</option>
     </Select>
@@ -192,12 +192,12 @@ const App: React.FC = () => (
     <Select color="error">
       <option>Error</option>
     </Select>
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-2">
+          <Space size="xs">
             <Select color="primary">
               <option>Primary</option>
             </Select>
@@ -219,7 +219,7 @@ export default App`}
             <Select color="error">
               <option>Error</option>
             </Select>
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection

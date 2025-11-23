@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
-import { Navbar, ThemeController, Form, Input, Button, Card, Checkbox } from '@edadma/petalui'
+import { Navbar, ThemeController, Form, Input, Button, Card, Checkbox, Space } from '@edadma/petalui'
 
 interface WorkExperience {
   company: string
@@ -67,7 +67,7 @@ function App() {
       />
 
       <div className="p-6">
-        <div className="max-w-4xl mx-auto space-y-6">
+        <Space size="lg" className="max-w-4xl mx-auto">
           <div className="text-center">
             <h1 className="text-5xl font-bold">Job Application</h1>
             <p className="text-lg mt-4">
@@ -78,7 +78,7 @@ function App() {
           <Card className="shadow-xl">
             <Form<JobApplicationForm> form={form} onFinish={handleSubmit}>
               {/* Personal Information */}
-              <div className="space-y-4">
+              <Space>
                 <h2 className="text-2xl font-bold border-b pb-2">Personal Information</h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -125,10 +125,10 @@ function App() {
                     <Input placeholder="+1 (555) 123-4567" />
                   </Form.Item>
                 </div>
-              </div>
+              </Space>
 
               {/* Work Experience */}
-              <div className="space-y-4 mt-8">
+              <Space className="mt-8">
                 <h2 className="text-2xl font-bold border-b pb-2">Work Experience</h2>
 
                 <Form.List name="workExperience">
@@ -151,19 +151,19 @@ function App() {
                     </>
                   )}
                 </Form.List>
-              </div>
+              </Space>
 
               {/* Education */}
-              <div className="space-y-4 mt-8">
+              <Space className="mt-8">
                 <h2 className="text-2xl font-bold border-b pb-2">Education</h2>
 
                 <Form.List name="education">
                   {(fields, { add, remove }) => (
                     <>
                       {fields.map((field: any, index) => (
-                        <div
+                        <Space
                           key={field.id}
-                          className="border border-base-300 rounded-lg p-4 space-y-4"
+                          className="border border-base-300 rounded-lg p-4"
                         >
                           <div className="flex justify-between items-center">
                             <h3 className="font-semibold">Education {index + 1}</h3>
@@ -223,7 +223,7 @@ function App() {
                               <Input placeholder="2020" />
                             </Form.Item>
                           </div>
-                        </div>
+                        </Space>
                       ))}
 
                       <Button onClick={() => add({ school: '', degree: '', field: '', graduationYear: '' })} className="w-full">
@@ -232,10 +232,10 @@ function App() {
                     </>
                   )}
                 </Form.List>
-              </div>
+              </Space>
 
               {/* Skills */}
-              <div className="space-y-4 mt-8">
+              <Space className="mt-8">
                 <h2 className="text-2xl font-bold border-b pb-2">Skills</h2>
                 <p className="text-sm text-base-content/70">Select all that apply</p>
 
@@ -249,19 +249,19 @@ function App() {
                     </Form.Item>
                   ))}
                 </div>
-              </div>
+              </Space>
 
               {/* References */}
-              <div className="space-y-4 mt-8">
+              <Space className="mt-8">
                 <h2 className="text-2xl font-bold border-b pb-2">References (Optional)</h2>
 
                 <Form.List name="references">
                   {(fields, { add, remove }) => (
                     <>
                       {fields.map((field: any, index) => (
-                        <div
+                        <Space
                           key={field.id}
-                          className="border border-base-300 rounded-lg p-4 space-y-4"
+                          className="border border-base-300 rounded-lg p-4"
                         >
                           <div className="flex justify-between items-center">
                             <h3 className="font-semibold">Reference {index + 1}</h3>
@@ -316,7 +316,7 @@ function App() {
                               <Input placeholder="+1 (555) 987-6543" />
                             </Form.Item>
                           </div>
-                        </div>
+                        </Space>
                       ))}
 
                       <Button onClick={() => add({ name: '', company: '', position: '', email: '', phone: '' })} className="w-full">
@@ -325,7 +325,7 @@ function App() {
                     </>
                   )}
                 </Form.List>
-              </div>
+              </Space>
 
               <div className="form-control mt-8">
                 <Button type="primary" htmlType="submit" loading={isSubmitting} className="w-full" size="lg">
@@ -343,7 +343,7 @@ function App() {
               </pre>
             </Card>
           )}
-        </div>
+        </Space>
       </div>
     </>
   )
@@ -356,7 +356,7 @@ function WorkExperienceField({ field, index, remove, canRemove, form }: any) {
   })
 
   return (
-    <div className="border border-base-300 rounded-lg p-4 space-y-4">
+    <Space className="border border-base-300 rounded-lg p-4">
       <div className="flex justify-between items-center">
         <h3 className="font-semibold">Work Experience {index + 1}</h3>
         {canRemove && (
@@ -427,7 +427,7 @@ function WorkExperienceField({ field, index, remove, canRemove, form }: any) {
       >
         <Input placeholder="Describe your responsibilities and achievements..." />
       </Form.Item>
-    </div>
+    </Space>
   )
 }
 

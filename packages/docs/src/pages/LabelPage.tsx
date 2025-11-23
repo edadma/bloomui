@@ -1,4 +1,4 @@
-import { Label, Input, Select } from '@edadma/petalui'
+import { Label, Input, Select, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -144,10 +144,10 @@ export default App`}
           title="Floating Label Sizes"
           description="Different sizes for floating labels."
           code={`import React from 'react'
-import { Label, Input } from '@edadma/petalui'
+import { Label, Input, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4">
+  <Space>
     <Label.Floating label="Extra Small" size="xs">
       <Input size="xs" />
     </Label.Floating>
@@ -163,12 +163,12 @@ const App: React.FC = () => (
     <Label.Floating label="Extra Large" size="xl">
       <Input size="xl" />
     </Label.Floating>
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-4">
+          <Space>
             <Label.Floating label="Extra Small" size="xs">
               <Input size="xs" />
             </Label.Floating>
@@ -184,7 +184,7 @@ export default App`}
             <Label.Floating label="Extra Large" size="xl">
               <Input size="xl" />
             </Label.Floating>
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection

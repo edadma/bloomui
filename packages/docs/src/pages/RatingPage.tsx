@@ -1,4 +1,4 @@
-import { Rating } from '@edadma/petalui'
+import { Rating, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -147,10 +147,10 @@ export default App`}
           title="Different Sizes"
           description="Rating in various sizes."
           code={`import React from 'react'
-import { Rating } from '@edadma/petalui'
+import { Rating, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4">
+  <Space>
     <Rating size="xs" defaultValue={3}>
       <Rating.Item value={1} />
       <Rating.Item value={2} />
@@ -179,12 +179,12 @@ const App: React.FC = () => (
       <Rating.Item value={4} />
       <Rating.Item value={5} />
     </Rating>
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-4">
+          <Space>
             <Rating size="xs" defaultValue={3}>
               <Rating.Item value={1} />
               <Rating.Item value={2} />
@@ -213,7 +213,7 @@ export default App`}
               <Rating.Item value={4} />
               <Rating.Item value={5} />
             </Rating>
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection

@@ -1,4 +1,4 @@
-import { Card, Button, Badge } from '@edadma/petalui'
+import { Card, Button, Badge, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -183,25 +183,25 @@ export default App`}
           title="Card Sizes"
           description="Cards in different sizes."
           code={`import React from 'react'
-import { Card } from '@edadma/petalui'
+import { Card, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4">
-    <Card title="Extra Small" size="xs" bordered className="w-96">
+  <Space className="w-96">
+    <Card title="Extra Small" size="xs" bordered>
       <p>Compact card with minimal padding.</p>
     </Card>
-    <Card title="Small" size="sm" bordered className="w-96">
+    <Card title="Small" size="sm" bordered>
       <p>Small card with reduced padding.</p>
     </Card>
-    <Card title="Large" size="lg" bordered className="w-96">
+    <Card title="Large" size="lg" bordered>
       <p>Large card with increased padding.</p>
     </Card>
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-4 w-96">
+          <Space className="w-96">
             <Card title="Extra Small" size="xs" bordered>
               <p>Compact card with minimal padding.</p>
             </Card>
@@ -211,7 +211,7 @@ export default App`}
             <Card title="Large" size="lg" bordered>
               <p>Large card with increased padding.</p>
             </Card>
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
@@ -331,51 +331,50 @@ export default App`}
           title="Custom Colors"
           description="Card with custom background colors using className."
           code={`import React from 'react'
-import { Card } from '@edadma/petalui'
+import { Card, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4">
+  <Space className="w-96">
     <Card
       title="Primary Card"
-      className="w-96 bg-primary text-primary-content"
+      className="bg-primary text-primary-content"
     >
       <p>Card with primary background color.</p>
     </Card>
     <Card
       title="Neutral Card"
-      className="w-96 bg-neutral text-neutral-content"
+      className="bg-neutral text-neutral-content"
     >
       <p>Card with neutral background color.</p>
     </Card>
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-4 w-96">
+          <Space className="w-96">
             <Card title="Primary Card" className="bg-primary text-primary-content">
               <p>Card with primary background color.</p>
             </Card>
             <Card title="Neutral Card" className="bg-neutral text-neutral-content">
               <p>Card with neutral background color.</p>
             </Card>
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
           title="Action Alignment"
           description="Different action button alignments."
           code={`import React from 'react'
-import { Card, Button } from '@edadma/petalui'
+import { Card, Button, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4">
+  <Space className="w-96">
     <Card
       title="Left Actions"
       actions={<Button type="primary" size="sm">Left</Button>}
       actionsJustify="start"
       bordered
-      className="w-96"
     >
       <p>Actions aligned to the left.</p>
     </Card>
@@ -384,16 +383,15 @@ const App: React.FC = () => (
       actions={<Button type="primary" size="sm">Center</Button>}
       actionsJustify="center"
       bordered
-      className="w-96"
     >
       <p>Actions aligned to the center.</p>
     </Card>
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-4 w-96">
+          <Space className="w-96">
             <Card
               title="Left Actions"
               actions={<Button type="primary" size="sm">Left</Button>}
@@ -410,7 +408,7 @@ export default App`}
             >
               <p>Actions aligned to the center.</p>
             </Card>
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Checkbox, Form, Button, Modal } from '@edadma/petalui'
+import { Checkbox, Form, Button, Modal, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -158,10 +158,10 @@ export default App`}
           title="Colors"
           description="Color variants for different themes."
           code={`import React from 'react'
-import { Checkbox } from '@edadma/petalui'
+import { Checkbox, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-2">
+  <Space size="xs">
     <Checkbox color="primary" checked readOnly>Primary</Checkbox>
     <Checkbox color="secondary" checked readOnly>Secondary</Checkbox>
     <Checkbox color="accent" checked readOnly>Accent</Checkbox>
@@ -169,12 +169,12 @@ const App: React.FC = () => (
     <Checkbox color="warning" checked readOnly>Warning</Checkbox>
     <Checkbox color="info" checked readOnly>Info</Checkbox>
     <Checkbox color="error" checked readOnly>Error</Checkbox>
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-2">
+          <Space size="xs">
             <Checkbox color="primary" checked readOnly>Primary</Checkbox>
             <Checkbox color="secondary" checked readOnly>Secondary</Checkbox>
             <Checkbox color="accent" checked readOnly>Accent</Checkbox>
@@ -182,28 +182,28 @@ export default App`}
             <Checkbox color="warning" checked readOnly>Warning</Checkbox>
             <Checkbox color="info" checked readOnly>Info</Checkbox>
             <Checkbox color="error" checked readOnly>Error</Checkbox>
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
           title="Disabled State"
           description="Non-interactive disabled checkbox."
           code={`import React from 'react'
-import { Checkbox } from '@edadma/petalui'
+import { Checkbox, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-2">
+  <Space size="xs">
     <Checkbox disabled>Disabled unchecked</Checkbox>
     <Checkbox disabled checked readOnly>Disabled checked</Checkbox>
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-2">
+          <Space size="xs">
             <Checkbox disabled>Disabled unchecked</Checkbox>
             <Checkbox disabled checked readOnly>Disabled checked</Checkbox>
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
@@ -225,7 +225,7 @@ export default App`}
           title="Checkbox Group"
           description="Group checkboxes together with automatic value management."
           code={`import React, { useState } from 'react'
-import { Checkbox } from '@edadma/petalui'
+import { Checkbox, Space } from '@edadma/petalui'
 
 const App: React.FC = () => {
   const [checkedList, setCheckedList] = useState(['Apple', 'Pear'])
@@ -235,11 +235,12 @@ const App: React.FC = () => {
       <Checkbox.Group
         value={checkedList}
         onChange={setCheckedList}
-        className="flex flex-col gap-2"
       >
-        <Checkbox value="Apple">Apple</Checkbox>
-        <Checkbox value="Pear">Pear</Checkbox>
-        <Checkbox value="Orange">Orange</Checkbox>
+        <Space size="xs">
+          <Checkbox value="Apple">Apple</Checkbox>
+          <Checkbox value="Pear">Pear</Checkbox>
+          <Checkbox value="Orange">Orange</Checkbox>
+        </Space>
       </Checkbox.Group>
       <div className="mt-4 text-sm">
         Selected: {checkedList.join(', ')}
@@ -250,13 +251,12 @@ const App: React.FC = () => {
 
 export default App`}
         >
-          <Checkbox.Group
-            defaultValue={['Apple', 'Pear']}
-            className="flex flex-col gap-2"
-          >
-            <Checkbox value="Apple">Apple</Checkbox>
-            <Checkbox value="Pear">Pear</Checkbox>
-            <Checkbox value="Orange">Orange</Checkbox>
+          <Checkbox.Group defaultValue={['Apple', 'Pear']}>
+            <Space size="xs">
+              <Checkbox value="Apple">Apple</Checkbox>
+              <Checkbox value="Pear">Pear</Checkbox>
+              <Checkbox value="Orange">Orange</Checkbox>
+            </Space>
           </Checkbox.Group>
         </ExampleSection>
 

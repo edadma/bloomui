@@ -1,4 +1,4 @@
-import { Alert, Button } from '@edadma/petalui'
+import { Alert, Button, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -105,10 +105,10 @@ export default App`}
           title="Alert Types"
           description="Different color variants for context."
           code={`import React from 'react'
-import { Alert } from '@edadma/petalui'
+import { Alert, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4">
+  <Space>
     <Alert type="info">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -176,12 +176,12 @@ const App: React.FC = () => (
       </svg>
       <span>Error: Invalid credentials</span>
     </Alert>
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-4">
+          <Space>
             <Alert type="info">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -249,7 +249,7 @@ export default App`}
               </svg>
               <span>Error: Invalid credentials</span>
             </Alert>
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
@@ -307,10 +307,10 @@ export default App`}
           title="Outline Style"
           description="Alert with outline variant."
           code={`import React from 'react'
-import { Alert } from '@edadma/petalui'
+import { Alert, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4">
+  <Space>
     <Alert type="info" outline>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -344,12 +344,12 @@ const App: React.FC = () => (
       </svg>
       <span>Success outline alert</span>
     </Alert>
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-4">
+          <Space>
             <Alert type="info" outline>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -383,7 +383,7 @@ export default App`}
               </svg>
               <span>Success outline alert</span>
             </Alert>
-          </div>
+          </Space>
         </ExampleSection>
       </div>
 

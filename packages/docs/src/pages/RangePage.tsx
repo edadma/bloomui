@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Range, Form, Button, Modal } from '@edadma/petalui'
+import { Range, Form, Button, Modal, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -187,10 +187,10 @@ export default App`}
           title="Different Colors"
           description="Range sliders in various theme colors."
           code={`import React from 'react'
-import { Range } from '@edadma/petalui'
+import { Range, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4">
+  <Space>
     <Range color="primary" defaultValue={25} />
     <Range color="secondary" defaultValue={35} />
     <Range color="accent" defaultValue={45} />
@@ -198,12 +198,12 @@ const App: React.FC = () => (
     <Range color="warning" defaultValue={65} />
     <Range color="info" defaultValue={75} />
     <Range color="error" defaultValue={85} />
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-4">
+          <Space>
             <Range color="primary" defaultValue={25} />
             <Range color="secondary" defaultValue={35} />
             <Range color="accent" defaultValue={45} />
@@ -211,32 +211,32 @@ export default App`}
             <Range color="warning" defaultValue={65} />
             <Range color="info" defaultValue={75} />
             <Range color="error" defaultValue={85} />
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
           title="Different Sizes"
           description="Range sliders in various sizes."
           code={`import React from 'react'
-import { Range } from '@edadma/petalui'
+import { Range, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-6">
+  <Space size="lg">
     <Range size="xs" defaultValue={25} />
     <Range size="sm" defaultValue={50} />
     <Range size="md" defaultValue={75} />
     <Range size="lg" defaultValue={90} />
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-6">
+          <Space size="lg">
             <Range size="xs" defaultValue={25} />
             <Range size="sm" defaultValue={50} />
             <Range size="md" defaultValue={75} />
             <Range size="lg" defaultValue={90} />
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection

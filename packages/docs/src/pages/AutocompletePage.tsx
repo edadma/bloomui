@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Autocomplete, Form, Button, Modal } from '@edadma/petalui'
+import { Autocomplete, Form, Button, Modal, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -301,27 +301,27 @@ export default App`}
           title="Different Sizes"
           description="Autocomplete in various sizes."
           code={`import React from 'react'
-import { Autocomplete } from '@edadma/petalui'
+import { Autocomplete, Space } from '@edadma/petalui'
 
 const options = ['Option 1', 'Option 2', 'Option 3']
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4">
+  <Space>
     <Autocomplete size="xs" options={options} placeholder="Extra small" />
     <Autocomplete size="sm" options={options} placeholder="Small" />
     <Autocomplete size="md" options={options} placeholder="Medium" />
     <Autocomplete size="lg" options={options} placeholder="Large" />
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-4">
+          <Space>
             <Autocomplete size="xs" options={fruits} placeholder="Extra small" />
             <Autocomplete size="sm" options={fruits} placeholder="Small" />
             <Autocomplete size="md" options={fruits} placeholder="Medium" />
             <Autocomplete size="lg" options={fruits} placeholder="Large" />
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection

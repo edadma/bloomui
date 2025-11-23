@@ -138,6 +138,7 @@ function App() {
 - **Grid** - Powerful 24-column grid system with Row and Col components
 - **Hero** - Hero section with overlay and content wrapping
 - **Join** - Join multiple elements together seamlessly
+- **Space** - Layout component for consistent spacing between elements
 
 ### Navigation
 - **Breadcrumbs** - Breadcrumb navigation trail

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Toggle, Form, Button, Modal } from '@edadma/petalui'
+import { Toggle, Form, Button, Modal, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -130,10 +130,10 @@ export default App`}
           title="Colors"
           description="Color variants for different themes."
           code={`import React from 'react'
-import { Toggle } from '@edadma/petalui'
+import { Toggle, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-2">
+  <Space size="xs">
     <div className="flex items-center gap-2">
       <Toggle color="primary" checked readOnly />
       <span>Primary</span>
@@ -162,12 +162,12 @@ const App: React.FC = () => (
       <Toggle color="error" checked readOnly />
       <span>Error</span>
     </div>
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-2">
+          <Space size="xs">
             <div className="flex items-center gap-2">
               <Toggle color="primary" checked readOnly />
               <span>Primary</span>
@@ -196,17 +196,17 @@ export default App`}
               <Toggle color="error" checked readOnly />
               <span>Error</span>
             </div>
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
           title="Disabled State"
           description="Non-interactive disabled toggle."
           code={`import React from 'react'
-import { Toggle } from '@edadma/petalui'
+import { Toggle, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-2">
+  <Space size="xs">
     <div className="flex items-center gap-2">
       <Toggle disabled />
       <span>Disabled off</span>
@@ -215,12 +215,12 @@ const App: React.FC = () => (
       <Toggle disabled checked readOnly />
       <span>Disabled on</span>
     </div>
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-2">
+          <Space size="xs">
             <div className="flex items-center gap-2">
               <Toggle disabled />
               <span>Disabled off</span>
@@ -229,7 +229,7 @@ export default App`}
               <Toggle disabled checked readOnly />
               <span>Disabled on</span>
             </div>
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection

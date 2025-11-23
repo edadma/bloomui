@@ -1,4 +1,4 @@
-import { Input } from '@edadma/petalui'
+import { Input, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -80,64 +80,64 @@ export default App`}
           title="Input Types"
           description="Different input types for various data."
           code={`import React from 'react'
-import { Input } from '@edadma/petalui'
+import { Input, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-2">
+  <Space size="xs">
     <Input type="text" placeholder="Text" />
     <Input type="email" placeholder="Email" />
     <Input type="password" placeholder="Password" />
     <Input type="number" placeholder="Number" />
     <Input type="date" />
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-2">
+          <Space size="xs">
             <Input type="text" placeholder="Text" />
             <Input type="email" placeholder="Email" />
             <Input type="password" placeholder="Password" />
             <Input type="number" placeholder="Number" />
             <Input type="date" />
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
           title="Sizes"
           description="Five sizes: xs, sm, md, lg, and xl."
           code={`import React from 'react'
-import { Input } from '@edadma/petalui'
+import { Input, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-2">
+  <Space size="xs">
     <Input size="xs" placeholder="Extra small" />
     <Input size="sm" placeholder="Small" />
     <Input size="md" placeholder="Medium (default)" />
     <Input size="lg" placeholder="Large" />
     <Input size="xl" placeholder="Extra large" />
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-2">
+          <Space size="xs">
             <Input size="xs" placeholder="Extra small" />
             <Input size="sm" placeholder="Small" />
             <Input size="md" placeholder="Medium (default)" />
             <Input size="lg" placeholder="Large" />
             <Input size="xl" placeholder="Extra large" />
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
           title="Colors"
           description="Color variants for different states."
           code={`import React from 'react'
-import { Input } from '@edadma/petalui'
+import { Input, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-2">
+  <Space size="xs">
     <Input color="primary" placeholder="Primary" />
     <Input color="secondary" placeholder="Secondary" />
     <Input color="accent" placeholder="Accent" />
@@ -145,12 +145,12 @@ const App: React.FC = () => (
     <Input color="success" placeholder="Success" />
     <Input color="warning" placeholder="Warning" />
     <Input color="error" placeholder="Error" />
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-2">
+          <Space size="xs">
             <Input color="primary" placeholder="Primary" />
             <Input color="secondary" placeholder="Secondary" />
             <Input color="accent" placeholder="Accent" />
@@ -158,7 +158,7 @@ export default App`}
             <Input color="success" placeholder="Success" />
             <Input color="warning" placeholder="Warning" />
             <Input color="error" placeholder="Error" />
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection

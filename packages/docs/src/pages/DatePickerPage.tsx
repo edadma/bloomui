@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { DatePicker, Form, Button, Modal } from '@edadma/petalui'
+import { DatePicker, Form, Button, Modal, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -163,25 +163,25 @@ export default App`}
           title="Different Sizes"
           description="DatePicker in various sizes."
           code={`import React from 'react'
-import { DatePicker } from '@edadma/petalui'
+import { DatePicker, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4">
+  <Space>
     <DatePicker size="xs" placeholder="Extra small" />
     <DatePicker size="sm" placeholder="Small" />
     <DatePicker size="md" placeholder="Medium" />
     <DatePicker size="lg" placeholder="Large" />
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-4">
+          <Space>
             <DatePicker size="xs" placeholder="Extra small" />
             <DatePicker size="sm" placeholder="Small" />
             <DatePicker size="md" placeholder="Medium" />
             <DatePicker size="lg" placeholder="Large" />
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection

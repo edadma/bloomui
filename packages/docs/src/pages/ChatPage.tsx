@@ -1,4 +1,4 @@
-import { Chat } from '@edadma/petalui'
+import { Chat, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -62,32 +62,32 @@ export function ChatPage() {
           title="Basic"
           description="Simple chat bubbles with start and end positions."
           code={`import React from 'react'
-import { Chat } from '@edadma/petalui'
+import { Chat, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4 w-96">
+  <Space className="w-96">
     <Chat position="start" message="Hello! How are you?" />
     <Chat position="end" message="I'm doing great, thanks!" />
-  </div>
+  </Space>
 )
 
 export default App`}
           noColumnBreak
         >
-          <div className="flex flex-col gap-4 w-96">
+          <Space className="w-96">
             <Chat position="start" message="Hello! How are you?" />
             <Chat position="end" message="I'm doing great, thanks!" />
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
           title="With Avatar"
           description="Add profile pictures using the avatar prop."
           code={`import React from 'react'
-import { Chat } from '@edadma/petalui'
+import { Chat, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4 w-96">
+  <Space className="w-96">
     <Chat
       position="start"
       message="Hello! How are you?"
@@ -98,13 +98,13 @@ const App: React.FC = () => (
       message="I'm doing great, thanks!"
       avatar="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
     />
-  </div>
+  </Space>
 )
 
 export default App`}
           noColumnBreak
         >
-          <div className="flex flex-col gap-4 w-96">
+          <Space className="w-96">
             <Chat
               position="start"
               message="Hello! How are you?"
@@ -115,17 +115,17 @@ export default App`}
               message="I'm doing great, thanks!"
               avatar="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
             />
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
           title="With Header"
           description="Add sender name and timestamp."
           code={`import React from 'react'
-import { Chat } from '@edadma/petalui'
+import { Chat, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4 w-96">
+  <Space className="w-96">
     <Chat
       position="start"
       message="You were the Chosen One!"
@@ -138,13 +138,13 @@ const App: React.FC = () => (
       avatar="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
       header={<>Anakin <time className="text-xs opacity-50">12:46</time></>}
     />
-  </div>
+  </Space>
 )
 
 export default App`}
           noColumnBreak
         >
-          <div className="flex flex-col gap-4 w-96">
+          <Space className="w-96">
             <Chat
               position="start"
               message="You were the Chosen One!"
@@ -157,17 +157,17 @@ export default App`}
               avatar="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
               header={<>Anakin <time className="text-xs opacity-50">12:46</time></>}
             />
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
           title="With Footer"
           description="Add delivery status or metadata below the bubble."
           code={`import React from 'react'
-import { Chat } from '@edadma/petalui'
+import { Chat, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4 w-96">
+  <Space className="w-96">
     <Chat
       position="start"
       message="You were the Chosen One!"
@@ -182,13 +182,13 @@ const App: React.FC = () => (
       header="Anakin"
       footer={<span className="opacity-50">Seen at 12:46</span>}
     />
-  </div>
+  </Space>
 )
 
 export default App`}
           noColumnBreak
         >
-          <div className="flex flex-col gap-4 w-96">
+          <Space className="w-96">
             <Chat
               position="start"
               message="You were the Chosen One!"
@@ -203,17 +203,17 @@ export default App`}
               header="Anakin"
               footer={<span className="opacity-50">Seen at 12:46</span>}
             />
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
           title="Colored Bubbles"
           description="Use color prop for different bubble colors."
           code={`import React from 'react'
-import { Chat } from '@edadma/petalui'
+import { Chat, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4 w-96">
+  <Space className="w-96">
     <Chat position="start" message="Primary message" color="primary" />
     <Chat position="start" message="Secondary message" color="secondary" />
     <Chat position="start" message="Accent message" color="accent" />
@@ -221,13 +221,13 @@ const App: React.FC = () => (
     <Chat position="start" message="Success message" color="success" />
     <Chat position="start" message="Warning message" color="warning" />
     <Chat position="start" message="Error message" color="error" />
-  </div>
+  </Space>
 )
 
 export default App`}
           noColumnBreak
         >
-          <div className="flex flex-col gap-4 w-96">
+          <Space className="w-96">
             <Chat position="start" message="Primary message" color="primary" />
             <Chat position="start" message="Secondary message" color="secondary" />
             <Chat position="start" message="Accent message" color="accent" />
@@ -235,17 +235,17 @@ export default App`}
             <Chat position="start" message="Success message" color="success" />
             <Chat position="start" message="Warning message" color="warning" />
             <Chat position="start" message="Error message" color="error" />
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
           title="Complete Conversation"
           description="A realistic chat conversation with all features."
           code={`import React from 'react'
-import { Chat } from '@edadma/petalui'
+import { Chat, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-4 w-96">
+  <Space className="w-96">
     <Chat
       position="start"
       message="Hey! Are you coming to the meeting?"
@@ -267,13 +267,13 @@ const App: React.FC = () => (
       avatar="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
       header={<>Alice <time className="text-xs opacity-50">2 hours ago</time></>}
     />
-  </div>
+  </Space>
 )
 
 export default App`}
           noColumnBreak
         >
-          <div className="flex flex-col gap-4 w-96">
+          <Space className="w-96">
             <Chat
               position="start"
               message="Hey! Are you coming to the meeting?"
@@ -295,7 +295,7 @@ export default App`}
               avatar="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
               header={<>Alice <time className="text-xs opacity-50">2 hours ago</time></>}
             />
-          </div>
+          </Space>
         </ExampleSection>
       </div>
 

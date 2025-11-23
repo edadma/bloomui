@@ -1,4 +1,4 @@
-import { Link } from '@edadma/petalui'
+import { Link, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -79,10 +79,10 @@ export default App`}
           title="Color Variants"
           description="Links in different semantic colors."
           code={`import React from 'react'
-import { Link } from '@edadma/petalui'
+import { Link, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-2">
+  <Space size="xs">
     <Link href="#" color="neutral">Neutral link</Link>
     <Link href="#" color="primary">Primary link</Link>
     <Link href="#" color="secondary">Secondary link</Link>
@@ -91,12 +91,12 @@ const App: React.FC = () => (
     <Link href="#" color="info">Info link</Link>
     <Link href="#" color="warning">Warning link</Link>
     <Link href="#" color="error">Error link</Link>
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-2">
+          <Space size="xs">
             <Link href="#" color="neutral">
               Neutral link
             </Link>
@@ -121,7 +121,7 @@ export default App`}
             <Link href="#" color="error">
               Error link
             </Link>
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection

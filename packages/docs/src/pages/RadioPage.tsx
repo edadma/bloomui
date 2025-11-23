@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Radio, Form, Modal } from '@edadma/petalui'
+import { Radio, Form, Modal, Space } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -90,11 +90,11 @@ export function RadioPage() {
           title="Basic Usage"
           description="Use Radio.Group to manage radio selection."
           code={`import React from 'react'
-import { Radio } from '@edadma/petalui'
+import { Radio, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
   <Radio.Group defaultValue="1">
-    <div className="flex flex-col gap-3">
+    <Space size="sm">
       <label className="flex items-center gap-2 cursor-pointer">
         <Radio value="1" />
         <span>Option 1</span>
@@ -107,14 +107,14 @@ const App: React.FC = () => (
         <Radio value="3" />
         <span>Option 3</span>
       </label>
-    </div>
+    </Space>
   </Radio.Group>
 )
 
 export default App`}
         >
           <Radio.Group defaultValue="1">
-            <div className="flex flex-col gap-3">
+            <Space size="sm">
               <label className="flex items-center gap-2 cursor-pointer">
                 <Radio value="1" />
                 <span>Option 1</span>
@@ -127,7 +127,7 @@ export default App`}
                 <Radio value="3" />
                 <span>Option 3</span>
               </label>
-            </div>
+            </Space>
           </Radio.Group>
         </ExampleSection>
 
@@ -135,7 +135,7 @@ export default App`}
           title="Horizontal Layout"
           description="Radio buttons in a horizontal row."
           code={`import React from 'react'
-import { Radio } from '@edadma/petalui'
+import { Radio, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
   <Radio.Group defaultValue="apple">
@@ -180,10 +180,10 @@ export default App`}
           title="Different Sizes"
           description="Radio buttons in various sizes."
           code={`import React from 'react'
-import { Radio } from '@edadma/petalui'
+import { Radio, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-3">
+  <Space size="sm">
     <label className="flex items-center gap-2">
       <Radio size="xs" defaultChecked />
       <span className="text-xs">Extra Small</span>
@@ -204,12 +204,12 @@ const App: React.FC = () => (
       <Radio size="xl" />
       <span className="text-xl">Extra Large</span>
     </label>
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-3">
+          <Space size="sm">
             <label className="flex items-center gap-2">
               <Radio size="xs" defaultChecked />
               <span className="text-xs">Extra Small</span>
@@ -230,14 +230,14 @@ export default App`}
               <Radio size="xl" />
               <span className="text-xl">Extra Large</span>
             </label>
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
           title="Colors"
           description="Colored radio button variants."
           code={`import React from 'react'
-import { Radio } from '@edadma/petalui'
+import { Radio, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
   <div className="flex flex-wrap gap-4">
@@ -268,10 +268,10 @@ export default App`}
           title="Disabled State"
           description="Disabled radio buttons."
           code={`import React from 'react'
-import { Radio } from '@edadma/petalui'
+import { Radio, Space } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <div className="flex flex-col gap-3">
+  <Space size="sm">
     <label className="flex items-center gap-2">
       <Radio disabled />
       <span className="opacity-50">Disabled unchecked</span>
@@ -280,12 +280,12 @@ const App: React.FC = () => (
       <Radio disabled defaultChecked />
       <span className="opacity-50">Disabled checked</span>
     </label>
-  </div>
+  </Space>
 )
 
 export default App`}
         >
-          <div className="flex flex-col gap-3">
+          <Space size="sm">
             <label className="flex items-center gap-2">
               <Radio disabled />
               <span className="opacity-50">Disabled unchecked</span>
@@ -294,7 +294,7 @@ export default App`}
               <Radio disabled defaultChecked />
               <span className="opacity-50">Disabled checked</span>
             </label>
-          </div>
+          </Space>
         </ExampleSection>
 
         <ExampleSection
@@ -316,7 +316,7 @@ const App: React.FC = () => {
         rules={{ required: 'Please select a plan' }}
       >
         <Radio.Group>
-          <div className="flex flex-col gap-3">
+          <Space size="sm">
             <label className="flex items-center gap-2 cursor-pointer">
               <Radio value="basic" />
               <div>
@@ -353,7 +353,7 @@ export default App`}
           <Form onFinish={handleSubmit} initialValues={{ plan: 'basic' }}>
             <Form.Item name="plan" label="Choose a plan" rules={{ required: 'Please select a plan' }}>
               <Radio.Group>
-                <div className="flex flex-col gap-3">
+                <Space size="sm">
                   <label className="flex items-center gap-2 cursor-pointer">
                     <Radio value="basic" />
                     <div>
@@ -375,7 +375,7 @@ export default App`}
                       <div className="text-sm opacity-70">Contact us</div>
                     </div>
                   </label>
-                </div>
+                </Space>
               </Radio.Group>
             </Form.Item>
             <button type="submit" className="btn btn-primary">
