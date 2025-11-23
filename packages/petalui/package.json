@@ -1,6 +1,6 @@
 {
   "name": "@edadma/petalui",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "React UI component library with DaisyUI",
   "type": "module",
   "main": "./dist/index.js",
@@ -15,6 +15,7 @@
   "files": [
     "dist"
   ],
+  "sideEffects": false,
   "scripts": {
     "build": "vite build",
     "dev": "vite build --watch",
