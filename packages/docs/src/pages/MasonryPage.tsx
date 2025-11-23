@@ -68,19 +68,20 @@ export function MasonryPage() {
 import { Masonry, Card } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <Masonry columns={3}>
-    <Card title="Card 1">
-      <p>Short content</p>
+  <Masonry columns={3} gap={4}>
+    <Card title="Short Card">
+      <p>Just a little bit of content here.</p>
     </Card>
-    <Card title="Card 2">
-      <p>
-        Longer content that spans multiple lines to demonstrate
-        how masonry handles variable heights.
-      </p>
+    <Card title="Tall Card">
+      <p className="mb-2">This card has significantly more content...</p>
+      <p className="mb-2">The CSS columns approach flows content...</p>
+      <p>This creates the characteristic Pinterest-style layout...</p>
     </Card>
-    <Card title="Card 3">
-      <p>Medium length content.</p>
+    <Card title="Medium Card">
+      <p className="mb-2">This card has a moderate amount...</p>
+      <p>Notice how the masonry layout automatically fills...</p>
     </Card>
+    {/* ... more cards with varying heights */}
   </Masonry>
 )
 
@@ -157,16 +158,18 @@ export default App`}
 import { Masonry, Card } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <Masonry columns={2}>
-    <Card title="Item 1">
-      <p>Variable height content...</p>
+  <Masonry columns={2} gap={4}>
+    <Card title="Tiny">
+      <p>One line.</p>
     </Card>
-    <Card title="Item 2">
-      <p>Different height...</p>
+    <Card title="Very Tall Card">
+      <p className="mb-2">This card has significantly more content...</p>
+      <p className="mb-2">The CSS columns approach automatically...</p>
+      <p className="mb-2">Unlike traditional grids where all items...</p>
+      <p className="mb-2">This is perfect for content galleries...</p>
+      <p>The two-column version makes the height distribution...</p>
     </Card>
-    <Card title="Item 3">
-      <p>More content here...</p>
-    </Card>
+    {/* ... more cards with varying heights */}
   </Masonry>
 )
 
@@ -229,37 +232,115 @@ export default App`}
         </ExampleSection>
 
         <ExampleSection
+          title="Responsive Columns"
+          description="Adjust column count based on screen size."
+          code={`import React from 'react'
+import { Masonry, Card } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <Masonry columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }} gap={4}>
+    <Card title="Item 1">
+      <p>Content here...</p>
+    </Card>
+    <Card title="Item 2">
+      <p>Longer content that spans multiple lines...</p>
+    </Card>
+    <Card title="Item 3">
+      <p>Medium content...</p>
+    </Card>
+    {/* ... more cards */}
+  </Masonry>
+)
+
+export default App`}
+        >
+          <Masonry columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }} gap={4}>
+            <Card title="Card 1">
+              <p>This layout automatically adjusts from 1 column on mobile to 5 columns on extra-large screens.</p>
+            </Card>
+            <Card title="Card 2">
+              <p className="mb-2">
+                Resize your browser window to see the responsive behavior in action.
+              </p>
+              <p>
+                The masonry layout seamlessly transitions between different column counts while maintaining the characteristic flowing appearance.
+              </p>
+            </Card>
+            <Card title="Card 3">
+              <p>Compact content that adapts to any screen size.</p>
+            </Card>
+            <Card title="Card 4">
+              <p className="mb-2">
+                On mobile (xs), content stacks in a single column for easy reading.
+              </p>
+              <p className="mb-2">
+                On tablets (sm/md), it expands to 2-3 columns for better use of space.
+              </p>
+              <p>
+                On desktops (lg/xl), it can show 4-5 columns for maximum content density.
+              </p>
+            </Card>
+            <Card title="Card 5">
+              <p>Simple content here.</p>
+            </Card>
+            <Card title="Card 6">
+              <p className="mb-2">
+                Responsive masonry layouts are perfect for content galleries that need to work across all device sizes.
+              </p>
+              <p>
+                The CSS columns approach handles the responsiveness natively without any JavaScript.
+              </p>
+            </Card>
+            <Card title="Card 7">
+              <p>Short text.</p>
+            </Card>
+            <Card title="Card 8">
+              <p className="mb-2">
+                Notice how items maintain their natural heights while the number of columns changes.
+              </p>
+              <p>
+                This creates a fluid, adaptive layout that always looks balanced.
+              </p>
+            </Card>
+          </Masonry>
+        </ExampleSection>
+
+        <ExampleSection
           title="Custom Gap"
           description="Control spacing between items."
           code={`import React from 'react'
 import { Masonry, Card } from '@edadma/petalui'
 
 const App: React.FC = () => (
-  <>
-    <div className="mb-4">
-      <h3 className="font-semibold mb-2">Gap: 2</h3>
+  <div className="space-y-6">
+    <div>
+      <h3 className="font-semibold mb-2">Gap: 2 (tight spacing)</h3>
       <Masonry columns={3} gap={2}>
-        <Card><p>Short</p></Card>
-        <Card>
-          <p>Much longer content here to demonstrate height variation.</p>
-          <p>Multiple paragraphs make this card taller.</p>
+        <Card title="Short"><p>Minimal content.</p></Card>
+        <Card title="Very Tall Card">
+          <p className="mb-2">This card demonstrates how the gap spacing...</p>
+          <p className="mb-2">With gap-2, items are closer together...</p>
+          <p className="mb-2">Notice how the different card heights...</p>
+          <p>Multiple paragraphs showcase the height variation...</p>
         </Card>
-        <Card><p>Brief</p></Card>
+        {/* ... more cards */}
       </Masonry>
     </div>
 
     <div>
-      <h3 className="font-semibold mb-2">Gap: 8</h3>
+      <h3 className="font-semibold mb-2">Gap: 8 (spacious)</h3>
       <Masonry columns={3} gap={8}>
-        <Card><p>Short</p></Card>
-        <Card>
-          <p>Much longer content here to demonstrate height variation.</p>
-          <p>Multiple paragraphs make this card taller.</p>
+        <Card title="Short"><p>Minimal content.</p></Card>
+        <Card title="Very Tall Card">
+          <p className="mb-2">This card demonstrates how the gap spacing...</p>
+          <p className="mb-2">With gap-8, items have more breathing room...</p>
+          <p className="mb-2">Notice how the increased spacing makes...</p>
+          <p>The masonry effect is still prominent...</p>
         </Card>
-        <Card><p>Brief</p></Card>
+        {/* ... more cards */}
       </Masonry>
     </div>
-  </>
+  </div>
 )
 
 export default App`}
@@ -363,18 +444,25 @@ import { Masonry, Card } from '@edadma/petalui'
 
 const App: React.FC = () => (
   <Masonry columns={3}>
-    <Card title="Tall Image">
-      <div className="bg-primary/20 h-32 rounded-lg mb-2" />
+    <Card title="Image Card 1">
+      <div className="bg-primary/20 h-32 rounded-lg mb-2 flex items-center justify-center text-sm">
+        Tall
+      </div>
       <p>Content below image</p>
     </Card>
-    <Card title="Short Image">
-      <div className="bg-secondary/20 h-20 rounded-lg mb-2" />
+    <Card title="Image Card 2">
+      <div className="bg-secondary/20 h-20 rounded-lg mb-2 flex items-center justify-center text-sm">
+        Short
+      </div>
       <p>Different height</p>
     </Card>
-    <Card title="Very Tall">
-      <div className="bg-accent/20 h-48 rounded-lg mb-2" />
-      <p>More content</p>
+    <Card title="Image Card 3">
+      <div className="bg-accent/20 h-48 rounded-lg mb-2 flex items-center justify-center text-sm">
+        Very Tall
+      </div>
+      <p>More content here</p>
     </Card>
+    {/* ... more cards with varying image heights */}
   </Masonry>
 )
 
@@ -427,17 +515,19 @@ export default App`}
 import { Masonry, Card } from '@edadma/petalui'
 
 const items = [
-  { id: 1, height: 'h-32', bg: 'bg-primary/20', title: 'Gallery Item 1', desc: 'Short' },
-  { id: 2, height: 'h-72', bg: 'bg-secondary/20', title: 'Gallery Item 2', desc: 'Very tall' },
-  { id: 3, height: 'h-24', bg: 'bg-accent/20', title: 'Gallery Item 3', desc: 'Tiny' },
-  // ... more items
+  { id: 1, height: 'h-32', bg: 'bg-primary/20', title: 'Gallery 1', desc: 'Short item' },
+  { id: 2, height: 'h-72', bg: 'bg-secondary/20', title: 'Gallery 2', desc: 'Very tall item...' },
+  { id: 3, height: 'h-24', bg: 'bg-accent/20', title: 'Gallery 3', desc: 'Tiny' },
+  { id: 4, height: 'h-56', bg: 'bg-success/20', title: 'Gallery 4', desc: 'Medium height item' },
+  { id: 5, height: 'h-40', bg: 'bg-warning/20', title: 'Gallery 5', desc: 'Moderate height' },
+  // ... 12 items total with varying heights
 ]
 
 const App: React.FC = () => (
   <Masonry columns={{ xs: 2, sm: 3, lg: 4, xl: 5 }} gap={3}>
     {items.map((item) => (
       <Card key={item.id} title={item.title}>
-        <div className={\`\${item.bg} rounded-lg \${item.height} flex items-center justify-center\`}>
+        <div className={\`\${item.bg} rounded-lg \${item.height} flex items-center justify-center text-sm font-semibold mb-2\`}>
           {item.height}
         </div>
         <p className="text-sm opacity-70">{item.desc}</p>
@@ -545,16 +635,23 @@ const App: React.FC = () => (
   <Masonry columns={4} gap={3}>
     <div className="bg-primary text-primary-content p-4 rounded-lg">
       <h3 className="font-bold">Item 1</h3>
-      <p>Short content</p>
+      <p>One line</p>
     </div>
     <div className="bg-secondary text-secondary-content p-4 rounded-lg">
       <h3 className="font-bold">Item 2</h3>
-      <p>Longer content that spans multiple lines</p>
+      <p>
+        Line one<br />
+        Line two<br />
+        Line three<br />
+        Line four<br />
+        Line five
+      </p>
     </div>
     <div className="bg-accent text-accent-content p-4 rounded-lg">
       <h3 className="font-bold">Item 3</h3>
-      <p>Medium</p>
+      <p>One line</p>
     </div>
+    {/* ... 8 items total with varying line counts */}
   </Masonry>
 )
 
