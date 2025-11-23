@@ -4,6 +4,7 @@ export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   color?: 'neutral' | 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'error'
   className?: string
+  children?: React.ReactNode
 }
 
 export interface RadioGroupProps {
@@ -42,7 +43,7 @@ function RadioGroup({ children, value, defaultValue, onChange, name, className =
 }
 
 const RadioRoot = forwardRef<HTMLInputElement, RadioProps>(
-  ({ size, color, className = '', value, checked, onChange, name: nameProp, ...props }, ref) => {
+  ({ size, color, className = '', value, checked, onChange, name: nameProp, children, ...props }, ref) => {
     const groupContext = useContext(RadioGroupContext)
 
     const sizeClasses = {
@@ -64,7 +65,7 @@ const RadioRoot = forwardRef<HTMLInputElement, RadioProps>(
       error: 'radio-error',
     }
 
-    const radioClasses = ['radio', size && sizeClasses[size], color && colorClasses[color], className]
+    const radioClasses = ['radio', size && sizeClasses[size], color && colorClasses[color]]
       .filter(Boolean)
       .join(' ')
 
@@ -79,7 +80,7 @@ const RadioRoot = forwardRef<HTMLInputElement, RadioProps>(
     }
     const name = groupContext?.name || nameProp
 
-    return (
+    const input = (
       <input
         ref={ref}
         type="radio"
@@ -91,6 +92,18 @@ const RadioRoot = forwardRef<HTMLInputElement, RadioProps>(
         {...props}
       />
     )
+
+    // If children are provided, wrap in a label
+    if (children) {
+      return (
+        <label className={`flex items-center gap-2 cursor-pointer ${className}`}>
+          {input}
+          <span>{children}</span>
+        </label>
+      )
+    }
+
+    return input
   }
 )
 

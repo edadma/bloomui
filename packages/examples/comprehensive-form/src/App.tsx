@@ -44,7 +44,7 @@ interface ComprehensiveFormData {
 
   // Date and time
   birthDate: Date
-  appointmentTime: string
+  appointmentTime: Date
 
   // Range and rating
   satisfaction: number
@@ -58,8 +58,8 @@ interface ComprehensiveFormData {
   // Autocomplete
   city: string
 
-  // File input
-  resume: string
+  // File upload
+  resume: FileList
 }
 
 const countryOptions = [
@@ -100,14 +100,13 @@ function App() {
       skills: [],
       programmingLanguage: '',
       birthDate: new Date(),
-      appointmentTime: '09:00',
+      appointmentTime: new Date(new Date().setHours(9, 0, 0, 0)),
       satisfaction: 50,
       productRating: 3,
       newsletter: false,
       terms: false,
       notifications: true,
       city: '',
-      resume: '',
     },
   })
 
@@ -274,11 +273,13 @@ function App() {
                     rules={{ required: 'Please select a language' }}
                   >
                     <Radio.Group>
-                      <Radio value="javascript">JavaScript</Radio>
-                      <Radio value="typescript">TypeScript</Radio>
-                      <Radio value="python">Python</Radio>
-                      <Radio value="java">Java</Radio>
-                      <Radio value="go">Go</Radio>
+                      <Space size="sm">
+                        <Radio value="javascript">JavaScript</Radio>
+                        <Radio value="typescript">TypeScript</Radio>
+                        <Radio value="python">Python</Radio>
+                        <Radio value="java">Java</Radio>
+                        <Radio value="go">Go</Radio>
+                      </Space>
                     </Radio.Group>
                   </Form.Item>
 
@@ -306,7 +307,15 @@ function App() {
                     label="Favorite Color"
                     rules={{ required: 'Color is required' }}
                   >
-                    <FileInput placeholder="Choose your favorite color" />
+                    <Select>
+                      <option value="">Choose your favorite color</option>
+                      <option value="red">Red</option>
+                      <option value="blue">Blue</option>
+                      <option value="green">Green</option>
+                      <option value="yellow">Yellow</option>
+                      <option value="purple">Purple</option>
+                      <option value="orange">Orange</option>
+                    </Select>
                   </Form.Item>
                 </div>
 
@@ -375,6 +384,21 @@ function App() {
                       </Form.Item>
                     </Col>
                   </Row>
+                </div>
+
+                <Divider />
+
+                {/* File Upload */}
+                <div>
+                  <h2 className="text-2xl font-bold mb-4">File Upload</h2>
+
+                  <Form.Item
+                    name="resume"
+                    label="Resume / CV"
+                    rules={{ required: 'Please upload your resume' }}
+                  >
+                    <FileInput />
+                  </Form.Item>
                 </div>
 
                 <Divider />
