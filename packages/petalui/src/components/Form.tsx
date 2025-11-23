@@ -117,7 +117,7 @@ function FormItem({
   className = '',
   children,
 }: FormItemProps) {
-  const { form, size, listName } = useFormContext()
+  const { form, size, listName, layout } = useFormContext()
 
   if (!name) {
     // Render without form control if no name provided
@@ -220,22 +220,37 @@ function FormItem({
           ? cloneElement(children as React.ReactElement<any>, { ...childProps, ...(children.props as any) })
           : children
 
+        const isHorizontal = layout === 'horizontal'
+
         return (
           <div className={`form-control w-full ${className}`}>
-            {label && (
-              <label className="label pb-2">
-                <span className="label-text">
-                  {label}
-                  {required && <span className="text-error ml-1">*</span>}
+            <div className={isHorizontal ? 'flex items-center gap-4' : ''}>
+              {label && (
+                <label className={`label ${isHorizontal ? 'flex-shrink-0' : 'mb-2'}`}>
+                  <span className="label-text">
+                    {label}
+                    {required && <span className="text-error ml-1">*</span>}
+                  </span>
+                </label>
+              )}
+              <div className={isHorizontal ? 'flex-1' : ''}>
+                {enhancedChild}
+              </div>
+            </div>
+            {!isHorizontal && (
+              <label className="label">
+                <span className="label-text-alt text-error min-h-[1.25rem]">
+                  {errorMessage || (help && <span className="text-base-content/70">{help}</span>) || '\u00A0'}
                 </span>
               </label>
             )}
-            {enhancedChild}
-            <label className="label">
-              <span className="label-text-alt text-error min-h-[1.25rem]">
-                {errorMessage || (help && <span className="text-base-content/70">{help}</span>) || '\u00A0'}
-              </span>
-            </label>
+            {isHorizontal && (errorMessage || help) && (
+              <label className="label">
+                <span className="label-text-alt text-error min-h-[1.25rem] ml-auto">
+                  {errorMessage || (help && <span className="text-base-content/70">{help}</span>)}
+                </span>
+              </label>
+            )}
           </div>
         )
       }}

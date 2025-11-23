@@ -14,6 +14,7 @@ export interface InputNumberProps extends Omit<React.InputHTMLAttributes<HTMLInp
   parser?: (displayValue: string) => number
   className?: string
   controls?: boolean
+  block?: boolean
 }
 
 export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
@@ -32,6 +33,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       parser,
       className = '',
       controls = true,
+      block = true,
       ...props
     },
     ref
@@ -145,7 +147,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
     const buttonSize = size === 'xs' || size === 'sm' ? 'btn-xs' : 'btn-sm'
 
     return (
-      <div className={`relative inline-block group ${className}`}>
+      <div className={`relative ${block ? 'w-full' : 'inline-block'} group ${className}`}>
         <input
           ref={inputRef}
           type="text"
