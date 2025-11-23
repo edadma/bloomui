@@ -137,7 +137,7 @@ export { Steps } from './components/Steps'
 export type { StepsProps, StepProps } from './components/Steps'
 
 export { Table } from './components/Table'
-export type { TableProps, ColumnType, PaginationConfig } from './components/Table'
+export type { TableProps, ColumnType, PaginationConfig, FilterConfig, RowSelection } from './components/Table'
 
 export { Tabs } from './components/Tabs'
 export type { TabsProps, TabPanelProps } from './components/Tabs'

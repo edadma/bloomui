@@ -110,6 +110,11 @@ const tableApi: ApiProperty[] = [
     description: 'Row event handlers',
     type: '(record: T, index: number) => HTMLAttributes',
   },
+  {
+    property: 'rowSelection',
+    description: 'Row selection configuration',
+    type: 'RowSelection<T>',
+  },
 ]
 
 const columnTypeApi: ApiProperty[] = [
@@ -152,6 +157,63 @@ const columnTypeApi: ApiProperty[] = [
     property: 'sorter',
     description: 'Enable sorting or custom sort function',
     type: 'boolean | ((a: T, b: T) => number)',
+  },
+  {
+    property: 'filters',
+    description: 'Filter dropdown configuration',
+    type: 'FilterConfig[]',
+  },
+  {
+    property: 'onFilter',
+    description: 'Filter function to determine if record matches filter',
+    type: '(value: string | number | boolean, record: T) => boolean',
+  },
+  {
+    property: 'defaultSortOrder',
+    description: 'Default sort order',
+    type: "'ascend' | 'descend'",
+  },
+  {
+    property: 'defaultFilteredValue',
+    description: 'Default filtered values',
+    type: '(string | number | boolean)[]',
+  },
+]
+
+const filterConfigApi: ApiProperty[] = [
+  {
+    property: 'text',
+    description: 'Display text for filter option',
+    type: 'string',
+  },
+  {
+    property: 'value',
+    description: 'Value of the filter option',
+    type: 'string | number | boolean',
+  },
+]
+
+const rowSelectionApi: ApiProperty[] = [
+  {
+    property: 'type',
+    description: 'Selection type',
+    type: "'checkbox' | 'radio'",
+    default: "'checkbox'",
+  },
+  {
+    property: 'selectedRowKeys',
+    description: 'Controlled selected row keys',
+    type: 'React.Key[]',
+  },
+  {
+    property: 'onChange',
+    description: 'Callback when selection changes',
+    type: '(selectedRowKeys: React.Key[], selectedRows: T[]) => void',
+  },
+  {
+    property: 'getCheckboxProps',
+    description: 'Function to customize checkbox props',
+    type: '(record: T) => { disabled?: boolean; [key: string]: any }',
   },
 ]
 
@@ -781,8 +843,323 @@ export default App`}
         </ExampleSection>
 
         <ExampleSection
+          title="Column Sorting"
+          description="Click column headers to sort data in ascending or descending order."
+          code={`import React from 'react'
+import { Table } from '@edadma/petalui'
+import type { ColumnType } from '@edadma/petalui'
+
+interface User {
+  id: string
+  name: string
+  age: number
+  email: string
+}
+
+const columns: ColumnType<User>[] = [
+  { key: 'name', title: 'Name', dataIndex: 'name', sorter: true },
+  { key: 'age', title: 'Age', dataIndex: 'age', sorter: true },
+  { key: 'email', title: 'Email', dataIndex: 'email', sorter: true },
+]
+
+const data: User[] = [
+  { id: '1', name: 'John Doe', age: 32, email: 'john@example.com' },
+  { id: '2', name: 'Jane Smith', age: 28, email: 'jane@example.com' },
+  { id: '3', name: 'Bob Johnson', age: 45, email: 'bob@example.com' },
+]
+
+const App: React.FC = () => (
+  <Table columns={columns} dataSource={data} pagination={false} />
+)
+
+export default App`}
+        >
+          <Table
+            columns={[
+              { key: 'name', title: 'Name', dataIndex: 'name', sorter: true },
+              { key: 'age', title: 'Age', dataIndex: 'age', sorter: true },
+              { key: 'email', title: 'Email', dataIndex: 'email', sorter: true },
+            ]}
+            dataSource={userData.slice(0, 5)}
+            pagination={false}
+          />
+        </ExampleSection>
+
+        <ExampleSection
+          title="Column Filtering"
+          description="Add filter dropdowns to columns for data filtering."
+          code={`import React from 'react'
+import { Table } from '@edadma/petalui'
+import type { ColumnType, FilterConfig } from '@edadma/petalui'
+
+interface User {
+  id: string
+  name: string
+  role: string
+  status: 'active' | 'inactive'
+}
+
+const roleFilters: FilterConfig[] = [
+  { text: 'Admin', value: 'Admin' },
+  { text: 'User', value: 'User' },
+  { text: 'Editor', value: 'Editor' },
+]
+
+const statusFilters: FilterConfig[] = [
+  { text: 'Active', value: 'active' },
+  { text: 'Inactive', value: 'inactive' },
+]
+
+const columns: ColumnType<User>[] = [
+  { key: 'name', title: 'Name', dataIndex: 'name' },
+  {
+    key: 'role',
+    title: 'Role',
+    dataIndex: 'role',
+    filters: roleFilters,
+    onFilter: (value, record) => record.role === value,
+  },
+  {
+    key: 'status',
+    title: 'Status',
+    dataIndex: 'status',
+    filters: statusFilters,
+    onFilter: (value, record) => record.status === value,
+  },
+]
+
+const data: User[] = [
+  { id: '1', name: 'John Doe', role: 'Admin', status: 'active' },
+  { id: '2', name: 'Jane Smith', role: 'User', status: 'active' },
+  { id: '3', name: 'Bob Johnson', role: 'User', status: 'inactive' },
+]
+
+const App: React.FC = () => (
+  <Table columns={columns} dataSource={data} pagination={false} />
+)
+
+export default App`}
+        >
+          <Table
+            columns={[
+              { key: 'name', title: 'Name', dataIndex: 'name' },
+              {
+                key: 'role',
+                title: 'Role',
+                dataIndex: 'role',
+                filters: [
+                  { text: 'Admin', value: 'Admin' },
+                  { text: 'User', value: 'User' },
+                  { text: 'Editor', value: 'Editor' },
+                ],
+                onFilter: (value, record) => record.role === value,
+              },
+              {
+                key: 'status',
+                title: 'Status',
+                dataIndex: 'status',
+                filters: [
+                  { text: 'Active', value: 'active' },
+                  { text: 'Inactive', value: 'inactive' },
+                ],
+                onFilter: (value, record) => record.status === value,
+              },
+            ]}
+            dataSource={userData.slice(0, 6)}
+            pagination={false}
+          />
+        </ExampleSection>
+
+        <ExampleSection
+          title="Row Selection (Checkbox)"
+          description="Enable row selection with checkboxes."
+          code={`import React, { useState } from 'react'
+import { Table } from '@edadma/petalui'
+import type { ColumnType, RowSelection } from '@edadma/petalui'
+
+interface User {
+  id: string
+  name: string
+  email: string
+  role: string
+}
+
+const columns: ColumnType<User>[] = [
+  { key: 'name', title: 'Name', dataIndex: 'name' },
+  { key: 'email', title: 'Email', dataIndex: 'email' },
+  { key: 'role', title: 'Role', dataIndex: 'role' },
+]
+
+const data: User[] = [
+  { id: '1', name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+  { id: '2', name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
+  { id: '3', name: 'Bob Johnson', email: 'bob@example.com', role: 'User' },
+]
+
+const App: React.FC = () => {
+  const [selectedKeys, setSelectedKeys] = useState<React.Key[]>([])
+
+  const rowSelection: RowSelection<User> = {
+    selectedRowKeys: selectedKeys,
+    onChange: (keys, rows) => {
+      setSelectedKeys(keys)
+      console.log('Selected:', keys, rows)
+    },
+  }
+
+  return (
+    <div className="space-y-4">
+      <div className="text-sm">Selected: {selectedKeys.join(', ') || 'None'}</div>
+      <Table
+        columns={columns}
+        dataSource={data}
+        rowSelection={rowSelection}
+        pagination={false}
+      />
+    </div>
+  )
+}
+
+export default App`}
+        >
+          {(() => {
+            const [selectedKeys, setSelectedKeys] = useState<React.Key[]>([])
+            return (
+              <div className="space-y-4">
+                <div className="text-sm">Selected: {selectedKeys.join(', ') || 'None'}</div>
+                <Table
+                  columns={basicColumns}
+                  dataSource={userData.slice(0, 5)}
+                  rowSelection={{
+                    selectedRowKeys: selectedKeys,
+                    onChange: (keys) => setSelectedKeys(keys),
+                  }}
+                  pagination={false}
+                />
+              </div>
+            )
+          })()}
+        </ExampleSection>
+
+        <ExampleSection
+          title="Fixed Columns"
+          description="Pin columns to left or right while scrolling horizontally. Requires explicit widths."
+          code={`import React from 'react'
+import { Table, Badge } from '@edadma/petalui'
+import type { ColumnType } from '@edadma/petalui'
+
+interface Transaction {
+  id: string
+  date: string
+  description: string
+  category: string
+  amount: number
+  status: 'completed' | 'pending'
+}
+
+const columns: ColumnType<Transaction>[] = [
+  {
+    key: 'id',
+    title: 'ID',
+    dataIndex: 'id',
+    width: 80,
+    fixed: 'left', // Pin to left
+  },
+  {
+    key: 'date',
+    title: 'Date',
+    dataIndex: 'date',
+    width: 120,
+    fixed: 'left', // Second pinned column
+  },
+  { key: 'description', title: 'Description', dataIndex: 'description', width: 250 },
+  { key: 'category', title: 'Category', dataIndex: 'category', width: 150 },
+  { key: 'subcategory', title: 'Subcategory', dataIndex: 'category', width: 150 },
+  { key: 'merchant', title: 'Merchant', dataIndex: 'description', width: 200 },
+  { key: 'paymentMethod', title: 'Payment Method', dataIndex: 'category', width: 180 },
+  { key: 'accountNumber', title: 'Account Number', dataIndex: 'id', width: 150 },
+  { key: 'reference', title: 'Reference', dataIndex: 'id', width: 150 },
+  { key: 'location', title: 'Location', dataIndex: 'description', width: 200 },
+  { key: 'notes', title: 'Notes', dataIndex: 'description', width: 250 },
+  { key: 'tags', title: 'Tags', dataIndex: 'category', width: 150 },
+  { key: 'amount', title: 'Amount', dataIndex: 'amount', width: 120, align: 'right' },
+  {
+    key: 'status',
+    title: 'Status',
+    dataIndex: 'status',
+    width: 120,
+    fixed: 'right', // Pin to right
+    render: (value: string) => (
+      <Badge
+        type={value === 'completed' ? 'success' : 'warning'}
+        content={value}
+        size="sm"
+      />
+    ),
+  },
+]
+
+const data: Transaction[] = [
+  {
+    id: 'TXN001',
+    date: '2024-01-15',
+    description: 'Coffee Shop Purchase',
+    category: 'Food & Dining',
+    amount: 12.50,
+    status: 'completed',
+  },
+  // ... more data
+]
+
+const App: React.FC = () => (
+  <div className="max-w-4xl">
+    <Table columns={columns} dataSource={data} pagination={false} bordered />
+  </div>
+)
+
+export default App`}
+        >
+          <div className="max-w-full overflow-hidden">
+            <Table
+              columns={[
+                { key: 'id', title: 'ID', dataIndex: 'id', width: 80, fixed: 'left' },
+                { key: 'name', title: 'Name', dataIndex: 'name', width: 120, fixed: 'left' },
+                { key: 'email', title: 'Email', dataIndex: 'email', width: 250 },
+                { key: 'role', title: 'Role', dataIndex: 'role', width: 150 },
+                { key: 'department', title: 'Department', dataIndex: 'role', width: 150 },
+                { key: 'location', title: 'Location', dataIndex: 'email', width: 200 },
+                { key: 'phone', title: 'Phone', dataIndex: 'id', width: 150 },
+                { key: 'joinDate', title: 'Join Date', dataIndex: 'id', width: 150 },
+                { key: 'manager', title: 'Manager', dataIndex: 'name', width: 180 },
+                { key: 'salary', title: 'Salary', dataIndex: 'age', width: 120, align: 'right' },
+                { key: 'benefits', title: 'Benefits', dataIndex: 'role', width: 150 },
+                { key: 'notes', title: 'Notes', dataIndex: 'email', width: 250 },
+                { key: 'age', title: 'Age', dataIndex: 'age', width: 100 },
+                {
+                  key: 'status',
+                  title: 'Status',
+                  dataIndex: 'status',
+                  width: 120,
+                  fixed: 'right',
+                  render: (value: string) => (
+                    <Badge
+                      type={value === 'active' ? 'success' : 'ghost'}
+                      content={value}
+                      size="sm"
+                    />
+                  ),
+                },
+              ]}
+              dataSource={userData.slice(0, 6)}
+              pagination={false}
+              bordered
+            />
+          </div>
+        </ExampleSection>
+
+        <ExampleSection
           title="Complete Example"
-          description="Combining multiple features together."
+          description="Combining sorting, filtering, and selection together."
           code={`import React from 'react'
 import { Table, Badge, Button } from '@edadma/petalui'
 import type { ColumnType } from '@edadma/petalui'
@@ -860,6 +1237,10 @@ export default App`}
         <ApiTable title="Table" data={tableApi} />
 
         <ApiTable title="ColumnType" data={columnTypeApi} className="mt-8" />
+
+        <ApiTable title="FilterConfig" data={filterConfigApi} className="mt-8" />
+
+        <ApiTable title="RowSelection" data={rowSelectionApi} className="mt-8" />
       </div>
     </div>
   )
