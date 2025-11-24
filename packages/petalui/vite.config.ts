@@ -18,7 +18,7 @@ export default defineConfig({
       fileName: 'index',
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime', 'react-hook-form'],
+      external: ['react', 'react-dom', 'react-dom/client', 'react/jsx-runtime', 'react-hook-form'],
       output: {
         preserveModules: true,
         preserveModulesRoot: 'src',
