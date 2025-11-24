@@ -13,6 +13,7 @@ import { CardPage } from './pages/CardPage'
 import { CarouselPage } from './pages/CarouselPage'
 import { ChatPage } from './pages/ChatPage'
 import { CheckboxPage } from './pages/CheckboxPage'
+import { ColorPickerPage } from './pages/ColorPickerPage'
 import { CollapsePage } from './pages/CollapsePage'
 import { DatePickerPage } from './pages/DatePickerPage'
 import { DescriptionsPage } from './pages/DescriptionsPage'
@@ -155,6 +156,9 @@ function AppContent() {
               </Menu.Item>
               <Menu.Item active={isActive('/checkbox')} onClick={() => navigate('/checkbox')}>
                 Checkbox
+              </Menu.Item>
+              <Menu.Item active={isActive('/colorpicker')} onClick={() => navigate('/colorpicker')}>
+                ColorPicker
               </Menu.Item>
               <Menu.Item active={isActive('/datepicker')} onClick={() => navigate('/datepicker')}>
                 DatePicker
@@ -354,6 +358,7 @@ function AppContent() {
               <Route path="/carousel" element={<CarouselPage />} />
               <Route path="/chat" element={<ChatPage />} />
               <Route path="/checkbox" element={<CheckboxPage />} />
+              <Route path="/colorpicker" element={<ColorPickerPage />} />
               <Route path="/collapse" element={<CollapsePage />} />
               <Route path="/datepicker" element={<DatePickerPage />} />
               <Route path="/descriptions" element={<DescriptionsPage />} />

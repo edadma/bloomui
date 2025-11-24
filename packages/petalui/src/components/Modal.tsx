@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useId } from 'react'
 import { createRoot } from 'react-dom/client'
 
 export interface ModalProps {
@@ -45,7 +45,10 @@ export function Modal({
   style,
 }: ModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null)
+  const previousActiveElement = useRef<HTMLElement | null>(null)
   const [loading, setLoading] = React.useState(false)
+  const titleId = useId()
+  const contentId = useId()
 
   useEffect(() => {
     const dialog = dialogRef.current
@@ -53,11 +56,15 @@ export function Modal({
 
     if (open) {
       if (!dialog.open) {
+        // Save currently focused element for restoration
+        previousActiveElement.current = document.activeElement as HTMLElement
         dialog.showModal()
       }
     } else {
       if (dialog.open) {
         dialog.close()
+        // Restore focus to previously focused element
+        previousActiveElement.current?.focus()
       }
     }
   }, [open])
@@ -120,10 +127,22 @@ export function Modal({
   const shouldRenderCustomFooter = footer !== null && footer !== undefined
 
   return (
-    <dialog ref={dialogRef} className={classes} style={style}>
+    <dialog
+      ref={dialogRef}
+      className={classes}
+      style={style}
+      aria-labelledby={title ? titleId : undefined}
+      aria-describedby={contentId}
+    >
       <div className="modal-box">
-        {title && <h3 className="text-lg font-bold mb-4">{title}</h3>}
-        <div className="py-4">{children}</div>
+        {title && (
+          <h3 id={titleId} className="text-lg font-bold mb-4">
+            {title}
+          </h3>
+        )}
+        <div id={contentId} className="py-4">
+          {children}
+        </div>
         {shouldRenderDefaultFooter && (
           <div className="modal-action">
             {onCancel && (

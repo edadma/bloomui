@@ -1,4 +1,4 @@
-import React, { createContext, useContext, cloneElement, isValidElement } from 'react'
+import React, { createContext, useContext, cloneElement, isValidElement, useId } from 'react'
 import { useForm, UseFormReturn, FieldValues, SubmitHandler, UseFormProps, Controller, useFieldArray, FieldArrayPath, FieldArray } from 'react-hook-form'
 
 interface FormContextValue {
@@ -118,6 +118,8 @@ function FormItem({
   children,
 }: FormItemProps) {
   const { form, size, listName, layout } = useFormContext()
+  const inputId = useId()
+  const errorId = useId()
 
   if (!name) {
     // Render without form control if no name provided
@@ -182,8 +184,11 @@ function FormItem({
 
         // Clone the child element and inject form control props
         const childProps: any = {
+          id: inputId,
           ref,
           onBlur,
+          'aria-invalid': error ? true : undefined,
+          'aria-describedby': error ? errorId : undefined,
         }
 
         // Handle different value prop names (e.g., 'checked' for checkboxes)
@@ -226,7 +231,7 @@ function FormItem({
           <div className={`form-control w-full ${className}`}>
             <div className={isHorizontal ? 'flex items-center gap-4' : ''}>
               {label && (
-                <label className={`label ${isHorizontal ? 'flex-shrink-0' : 'mb-2'}`}>
+                <label htmlFor={inputId} className={`label ${isHorizontal ? 'flex-shrink-0' : 'mb-2'}`}>
                   <span className="label-text">
                     {label}
                     {required && <span className="text-error ml-1">*</span>}
@@ -238,18 +243,18 @@ function FormItem({
               </div>
             </div>
             {!isHorizontal && (
-              <label className="label">
-                <span className="label-text-alt text-error min-h-[1.25rem]">
+              <div className="label">
+                <span id={errorId} className="label-text-alt text-error min-h-[1.25rem]" role={errorMessage ? 'alert' : undefined}>
                   {errorMessage || (help && <span className="text-base-content/70">{help}</span>) || '\u00A0'}
                 </span>
-              </label>
+              </div>
             )}
             {isHorizontal && (errorMessage || help) && (
-              <label className="label">
-                <span className="label-text-alt text-error min-h-[1.25rem] ml-auto">
+              <div className="label">
+                <span id={errorId} className="label-text-alt text-error min-h-[1.25rem] ml-auto" role={errorMessage ? 'alert' : undefined}>
                   {errorMessage || (help && <span className="text-base-content/70">{help}</span>)}
                 </span>
-              </label>
+              </div>
             )}
           </div>
         )

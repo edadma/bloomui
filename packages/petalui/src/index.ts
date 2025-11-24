@@ -22,6 +22,9 @@ export type { CheckboxProps, CheckboxGroupProps, CheckboxOptionType } from './co
 export { Chat } from './components/Chat'
 export type { ChatProps } from './components/Chat'
 
+export { ColorPicker } from './components/ColorPicker'
+export type { ColorPickerProps } from './components/ColorPicker'
+
 export { CalendarOld } from './components/CalendarOld'
 export type { CalendarOldProps, CalendarOldEvent } from './components/CalendarOld'
 

@@ -6,19 +6,25 @@
 - ✅ Button: Added `aria-hidden` to loading spinner
 - ✅ Input: Already forwards all props including ARIA attributes
 - ✅ PageLayout: Added `text-base-content` for theme-aware text
+- ✅ Modal: Focus trap (native `<dialog>` with `showModal()`)
+- ✅ Modal: ESC key to close (native `<dialog>` behavior)
+- ✅ Modal: Focus restoration on close
+- ✅ Modal: Added `aria-labelledby` linking to title
+- ✅ Modal: Added `aria-describedby` linking to content
+- ✅ Form.Item: Label associates with input via `htmlFor`/`id`
+- ✅ Form.Item: Added `aria-invalid` when validation fails
+- ✅ Form.Item: Added `aria-describedby` linking to error message
+- ✅ Form.Item: Error messages have `role="alert"` for announcements
+- ✅ Dropdown: Keyboard navigation (Arrow keys, Enter/Space, Escape, Home/End)
+- ✅ Dropdown: `aria-haspopup`, `aria-expanded`, `aria-controls` on trigger
+- ✅ Dropdown: `role="menu"` on menu, `role="menuitem"` on items
+- ✅ Dropdown: `aria-disabled` on disabled items, `role="separator"` on dividers
+- ✅ Dropdown: Focus management and click-outside to close
+- ✅ Alert: Already has `role="alert"`
 
 ## To Do
 
-### High Priority
-- [ ] Modal: Focus trap, focus restoration, ESC key to close
-- [ ] Modal: Add `aria-modal`, `aria-labelledby`, `aria-describedby`
-- [ ] Form.Item: Ensure label properly associates with input (id/htmlFor)
-- [ ] Form validation: Error messages with `aria-invalid` and `aria-describedby`
-- [ ] Dropdown: Keyboard navigation (arrow keys, Enter/Space)
-- [ ] Dropdown: Proper ARIA role and state
-
 ### Medium Priority
-- [ ] Alert: Add `role="alert"` for dynamic announcements
 - [ ] Tabs: Keyboard navigation, proper ARIA roles
 - [ ] Checkbox/Radio: Ensure group labeling with fieldset/legend
 - [ ] Select: Custom select needs full keyboard support
