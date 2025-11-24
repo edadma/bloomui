@@ -1,5 +1,6 @@
-import { BrowserRouter, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import { Menu, Navbar, ThemeController } from '@edadma/petalui'
+import { HomePage } from './pages/HomePage'
 import { AlertPage } from './pages/AlertPage'
 import { AutocompletePage } from './pages/AutocompletePage'
 import { AvatarPage } from './pages/AvatarPage'
@@ -128,6 +129,10 @@ function AppContent() {
         <aside className="w-44 bg-base-100 border-r border-base-content/10 overflow-y-auto flex-shrink-0">
           <div className="p-4">
             <Menu>
+              <Menu.Item active={isActive('/')} onClick={() => navigate('/')}>
+                Overview
+              </Menu.Item>
+
               <Menu.Title>General</Menu.Title>
               <Menu.Item active={isActive('/typography')} onClick={() => navigate('/typography')}>
                 Typography
@@ -338,7 +343,7 @@ function AppContent() {
         <main className="flex-1 overflow-y-auto">
           <div className="max-w-[1920px] mx-auto p-6">
             <Routes>
-              <Route path="/" element={<Navigate to="/button" replace />} />
+              <Route path="/" element={<HomePage />} />
               <Route path="/alert" element={<AlertPage />} />
               <Route path="/autocomplete" element={<AutocompletePage />} />
               <Route path="/avatar" element={<AvatarPage />} />
