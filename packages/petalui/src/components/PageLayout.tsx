@@ -39,6 +39,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
     backgroundClasses[background],
     paddingClasses[padding],
     minHeightClasses[minHeight],
+    'text-base-content',
     className,
   ]
     .filter(Boolean)
