@@ -401,7 +401,7 @@ export default App`}
 
         <ExampleSection
           title="Badge Colors"
-          description="Standalone badges as labels with different colors."
+          description="Standalone count badges with different colors."
           code={`import React from 'react'
 import { Badge } from '@edadma/petalui'
 
@@ -488,7 +488,7 @@ export default App`}
 
         <ExampleSection
           title="Outline Style"
-          description="Subtle outline style for labels."
+          description="Subtle outline style for count badges."
           code={`import React from 'react'
 import { Badge } from '@edadma/petalui'
 
@@ -517,6 +517,16 @@ export default App`}
       <div className="mt-12">
         <h2 className="text-2xl font-bold mb-4">API</h2>
         <ApiTable title="Badge" data={badgeApi} />
+
+        <div className="alert alert-info mt-8">
+          <div>
+            <strong>Badge vs Tag:</strong>
+            <p className="mt-1">
+              Use <code>Badge</code> for notification counts, dots, status indicators, and ribbons.
+              For text labels (like categories or keywords), use the <code>Tag</code> component instead.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   )

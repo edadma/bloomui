@@ -202,6 +202,15 @@ export type { ToggleProps } from './components/Toggle'
 export { Tooltip } from './components/Tooltip'
 export type { TooltipProps } from './components/Tooltip'
 
+export { Transfer } from './components/Transfer'
+export type { TransferProps, TransferItem } from './components/Transfer'
+
+export { Tree } from './components/Tree'
+export type { TreeProps, TreeDataNode } from './components/Tree'
+
+export { TreeSelect } from './components/TreeSelect'
+export type { TreeSelectProps } from './components/TreeSelect'
+
 export { Typography } from './components/Typography'
 export type {
   TypographyProps,

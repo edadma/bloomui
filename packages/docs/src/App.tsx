@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
-import { Menu, Navbar, ThemeController } from '@edadma/petalui'
+import { Menu, Navbar, Tag, ThemeController } from '@edadma/petalui'
 import { HomePage } from './pages/HomePage'
 import { AlertPage } from './pages/AlertPage'
 import { AutocompletePage } from './pages/AutocompletePage'
@@ -65,6 +65,9 @@ import { TimePickerPage } from './pages/TimePickerPage'
 import { TimelinePage } from './pages/TimelinePage'
 import { TogglePage } from './pages/TogglePage'
 import { TooltipPage } from './pages/TooltipPage'
+import { TransferPage } from './pages/TransferPage'
+import { TreePage } from './pages/TreePage'
+import { TreeSelectPage } from './pages/TreeSelectPage'
 import { TypographyPage } from './pages/TypographyPage'
 import UploadPage from './pages/UploadPage'
 
@@ -121,6 +124,7 @@ function AppContent() {
           <div className="flex items-center gap-3">
             <img src="/petalui/logo.png" alt="PetalUI" className="w-8 h-8" />
             <span className="text-xl font-semibold">PetalUI Components</span>
+            <Tag color="ghost">v0.6.0</Tag>
           </div>
         }
         end={<ThemeController.Dropdown themes={THEMES} />}
@@ -207,6 +211,12 @@ function AppContent() {
               <Menu.Item active={isActive('/toggle')} onClick={() => navigate('/toggle')}>
                 Toggle
               </Menu.Item>
+              <Menu.Item active={isActive('/transfer')} onClick={() => navigate('/transfer')}>
+                Transfer
+              </Menu.Item>
+              <Menu.Item active={isActive('/tree-select')} onClick={() => navigate('/tree-select')}>
+                TreeSelect
+              </Menu.Item>
               <Menu.Item active={isActive('/upload')} onClick={() => navigate('/upload')}>
                 Upload
               </Menu.Item>
@@ -262,6 +272,9 @@ function AppContent() {
               </Menu.Item>
               <Menu.Item active={isActive('/timeline')} onClick={() => navigate('/timeline')}>
                 Timeline
+              </Menu.Item>
+              <Menu.Item active={isActive('/tree')} onClick={() => navigate('/tree')}>
+                Tree
               </Menu.Item>
 
               <Menu.Title>Layout</Menu.Title>
@@ -421,6 +434,9 @@ function AppContent() {
               <Route path="/toggle" element={<TogglePage />} />
               <Route path="/tooltip" element={<TooltipPage />} />
               <Route path="/typography" element={<TypographyPage />} />
+              <Route path="/transfer" element={<TransferPage />} />
+              <Route path="/tree" element={<TreePage />} />
+              <Route path="/tree-select" element={<TreeSelectPage />} />
               <Route path="/upload" element={<UploadPage />} />
             </Routes>
           </div>

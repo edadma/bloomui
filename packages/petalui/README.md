@@ -1,6 +1,6 @@
 # PetalUI
 
-A React component library built with DaisyUI and Tailwind CSS.
+A comprehensive React component library built with DaisyUI and Tailwind CSS.
 
 ## Installation
 
@@ -73,18 +73,25 @@ function App() {
 
 ## Components
 
+### General
+- **Typography** - Text, Title, Paragraph, and Link components with consistent styling
+
 ### Actions
 - **Button** - Buttons with multiple types, sizes, and variants
 - **Dropdown** - Composable dropdown menu with trigger, items, and dividers
+- **ThemeController** - Theme switcher with swap and dropdown modes
 
 ### Data Entry
 - **Autocomplete** - Search and select with keyboard navigation and filtering
+- **Cascader** - Cascade selection for hierarchical data
 - **Checkbox** - Checkboxes with sizes, colors, and indeterminate state
+- **ColorPicker** - Color selection with presets and custom colors
 - **DatePicker** - Interactive calendar date picker with custom formatting
 - **Fieldset** - Fieldset container with legend
 - **FileInput** - File input with sizes and colors
 - **Form** - Form component with React Hook Form integration and validation
 - **Input** - Text inputs with multiple types, sizes, and colors
+- **InputNumber** - Numeric input with increment/decrement controls
 - **Label** - Form labels with required indicator and floating labels
 - **Radio** - Radio buttons with group support
 - **Range** - Range slider with min, max, and step support
@@ -93,36 +100,46 @@ function App() {
 - **Textarea** - Multiline text input
 - **TimePicker** - Time input with hour and minute selection
 - **Toggle** - Toggle switches with sizes and colors
+- **Transfer** - Double-column transfer for moving items between lists
+- **TreeSelect** - Tree selection dropdown for hierarchical data
+- **Upload** - File upload with drag and drop support
 
 ### Data Display
 - **Avatar** - User avatars with sizes, shapes, and group support
-- **Badge** - Notification badges with colors and variants
+- **Badge** - Notification badges, status indicators, and ribbons
 - **Card** - Composable card component with body, title, actions, and figure
 - **Carousel** - Image carousel with navigation and indicators
 - **Chat** - Chat message bubbles with avatars and timestamps
 - **Collapse** - Collapsible content panels
+- **Descriptions** - Display multiple read-only fields in groups
 - **Empty** - Empty state placeholder with custom images and actions
 - **Image** - Image component with fallback and preview support
 - **List** - Vertical list layout with customizable rows
-- **Skeleton** - Loading placeholder with animated shimmer effect
+- **Pagination** - Page navigation with multiple sizes
+- **QRCode** - QR code generator
 - **Stats** - Statistics display with figures and actions
 - **Steps** - Step progress indicator
 - **Table** - Feature-rich data table with sorting and pagination
+- **Tag** - Categorization labels with colors and close button
 - **Timeline** - Timeline component for displaying chronological events
+- **Tree** - Hierarchical tree view with expand/collapse and selection
 
 ### Layout
 - **Divider** - Horizontal and vertical dividers with optional text
 - **Drawer** - Sidebar drawer with multiple placements
 - **Footer** - Footer component with title sections
-- **Grid** - Flexible grid system with 24-column and 120-column support for precise layouts
+- **Grid** - Flexible grid system with Row and Col components
 - **Hero** - Hero section with overlay and content wrapping
+- **Indicator** - Position indicators on elements
 - **Join** - Join multiple elements together seamlessly
+- **Layout** - Page layout with Header, Sider, Content, and Footer
+- **Masonry** - Responsive masonry grid layout
 - **Space** - Layout component for consistent spacing between elements
 
 ### Navigation
-- **Breadcrumbs** - Breadcrumb navigation trail
+- **Breadcrumb** - Breadcrumb navigation trail
 - **Link** - Link component with hover and focus states
-- **Menu** - Vertical menu component with titles and items
+- **Menu** - Menu with vertical, horizontal, and inline modes
 - **Navbar** - Navigation bar with start, center, and end sections
 - **Tabs** - Tab navigation with multiple variants
 
@@ -132,8 +149,11 @@ function App() {
 - **Modal** - Modal dialogs with imperative API
 - **Notification** - Toast notifications with auto-dismiss and stacking
 - **Popconfirm** - Confirmation popover for actions
+- **Popover** - Floating content triggered by hover or click
 - **Progress** - Progress bars with colors and indeterminate state
 - **RadialProgress** - Circular progress indicator
+- **Result** - Result pages for operation outcomes
+- **Skeleton** - Loading placeholder with animated shimmer effect
 - **Tooltip** - Tooltips with multiple placements
 
 ## Demo
