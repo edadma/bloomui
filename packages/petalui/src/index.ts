@@ -1,3 +1,6 @@
+export { Affix } from './components/Affix'
+export type { AffixProps } from './components/Affix'
+
 export { Alert } from './components/Alert'
 export type { AlertProps } from './components/Alert'
 
@@ -34,6 +37,9 @@ export type { CardProps, CardGridProps } from './components/Card'
 export { Cascader } from './components/Cascader'
 export type { CascaderProps, CascaderOption } from './components/Cascader'
 
+export { Chart } from './components/Chart'
+export type { ChartProps } from './components/Chart'
+
 export { Carousel } from './components/Carousel'
 export type { CarouselProps, CarouselItemProps } from './components/Carousel'
 
@@ -60,6 +66,9 @@ export type { FieldsetProps, FieldsetLegendProps } from './components/Fieldset'
 
 export { FileInput } from './components/FileInput'
 export type { FileInputProps } from './components/FileInput'
+
+export { FloatButton } from './components/FloatButton'
+export type { FloatButtonProps, BackTopProps } from './components/FloatButton'
 
 export { Footer } from './components/Footer'
 export type { FooterProps, FooterTitleProps } from './components/Footer'

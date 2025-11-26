@@ -118,6 +118,7 @@ function App() {
 - **Badge** - Notification badges, status indicators, and ribbons
 - **Card** - Composable card component with body, title, actions, and figure
 - **Carousel** - Image carousel with navigation and indicators
+- **Chart** - Data visualization with ApexCharts and theme integration
 - **Chat** - Chat message bubbles with avatars and timestamps
 - **Collapse** - Collapsible content panels
 - **Descriptions** - Display multiple read-only fields in groups
@@ -134,6 +135,7 @@ function App() {
 - **Tree** - Hierarchical tree view with expand/collapse and selection
 
 ### Layout
+- **Affix** - Make elements stick to viewport when scrolling
 - **Divider** - Horizontal and vertical dividers with optional text
 - **Drawer** - Sidebar drawer with multiple placements
 - **Footer** - Footer component with title sections
@@ -155,6 +157,7 @@ function App() {
 
 ### Feedback
 - **Alert** - Alert messages with multiple types and dismissible option
+- **FloatButton** - Floating action button with BackTop variant
 - **Loading** - Loading spinners with sizes and overlay support
 - **Modal** - Modal dialogs with imperative API
 - **Notification** - Toast notifications with auto-dismiss and stacking

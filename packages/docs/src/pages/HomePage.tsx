@@ -227,7 +227,7 @@ export default App`)
 
         <Card bordered title="Features">
             <ul className="list-disc list-inside space-y-2">
-              <li>70+ React components</li>
+              <li>80+ React components</li>
               <li>Built with DaisyUI and Tailwind CSS</li>
               <li>TypeScript support</li>
               <li>Tree-shakeable</li>

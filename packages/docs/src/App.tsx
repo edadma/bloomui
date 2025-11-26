@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import { Menu, Navbar, Tag, ThemeController } from '@edadma/petalui'
 import { HomePage } from './pages/HomePage'
+import { AffixPage } from './pages/AffixPage'
 import { AlertPage } from './pages/AlertPage'
 import { AutocompletePage } from './pages/AutocompletePage'
 import { AvatarPage } from './pages/AvatarPage'
@@ -12,6 +13,7 @@ import { ButtonPage } from './pages/ButtonPage'
 import { CardPage } from './pages/CardPage'
 import { CarouselPage } from './pages/CarouselPage'
 import { CascaderPage } from './pages/CascaderPage'
+import { ChartPage } from './pages/ChartPage'
 import { ChatPage } from './pages/ChatPage'
 import { CheckboxPage } from './pages/CheckboxPage'
 import { ColorPickerPage } from './pages/ColorPickerPage'
@@ -24,6 +26,7 @@ import { DropdownPage } from './pages/DropdownPage'
 import { EmptyPage } from './pages/EmptyPage'
 import { FieldsetPage } from './pages/FieldsetPage'
 import { FileInputPage } from './pages/FileInputPage'
+import { FloatButtonPage } from './pages/FloatButtonPage'
 import { FooterPage } from './pages/FooterPage'
 import { FormPage } from './pages/FormPage'
 import { GridPage } from './pages/GridPage'
@@ -130,7 +133,7 @@ function AppContent() {
           <div className="flex items-center gap-3">
             <img src="/petalui/logo.png" alt="PetalUI" className="w-8 h-8" />
             <span className="text-xl font-semibold">PetalUI Components</span>
-            <Tag color="ghost">v0.7.0</Tag>
+            <Tag color="ghost">v0.8.0</Tag>
           </div>
         }
         end={<ThemeController.Dropdown themes={THEMES} />}
@@ -243,6 +246,9 @@ function AppContent() {
               <Menu.Item active={isActive('/carousel')} onClick={() => navigate('/carousel')}>
                 Carousel
               </Menu.Item>
+              <Menu.Item active={isActive('/chart')} onClick={() => navigate('/chart')}>
+                Chart
+              </Menu.Item>
               <Menu.Item active={isActive('/chat')} onClick={() => navigate('/chat')}>
                 Chat
               </Menu.Item>
@@ -287,6 +293,9 @@ function AppContent() {
               </Menu.Item>
 
               <Menu.Title>Layout</Menu.Title>
+              <Menu.Item active={isActive('/affix')} onClick={() => navigate('/affix')}>
+                Affix
+              </Menu.Item>
               <Menu.Item active={isActive('/divider')} onClick={() => navigate('/divider')}>
                 Divider
               </Menu.Item>
@@ -342,6 +351,9 @@ function AppContent() {
               <Menu.Item active={isActive('/alert')} onClick={() => navigate('/alert')}>
                 Alert
               </Menu.Item>
+              <Menu.Item active={isActive('/float-button')} onClick={() => navigate('/float-button')}>
+                FloatButton
+              </Menu.Item>
               <Menu.Item active={isActive('/loading')} onClick={() => navigate('/loading')}>
                 Loading
               </Menu.Item>
@@ -395,6 +407,7 @@ function AppContent() {
           <div className="max-w-[1920px] mx-auto p-6">
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path="/affix" element={<AffixPage />} />
               <Route path="/alert" element={<AlertPage />} />
               <Route path="/autocomplete" element={<AutocompletePage />} />
               <Route path="/avatar" element={<AvatarPage />} />
@@ -404,6 +417,7 @@ function AppContent() {
               <Route path="/card" element={<CardPage />} />
               <Route path="/carousel" element={<CarouselPage />} />
               <Route path="/cascader" element={<CascaderPage />} />
+              <Route path="/chart" element={<ChartPage />} />
               <Route path="/chat" element={<ChatPage />} />
               <Route path="/checkbox" element={<CheckboxPage />} />
               <Route path="/colorpicker" element={<ColorPickerPage />} />
@@ -416,6 +430,7 @@ function AppContent() {
               <Route path="/empty" element={<EmptyPage />} />
               <Route path="/fieldset" element={<FieldsetPage />} />
               <Route path="/file-input" element={<FileInputPage />} />
+              <Route path="/float-button" element={<FloatButtonPage />} />
               <Route path="/footer" element={<FooterPage />} />
               <Route path="/form" element={<FormPage />} />
               <Route path="/grid" element={<GridPage />} />
