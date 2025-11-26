@@ -39,7 +39,14 @@ export function FloatButtonPage() {
         <ExampleSection
           title="Basic FloatButton"
           description="Default floating action button with plus icon."
-          code={`<FloatButton onClick={() => alert('Clicked!')} />`}
+          code={`import React from 'react'
+import { FloatButton } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <FloatButton onClick={() => alert('Clicked!')} />
+)
+
+export default App`}
         >
           <div className="h-32 flex items-center justify-center text-base-content/50 relative">
             <span>FloatButton appears fixed on screen (bottom-right)</span>
@@ -49,9 +56,18 @@ export function FloatButtonPage() {
         <ExampleSection
           title="Button Types"
           description="Different color variants."
-          code={`<FloatButton type="primary" />
-<FloatButton type="secondary" />
-<FloatButton type="accent" />`}
+          code={`import React from 'react'
+import { FloatButton } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <>
+    <FloatButton type="primary" position="bottom-right" />
+    <FloatButton type="secondary" position="bottom-left" />
+    <FloatButton type="accent" position="top-right" />
+  </>
+)
+
+export default App`}
         >
           <div className="flex gap-4 justify-center py-4">
             <Button type="primary" shape="circle" size="lg">+</Button>
@@ -64,11 +80,18 @@ export function FloatButtonPage() {
         <ExampleSection
           title="Custom Icon"
           description="Use any icon as button content."
-          code={`<FloatButton type="primary">
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-  </svg>
-</FloatButton>`}
+          code={`import React from 'react'
+import { FloatButton } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <FloatButton type="primary">
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+    </svg>
+  </FloatButton>
+)
+
+export default App`}
         >
           <div className="flex justify-center py-4">
             <Button type="primary" shape="circle" size="lg">
@@ -82,12 +105,19 @@ export function FloatButtonPage() {
         <ExampleSection
           title="Square Shape"
           description="Square button instead of circle."
-          code={`<FloatButton shape="square" type="primary">
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-  </svg>
-</FloatButton>`}
+          code={`import React from 'react'
+import { FloatButton } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <FloatButton shape="square" type="primary">
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+    </svg>
+  </FloatButton>
+)
+
+export default App`}
         >
           <div className="flex justify-center py-4">
             <Button type="primary" shape="square" size="lg">
@@ -102,11 +132,18 @@ export function FloatButtonPage() {
         <ExampleSection
           title="With Tooltip"
           description="Show tooltip on hover."
-          code={`<FloatButton
-  type="primary"
-  tooltip="Add new item"
-  tooltipPlacement="left"
-/>`}
+          code={`import React from 'react'
+import { FloatButton } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <FloatButton
+    type="primary"
+    tooltip="Add new item"
+    tooltipPlacement="left"
+  />
+)
+
+export default App`}
         >
           <div className="flex justify-center py-4">
             <div className="tooltip tooltip-left" data-tip="Add new item">
@@ -118,7 +155,14 @@ export function FloatButtonPage() {
         <ExampleSection
           title="BackTop"
           description="Scroll-to-top button that appears after scrolling down."
-          code={`<FloatButton.BackTop visibilityHeight={400} />`}
+          code={`import React from 'react'
+import { FloatButton } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <FloatButton.BackTop visibilityHeight={400} />
+)
+
+export default App`}
         >
           <div className="h-32 flex items-center justify-center text-base-content/50">
             <span>BackTop appears after scrolling 400px (try scrolling this page)</span>

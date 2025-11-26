@@ -51,19 +51,26 @@ export function ChartPage() {
         <ExampleSection
           title="Line Chart"
           description="Basic line chart with multiple series."
-          code={`<Chart
-  type="line"
-  height={300}
-  series={[
-    { name: 'Sales', data: [30, 40, 35, 50, 49, 60, 70, 91, 125] },
-    { name: 'Revenue', data: [20, 35, 40, 45, 50, 55, 65, 80, 100] },
-  ]}
-  options={{
-    xaxis: {
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
-    },
-  }}
-/>`}
+          code={`import React from 'react'
+import { Chart } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <Chart
+    type="line"
+    height={300}
+    series={[
+      { name: 'Sales', data: [30, 40, 35, 50, 49, 60, 70, 91, 125] },
+      { name: 'Revenue', data: [20, 35, 40, 45, 50, 55, 65, 80, 100] },
+    ]}
+    options={{
+      xaxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+      },
+    }}
+  />
+)
+
+export default App`}
         >
           <Chart
             type="line"
@@ -80,19 +87,26 @@ export function ChartPage() {
         <ExampleSection
           title="Bar Chart"
           description="Vertical bar chart."
-          code={`<Chart
-  type="bar"
-  height={300}
-  series={[{ name: 'Sales', data: [44, 55, 57, 56, 61, 58, 63, 60, 66] }]}
-  options={{
-    xaxis: {
-      categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-    },
-    plotOptions: {
-      bar: { borderRadius: 4 },
-    },
-  }}
-/>`}
+          code={`import React from 'react'
+import { Chart } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <Chart
+    type="bar"
+    height={300}
+    series={[{ name: 'Sales', data: [44, 55, 57, 56, 61, 58, 63, 60, 66] }]}
+    options={{
+      xaxis: {
+        categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+      },
+      plotOptions: {
+        bar: { borderRadius: 4 },
+      },
+    }}
+  />
+)
+
+export default App`}
         >
           <Chart
             type="bar"
@@ -112,20 +126,27 @@ export function ChartPage() {
         <ExampleSection
           title="Area Chart"
           description="Area chart with gradient fill."
-          code={`<Chart
-  type="area"
-  height={300}
-  series={[
-    { name: 'Series 1', data: [31, 40, 28, 51, 42, 109, 100] },
-    { name: 'Series 2', data: [11, 32, 45, 32, 34, 52, 41] },
-  ]}
-  options={{
-    xaxis: {
-      categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    },
-    stroke: { curve: 'smooth' },
-  }}
-/>`}
+          code={`import React from 'react'
+import { Chart } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <Chart
+    type="area"
+    height={300}
+    series={[
+      { name: 'Series 1', data: [31, 40, 28, 51, 42, 109, 100] },
+      { name: 'Series 2', data: [11, 32, 45, 32, 34, 52, 41] },
+    ]}
+    options={{
+      xaxis: {
+        categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      },
+      stroke: { curve: 'smooth' },
+    }}
+  />
+)
+
+export default App`}
         >
           <Chart
             type="area"
@@ -143,14 +164,21 @@ export function ChartPage() {
         <ExampleSection
           title="Pie Chart"
           description="Pie chart with labels."
-          code={`<Chart
-  type="pie"
-  height={300}
-  series={[44, 55, 13, 43, 22]}
-  options={{
-    labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
-  }}
-/>`}
+          code={`import React from 'react'
+import { Chart } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <Chart
+    type="pie"
+    height={300}
+    series={[44, 55, 13, 43, 22]}
+    options={{
+      labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+    }}
+  />
+)
+
+export default App`}
         >
           <Chart
             type="pie"
@@ -165,14 +193,21 @@ export function ChartPage() {
         <ExampleSection
           title="Donut Chart"
           description="Donut variation of pie chart."
-          code={`<Chart
-  type="donut"
-  height={300}
-  series={[44, 55, 13, 43, 22]}
-  options={{
-    labels: ['Apple', 'Mango', 'Orange', 'Watermelon', 'Grape'],
-  }}
-/>`}
+          code={`import React from 'react'
+import { Chart } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <Chart
+    type="donut"
+    height={300}
+    series={[44, 55, 13, 43, 22]}
+    options={{
+      labels: ['Apple', 'Mango', 'Orange', 'Watermelon', 'Grape'],
+    }}
+  />
+)
+
+export default App`}
         >
           <Chart
             type="donut"
@@ -187,19 +222,26 @@ export function ChartPage() {
         <ExampleSection
           title="Radar Chart"
           description="Radar/spider chart for multivariate data."
-          code={`<Chart
-  type="radar"
-  height={300}
-  series={[
-    { name: 'Series 1', data: [80, 50, 30, 40, 100, 20] },
-    { name: 'Series 2', data: [20, 30, 40, 80, 20, 80] },
-  ]}
-  options={{
-    xaxis: {
-      categories: ['Speed', 'Power', 'Defense', 'Stamina', 'Agility', 'Skill'],
-    },
-  }}
-/>`}
+          code={`import React from 'react'
+import { Chart } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <Chart
+    type="radar"
+    height={300}
+    series={[
+      { name: 'Series 1', data: [80, 50, 30, 40, 100, 20] },
+      { name: 'Series 2', data: [20, 30, 40, 80, 20, 80] },
+    ]}
+    options={{
+      xaxis: {
+        categories: ['Speed', 'Power', 'Defense', 'Stamina', 'Agility', 'Skill'],
+      },
+    }}
+  />
+)
+
+export default App`}
         >
           <Chart
             type="radar"
@@ -216,21 +258,28 @@ export function ChartPage() {
         <ExampleSection
           title="Radial Bar"
           description="Circular progress indicators."
-          code={`<Chart
-  type="radialBar"
-  height={300}
-  series={[70, 55, 80]}
-  options={{
-    labels: ['Progress A', 'Progress B', 'Progress C'],
-    plotOptions: {
-      radialBar: {
-        dataLabels: {
-          total: { show: true, label: 'Total' },
+          code={`import React from 'react'
+import { Chart } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <Chart
+    type="radialBar"
+    height={300}
+    series={[70, 55, 80]}
+    options={{
+      labels: ['Progress A', 'Progress B', 'Progress C'],
+      plotOptions: {
+        radialBar: {
+          dataLabels: {
+            total: { show: true, label: 'Total' },
+          },
         },
       },
-    },
-  }}
-/>`}
+    }}
+  />
+)
+
+export default App`}
         >
           <Chart
             type="radialBar"
@@ -252,18 +301,25 @@ export function ChartPage() {
         <ExampleSection
           title="Theme Integration"
           description="Charts automatically use daisyUI theme colors. Try switching themes!"
-          code={`<Chart
-  type="bar"
-  height={250}
-  series={[{ data: [21, 22, 10, 28, 16, 21] }]}
-  options={{
-    xaxis: { categories: ['A', 'B', 'C', 'D', 'E', 'F'] },
-    plotOptions: {
-      bar: { distributed: true, borderRadius: 4 },
-    },
-    legend: { show: false },
-  }}
-/>`}
+          code={`import React from 'react'
+import { Chart } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <Chart
+    type="bar"
+    height={250}
+    series={[{ data: [21, 22, 10, 28, 16, 21] }]}
+    options={{
+      xaxis: { categories: ['A', 'B', 'C', 'D', 'E', 'F'] },
+      plotOptions: {
+        bar: { distributed: true, borderRadius: 4 },
+      },
+      legend: { show: false },
+    }}
+  />
+)
+
+export default App`}
         >
           <Chart
             type="bar"

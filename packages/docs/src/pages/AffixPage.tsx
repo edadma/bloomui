@@ -1,8 +1,8 @@
+import { useState } from 'react'
 import { Affix, Button, Masonry } from '@edadma/petalui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
-import { useState } from 'react'
 
 const affixApi: ApiProperty[] = [
   { property: 'children', description: 'Content to make sticky', type: 'React.ReactNode' },
@@ -29,9 +29,16 @@ export function AffixPage() {
         <ExampleSection
           title="Basic Affix"
           description="Element becomes fixed when scrolled past its position."
-          code={`<Affix offsetTop={80}>
-  <Button type="primary">Affixed Button</Button>
-</Affix>`}
+          code={`import React from 'react'
+import { Affix, Button } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <Affix offsetTop={80}>
+    <Button type="primary">Affixed Button</Button>
+  </Affix>
+)
+
+export default App`}
         >
           <div className="h-32 flex items-center justify-center">
             <p className="text-base-content/50">Scroll the page to see Affix in action</p>
@@ -41,13 +48,22 @@ export function AffixPage() {
         <ExampleSection
           title="With Callback"
           description="Get notified when affix state changes."
-          code={`const [affixed, setAffixed] = useState(false)
+          code={`import React, { useState } from 'react'
+import { Affix, Button } from '@edadma/petalui'
 
-<Affix offsetTop={80} onChange={setAffixed}>
-  <Button type={affixed ? 'primary' : 'neutral'}>
-    {affixed ? 'Affixed!' : 'Not Affixed'}
-  </Button>
-</Affix>`}
+const App: React.FC = () => {
+  const [affixed, setAffixed] = useState(false)
+
+  return (
+    <Affix offsetTop={80} onChange={setAffixed}>
+      <Button type={affixed ? 'primary' : 'neutral'}>
+        {affixed ? 'Affixed!' : 'Not Affixed'}
+      </Button>
+    </Affix>
+  )
+}
+
+export default App`}
         >
           <div className="h-32 flex items-center justify-center">
             <Button type={affixed ? 'primary' : 'neutral'}>
@@ -59,9 +75,16 @@ export function AffixPage() {
         <ExampleSection
           title="Affix to Bottom"
           description="Fix element to bottom of viewport."
-          code={`<Affix offsetBottom={20}>
-  <Button type="secondary">Bottom Affixed</Button>
-</Affix>`}
+          code={`import React from 'react'
+import { Affix, Button } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <Affix offsetBottom={20}>
+    <Button type="secondary">Bottom Affixed</Button>
+  </Affix>
+)
+
+export default App`}
         >
           <div className="h-32 flex items-center justify-center">
             <p className="text-base-content/50">Use offsetBottom instead of offsetTop</p>
@@ -71,14 +94,21 @@ export function AffixPage() {
         <ExampleSection
           title="Custom Target"
           description="Affix within a scrollable container."
-          code={`<div id="scroll-container" className="h-64 overflow-auto">
-  <Affix offsetTop={0} target={() => document.getElementById('scroll-container')}>
-    <div className="bg-primary text-primary-content p-2">
-      Sticky Header
-    </div>
-  </Affix>
-  {/* Scrollable content */}
-</div>`}
+          code={`import React from 'react'
+import { Affix } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <div id="scroll-container" className="h-64 overflow-auto">
+    <Affix offsetTop={0} target={() => document.getElementById('scroll-container')!}>
+      <div className="bg-primary text-primary-content p-2">
+        Sticky Header
+      </div>
+    </Affix>
+    {/* Scrollable content */}
+  </div>
+)
+
+export default App`}
         >
           <div className="h-32 flex items-center justify-center">
             <p className="text-base-content/50">Pass a target function for custom scroll containers</p>
