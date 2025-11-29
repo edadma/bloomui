@@ -32,23 +32,27 @@ export function HomePage() {
         <Card bordered title="Installation">
           <div className="space-y-4">
             <div>
-              <h3 className="font-semibold mb-2">1. Install Tailwind CSS</h3>
+              <h3 className="font-semibold mb-2">1. Install Dependencies</h3>
               <p className="text-sm mb-2">
-                Install Tailwind CSS and the Vite plugin:
+                Install Tailwind CSS, DaisyUI, and PetalUI:
               </p>
               <div className="relative group mb-2">
-                <pre className="bg-base-300 p-4 rounded-lg overflow-x-auto">
-                  <code>npm install tailwindcss @tailwindcss/vite</code>
+                <pre className="bg-base-300 p-4 rounded-lg overflow-x-auto text-sm">
+                  <code>npm install tailwindcss @tailwindcss/vite daisyui @edadma/petalui</code>
                 </pre>
                 <button
                   className="absolute top-2 right-2 btn btn-xs btn-ghost opacity-0 group-hover:opacity-100 transition-opacity"
-                  onClick={() => navigator.clipboard.writeText('npm install tailwindcss @tailwindcss/vite')}
+                  onClick={() => navigator.clipboard.writeText('npm install tailwindcss @tailwindcss/vite daisyui @edadma/petalui')}
                 >
                   Copy
                 </button>
               </div>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-2">2. Configure Vite</h3>
               <p className="text-sm mb-2">
-                Add the plugin to your <code className="bg-base-300 px-1 rounded">vite.config.ts</code>:
+                Add the Tailwind plugin to your <code className="bg-base-300 px-1 rounded">vite.config.ts</code>:
               </p>
               <div className="relative group mb-2">
                 <pre className="bg-base-300 p-4 rounded-lg overflow-x-auto text-sm">
@@ -65,109 +69,29 @@ export default {
                   Copy
                 </button>
               </div>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-2">3. Configure CSS</h3>
               <p className="text-sm mb-2">
-                Import Tailwind in your CSS file and configure content paths:
+                Add the following to your CSS file (e.g., <code className="bg-base-300 px-1 rounded">app.css</code>):
               </p>
               <div className="relative group mb-2">
                 <pre className="bg-base-300 p-4 rounded-lg overflow-x-auto text-sm">
                   <code>{`@import "tailwindcss";
-
+@plugin "daisyui";
 @source "../node_modules/@edadma/petalui/dist";`}</code>
                 </pre>
                 <button
                   className="absolute top-2 right-2 btn btn-xs btn-ghost opacity-0 group-hover:opacity-100 transition-opacity"
-                  onClick={() => navigator.clipboard.writeText(`@import "tailwindcss";\n\n@source "../node_modules/@edadma/petalui/dist";`)}
+                  onClick={() => navigator.clipboard.writeText(`@import "tailwindcss";\n@plugin "daisyui";\n@source "../node_modules/@edadma/petalui/dist";`)}
                 >
                   Copy
                 </button>
               </div>
-              <p className="text-sm text-base-content/70 mb-2">
-                The <code className="bg-base-300 px-1 rounded">@source</code> directive tells Tailwind to scan the library files for utility classes.
+              <p className="text-sm text-base-content/70">
+                The <code className="bg-base-300 px-1 rounded">@source</code> directive tells Tailwind to scan PetalUI for utility classes.
               </p>
-              <p className="text-sm">
-                See the{' '}
-                <a
-                  href="https://tailwindcss.com/docs/installation/using-vite"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link link-primary"
-                >
-                  full Tailwind CSS with Vite guide
-                </a>{' '}
-                for more details.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-2">2. Install DaisyUI</h3>
-              <p className="text-sm mb-2">
-                PetalUI is built on top of DaisyUI. Install it:
-              </p>
-              <div className="relative group mb-2">
-                <pre className="bg-base-300 p-4 rounded-lg overflow-x-auto">
-                  <code>npm i -D daisyui@latest</code>
-                </pre>
-                <button
-                  className="absolute top-2 right-2 btn btn-xs btn-ghost opacity-0 group-hover:opacity-100 transition-opacity"
-                  onClick={() => navigator.clipboard.writeText('npm i -D daisyui@latest')}
-                >
-                  Copy
-                </button>
-              </div>
-              <p className="text-sm mb-2">
-                Then add DaisyUI to your CSS file (e.g., <code className="bg-base-300 px-1 rounded">app.css</code>):
-              </p>
-              <div className="relative group mb-2">
-                <pre className="bg-base-300 p-4 rounded-lg overflow-x-auto text-sm">
-                  <code>{`@import "tailwindcss";
-@plugin "daisyui";`}</code>
-                </pre>
-                <button
-                  className="absolute top-2 right-2 btn btn-xs btn-ghost opacity-0 group-hover:opacity-100 transition-opacity"
-                  onClick={() => navigator.clipboard.writeText(`@import "tailwindcss";\n@plugin "daisyui";`)}
-                >
-                  Copy
-                </button>
-              </div>
-              <p className="text-sm">
-                See the{' '}
-                <a
-                  href="https://daisyui.com/docs/install/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link link-primary"
-                >
-                  DaisyUI installation guide
-                </a>{' '}
-                for more details.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-2">3. Install PetalUI</h3>
-              <div className="relative group mb-2">
-                <pre className="bg-base-300 p-4 rounded-lg overflow-x-auto">
-                  <code>npm install @edadma/petalui</code>
-                </pre>
-                <button
-                  className="absolute top-2 right-2 btn btn-xs btn-ghost opacity-0 group-hover:opacity-100 transition-opacity"
-                  onClick={() => navigator.clipboard.writeText('npm install @edadma/petalui')}
-                >
-                  Copy
-                </button>
-              </div>
-              <p className="text-sm text-base-content/70">Or with pnpm:</p>
-              <div className="relative group">
-                <pre className="bg-base-300 p-4 rounded-lg overflow-x-auto">
-                  <code>pnpm add @edadma/petalui</code>
-                </pre>
-                <button
-                  className="absolute top-2 right-2 btn btn-xs btn-ghost opacity-0 group-hover:opacity-100 transition-opacity"
-                  onClick={() => navigator.clipboard.writeText('pnpm add @edadma/petalui')}
-                >
-                  Copy
-                </button>
-              </div>
             </div>
           </div>
         </Card>
