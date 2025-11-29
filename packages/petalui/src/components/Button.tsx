@@ -1,8 +1,7 @@
 import React from 'react'
 
-export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
+type BaseButtonProps = {
   type?: 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'error' | 'neutral' | 'ghost' | 'link'
-  htmlType?: 'button' | 'submit' | 'reset'
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   outline?: boolean
   dash?: boolean
@@ -13,10 +12,23 @@ export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonE
   noAnimation?: boolean
 }
 
+type ButtonAsButton = BaseButtonProps &
+  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> & {
+    href?: undefined
+    htmlType?: 'button' | 'submit' | 'reset'
+  }
+
+type ButtonAsAnchor = BaseButtonProps &
+  Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'type'> & {
+    href: string
+    htmlType?: undefined
+  }
+
+export type ButtonProps = ButtonAsButton | ButtonAsAnchor
+
 export const Button: React.FC<ButtonProps> = ({
   children,
   type,
-  htmlType = 'button',
   size = 'md',
   outline = false,
   dash = false,
@@ -71,16 +83,32 @@ export const Button: React.FC<ButtonProps> = ({
     .filter(Boolean)
     .join(' ')
 
+  const content = (
+    <>
+      {loading && <span className="loading loading-spinner" aria-hidden="true"></span>}
+      {children}
+    </>
+  )
+
+  if ('href' in props && props.href !== undefined) {
+    const { href, ...anchorProps } = props as ButtonAsAnchor
+    return (
+      <a href={href} className={classes} {...anchorProps}>
+        {content}
+      </a>
+    )
+  }
+
+  const { htmlType = 'button', ...buttonProps } = props as ButtonAsButton
   return (
     <button
       type={htmlType}
       className={classes}
       aria-busy={loading ? 'true' : undefined}
-      disabled={loading || props.disabled}
-      {...props}
+      disabled={loading || buttonProps.disabled}
+      {...buttonProps}
     >
-      {loading && <span className="loading loading-spinner" aria-hidden="true"></span>}
-      {children}
+      {content}
     </button>
   )
 }

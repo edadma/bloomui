@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
-import { Menu, Navbar, Tag, ThemeController } from '@edadma/petalui'
+import { Button, Menu, Navbar, Space, Tag, ThemeController } from '@edadma/petalui'
 import { HomePage } from './pages/HomePage'
 import { AffixPage } from './pages/AffixPage'
 import { AlertPage } from './pages/AlertPage'
@@ -136,7 +136,13 @@ function AppContent() {
             <Tag color="ghost">v0.8.2</Tag>
           </div>
         }
-        end={<ThemeController.Dropdown themes={THEMES} />}
+        end={
+          <Space direction="horizontal" size="sm" align="center">
+            <Button type="ghost" href="https://www.npmjs.com/package/@edadma/petalui" target="_blank">npm</Button>
+            <Button type="ghost" href="https://github.com/edadma/petalui" target="_blank">GitHub</Button>
+            <ThemeController.Dropdown themes={THEMES} />
+          </Space>
+        }
       />
 
       {/* Content Area with Sidebar */}

@@ -73,6 +73,22 @@ const buttonApi: ApiProperty[] = [
     description: 'Button content',
     type: 'ReactNode',
   },
+  {
+    property: 'href',
+    description: 'URL to navigate to (renders as anchor element)',
+    type: 'string',
+  },
+  {
+    property: 'target',
+    description: 'Where to open the linked URL (when href is set)',
+    type: 'string',
+  },
+  {
+    property: 'htmlType',
+    description: 'HTML button type (only when href is not set)',
+    type: "'button' | 'submit' | 'reset'",
+    default: "'button'",
+  },
 ]
 
 export function ButtonPage() {
@@ -352,6 +368,33 @@ export default App`}
         <Button type="primary" loading>Loading</Button>
         <Button type="success" loading>Processing</Button>
         <Button type="error" loading>Deleting</Button>
+      </ExampleSection>
+
+      <ExampleSection
+        title="Link Buttons"
+        description="Buttons that navigate to URLs. Renders as anchor element when href is provided."
+        code={`import React from 'react'
+import { Button } from '@edadma/petalui'
+
+const App: React.FC = () => (
+  <div className="flex gap-2 flex-wrap">
+    <Button type="primary" href="https://github.com/edadma/petalui" target="_blank">
+      GitHub
+    </Button>
+    <Button type="ghost" href="https://www.npmjs.com/package/@edadma/petalui" target="_blank">
+      npm
+    </Button>
+    <Button href="/components" type="link">
+      Internal Link
+    </Button>
+  </div>
+)
+
+export default App`}
+      >
+        <Button type="primary" href="https://github.com/edadma/petalui" target="_blank">GitHub</Button>
+        <Button type="ghost" href="https://www.npmjs.com/package/@edadma/petalui" target="_blank">npm</Button>
+        <Button href="#" type="link">Internal Link</Button>
       </ExampleSection>
       </Masonry>
 
