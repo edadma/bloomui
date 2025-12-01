@@ -8,11 +8,60 @@ importers:
 
   .: {}
 
+  packages/bloomui:
+    dependencies:
+      qrcode:
+        specifier: ^1.5.4
+        version: 1.5.4
+    devDependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.1.17
+        version: 4.1.17(vite@7.2.2(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2))
+      '@types/qrcode':
+        specifier: ^1.5.6
+        version: 1.5.6
+      '@types/react':
+        specifier: ^19.2.2
+        version: 19.2.5
+      '@types/react-dom':
+        specifier: ^19.2.2
+        version: 19.2.3(@types/react@19.2.5)
+      '@vitejs/plugin-react':
+        specifier: ^5.1.1
+        version: 5.1.1(vite@7.2.2(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2))
+      apexcharts:
+        specifier: ^5.3.6
+        version: 5.3.6
+      daisyui:
+        specifier: ^5.5.5
+        version: 5.5.5
+      react:
+        specifier: ^19.2.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.2.0
+        version: 19.2.0(react@19.2.0)
+      react-hook-form:
+        specifier: ^7.66.1
+        version: 7.66.1(react@19.2.0)
+      tailwindcss:
+        specifier: ^4.1.17
+        version: 4.1.17
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.3
+      vite:
+        specifier: ^7.2.2
+        version: 7.2.2(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)
+      vite-plugin-dts:
+        specifier: ^4.5.4
+        version: 4.5.4(@types/node@24.10.1)(rollup@4.53.2)(typescript@5.9.3)(vite@7.2.2(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2))
+
   packages/docs:
     dependencies:
-      '@edadma/petalui':
+      bloomui:
         specifier: workspace:*
-        version: link:../petalui
+        version: link:../bloomui
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -83,9 +132,9 @@ importers:
 
   packages/examples/autocomplete-search:
     dependencies:
-      '@edadma/petalui':
+      bloomui:
         specifier: workspace:*
-        version: link:../../petalui
+        version: link:../../bloomui
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -120,9 +169,9 @@ importers:
 
   packages/examples/comprehensive-form:
     dependencies:
-      '@edadma/petalui':
+      bloomui:
         specifier: workspace:*
-        version: link:../../petalui
+        version: link:../../bloomui
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -160,9 +209,9 @@ importers:
 
   packages/examples/form-validation:
     dependencies:
-      '@edadma/petalui':
+      bloomui:
         specifier: workspace:*
-        version: link:../../petalui
+        version: link:../../bloomui
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -200,9 +249,9 @@ importers:
 
   packages/examples/job-application:
     dependencies:
-      '@edadma/petalui':
+      bloomui:
         specifier: workspace:*
-        version: link:../../petalui
+        version: link:../../bloomui
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -240,9 +289,9 @@ importers:
 
   packages/examples/theme-dropdown:
     dependencies:
-      '@edadma/petalui':
+      bloomui:
         specifier: workspace:*
-        version: link:../../petalui
+        version: link:../../bloomui
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -277,9 +326,9 @@ importers:
 
   packages/examples/theme-swap:
     dependencies:
-      '@edadma/petalui':
+      bloomui:
         specifier: workspace:*
-        version: link:../../petalui
+        version: link:../../bloomui
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -311,55 +360,6 @@ importers:
       vite:
         specifier: ^7.2.2
         version: 7.2.2(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)
-
-  packages/petalui:
-    dependencies:
-      qrcode:
-        specifier: ^1.5.4
-        version: 1.5.4
-    devDependencies:
-      '@tailwindcss/vite':
-        specifier: ^4.1.17
-        version: 4.1.17(vite@7.2.2(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2))
-      '@types/qrcode':
-        specifier: ^1.5.6
-        version: 1.5.6
-      '@types/react':
-        specifier: ^19.2.2
-        version: 19.2.5
-      '@types/react-dom':
-        specifier: ^19.2.2
-        version: 19.2.3(@types/react@19.2.5)
-      '@vitejs/plugin-react':
-        specifier: ^5.1.1
-        version: 5.1.1(vite@7.2.2(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2))
-      apexcharts:
-        specifier: ^5.3.6
-        version: 5.3.6
-      daisyui:
-        specifier: ^5.5.5
-        version: 5.5.5
-      react:
-        specifier: ^19.2.0
-        version: 19.2.0
-      react-dom:
-        specifier: ^19.2.0
-        version: 19.2.0(react@19.2.0)
-      react-hook-form:
-        specifier: ^7.66.1
-        version: 7.66.1(react@19.2.0)
-      tailwindcss:
-        specifier: ^4.1.17
-        version: 4.1.17
-      typescript:
-        specifier: ^5.6.3
-        version: 5.9.3
-      vite:
-        specifier: ^7.2.2
-        version: 7.2.2(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)
-      vite-plugin-dts:
-        specifier: ^4.5.4
-        version: 4.5.4(@types/node@24.10.1)(rollup@4.53.2)(typescript@5.9.3)(vite@7.2.2(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2))
 
 packages:
 

@@ -1,18 +1,18 @@
 <p align="center">
-  <img src="logo.png" alt="PetalUI Logo" width="200">
+  <img src="logo.png" alt="BloomUI Logo" width="200">
 </p>
 
-# PetalUI
+# BloomUI
 
 A comprehensive React component library built with DaisyUI and Tailwind CSS.
 
 ## Demo
 
-View the live demo at: [https://edadma.github.io/petalui](https://edadma.github.io/petalui)
+View the live demo at: [https://edadma.github.io/bloomui](https://edadma.github.io/bloomui)
 
 ## Prerequisites
 
-PetalUI requires Tailwind CSS v4 and DaisyUI to be configured in your project.
+BloomUI requires Tailwind CSS v4 and DaisyUI to be configured in your project.
 
 Install Tailwind and DaisyUI:
 
@@ -37,25 +37,25 @@ Configure your CSS file (e.g., `src/index.css`):
 ```css
 @import "tailwindcss";
 @plugin "daisyui";
-@source "../node_modules/@edadma/petalui";
+@source "../node_modules/bloomui";
 ```
 
-The `@source` directive tells Tailwind to scan the PetalUI package for classes to include in your build.
+The `@source` directive tells Tailwind to scan the BloomUI package for classes to include in your build.
 
 ## Installation
 
 ```bash
-npm install @edadma/petalui
+npm install bloomui
 # or
-pnpm add @edadma/petalui
+pnpm add bloomui
 # or
-yarn add @edadma/petalui
+yarn add bloomui
 ```
 
 ## Usage
 
 ```tsx
-import { Form, Input, Button } from '@edadma/petalui'
+import { Form, Input, Button } from 'bloomui'
 
 function App() {
   const handleSubmit = (values) => {
@@ -181,7 +181,7 @@ function App() {
 
 This is a pnpm monorepo with two packages:
 
-- `packages/petalui` - The component library
+- `packages/bloomui` - The component library
 - `packages/docs` - Documentation site
 
 ### Setup
@@ -203,7 +203,7 @@ pnpm build
 ### Publishing
 
 ```bash
-cd packages/petalui
+cd packages/bloomui
 pnpm publish
 ```
 

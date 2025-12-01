@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
-import { Button, Menu, Navbar, Space, Tag, ThemeController } from '@edadma/petalui'
+import { Button, Menu, Navbar, Space, Tag, ThemeController } from 'bloomui'
 import { HomePage } from './pages/HomePage'
 import { AffixPage } from './pages/AffixPage'
 import { AlertPage } from './pages/AlertPage'
@@ -130,15 +130,15 @@ function AppContent() {
         className="shadow-lg border-b border-base-content/10 flex-shrink-0"
         start={
           <div className="flex items-center gap-3">
-            <img src="/petalui/logo.png" alt="PetalUI" className="w-8 h-8" />
-            <span className="text-xl font-semibold">PetalUI Components</span>
+            <img src="/bloomui/logo.png" alt="BloomUI" className="w-8 h-8" />
+            <span className="text-xl font-semibold">BloomUI Components</span>
             <Tag color="ghost">v0.9.0</Tag>
           </div>
         }
         end={
           <Space direction="horizontal" size="sm" align="center">
-            <Button type="ghost" href="https://www.npmjs.com/package/@edadma/petalui" target="_blank">npm</Button>
-            <Button type="ghost" href="https://github.com/edadma/petalui" target="_blank">GitHub</Button>
+            <Button type="ghost" href="https://www.npmjs.com/package/bloomui" target="_blank">npm</Button>
+            <Button type="ghost" href="https://github.com/edadma/bloomui" target="_blank">GitHub</Button>
             <ThemeController.Dropdown themes={THEMES} />
           </Space>
         }
@@ -496,7 +496,7 @@ function AppContent() {
 
 function App() {
   return (
-    <BrowserRouter basename="/petalui">
+    <BrowserRouter basename="/bloomui">
       <AppContent />
     </BrowserRouter>
   )

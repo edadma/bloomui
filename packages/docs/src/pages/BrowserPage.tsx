@@ -1,4 +1,4 @@
-import { Browser, Masonry } from '@edadma/petalui'
+import { Browser, Masonry } from 'bloomui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'

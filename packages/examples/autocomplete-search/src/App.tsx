@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Navbar, Hero, ThemeController, Autocomplete, Card, Space } from '@edadma/petalui'
+import { Navbar, Hero, ThemeController, Autocomplete, Card, Space } from 'bloomui'
 
 const THEMES = [
   'light',

@@ -1,10 +1,10 @@
-# PetalUI Documentation
+# BloomUI Documentation
 
-Interactive documentation and component showcase for [PetalUI](https://github.com/edadma/petalui).
+Interactive documentation and component showcase for [BloomUI](https://github.com/edadma/bloomui).
 
 ## Overview
 
-This documentation site provides live examples and API documentation for all PetalUI components. Each component page includes:
+This documentation site provides live examples and API documentation for all BloomUI components. Each component page includes:
 
 - Interactive examples with working code
 - Complete API documentation
@@ -46,7 +46,7 @@ pnpm preview
 - TypeScript
 - Vite
 - React Router
-- PetalUI
+- BloomUI
 - DaisyUI
 - Tailwind CSS
 

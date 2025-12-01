@@ -3,7 +3,7 @@ export default {
   content: [
     './index.html',
     './src/**/*.{js,ts,jsx,tsx}',
-    '../../petalui/src/**/*.{js,ts,jsx,tsx}',
+    '../../bloomui/src/**/*.{js,ts,jsx,tsx}',
   ],
   daisyui: {
     themes: [

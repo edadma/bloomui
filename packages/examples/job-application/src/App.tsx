@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
-import { Navbar, ThemeController, Form, Input, Button, Card, Checkbox, Space, Row, Col } from '@edadma/petalui'
+import { Navbar, ThemeController, Form, Input, Button, Card, Checkbox, Space, Row, Col } from 'bloomui'
 
 interface WorkExperience {
   company: string

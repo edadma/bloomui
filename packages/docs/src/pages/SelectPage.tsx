@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Select, Form, Button, Modal, Space, Masonry } from '@edadma/petalui'
+import { Select, Form, Button, Modal, Space, Masonry } from 'bloomui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -68,7 +68,7 @@ export function SelectPage() {
           title="Basic Select"
           description="Simple select dropdown."
           code={`import React from 'react'
-import { Select } from '@edadma/petalui'
+import { Select } from 'bloomui'
 
 const App: React.FC = () => (
   <Select>
@@ -95,7 +95,7 @@ export default App`}
           title="With Default Value"
           description="Select with pre-selected option."
           code={`import React from 'react'
-import { Select } from '@edadma/petalui'
+import { Select } from 'bloomui'
 
 const App: React.FC = () => (
   <Select defaultValue="orange">
@@ -120,7 +120,7 @@ export default App`}
           title="Sizes"
           description="Five sizes: xs, sm, md, lg, and xl."
           code={`import React from 'react'
-import { Select, Space } from '@edadma/petalui'
+import { Select, Space } from 'bloomui'
 
 const App: React.FC = () => (
   <Space size="xs">
@@ -167,7 +167,7 @@ export default App`}
           title="Colors"
           description="Color variants for different states."
           code={`import React from 'react'
-import { Select, Space } from '@edadma/petalui'
+import { Select, Space } from 'bloomui'
 
 const App: React.FC = () => (
   <Space size="xs">
@@ -226,7 +226,7 @@ export default App`}
           title="Ghost Variant"
           description="Transparent background style."
           code={`import React from 'react'
-import { Select } from '@edadma/petalui'
+import { Select } from 'bloomui'
 
 const App: React.FC = () => (
   <Select ghost>
@@ -249,7 +249,7 @@ export default App`}
           title="Disabled State"
           description="Non-interactive disabled select."
           code={`import React from 'react'
-import { Select } from '@edadma/petalui'
+import { Select } from 'bloomui'
 
 const App: React.FC = () => (
   <Select disabled>
@@ -268,7 +268,7 @@ export default App`}
           title="In Form"
           description="Select with form validation."
           code={`import React from 'react'
-import { Form, Select, Button } from '@edadma/petalui'
+import { Form, Select, Button } from 'bloomui'
 
 const App: React.FC = () => {
   const handleSubmit = (values: any) => {

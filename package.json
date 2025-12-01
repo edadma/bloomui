@@ -1,5 +1,5 @@
 {
-  "name": "petalui",
+  "name": "bloomui",
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@9.15.0",
@@ -7,6 +7,6 @@
     "build": "pnpm -r build",
     "dev": "pnpm --filter docs dev",
     "test": "pnpm -r test",
-    "publish": "pnpm --filter @edadma/petalui publish --access public"
+    "publish": "pnpm --filter bloomui publish"
   }
 }

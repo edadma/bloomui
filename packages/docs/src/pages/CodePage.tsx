@@ -1,4 +1,4 @@
-import { Code, Masonry } from '@edadma/petalui'
+import { Code, Masonry } from 'bloomui'
 import { ExampleSection } from '../components/ExampleSection'
 import { ApiTable } from '../components/ApiTable'
 import type { ApiProperty } from '../components/ApiTable'
@@ -30,11 +30,11 @@ export function CodePage() {
           title="Basic Code"
           description="Terminal-style code display."
           code={`<Code className="w-full">
-  <Code.Line>npm install @edadma/petalui</Code.Line>
+  <Code.Line>npm install bloomui</Code.Line>
 </Code>`}
         >
           <Code className="w-full">
-            <Code.Line>npm install @edadma/petalui</Code.Line>
+            <Code.Line>npm install bloomui</Code.Line>
           </Code>
         </ExampleSection>
 
@@ -42,13 +42,13 @@ export function CodePage() {
           title="Multiple Lines"
           description="Multiple lines with different prefixes."
           code={`<Code className="w-full">
-  <Code.Line prefix="1">npm install @edadma/petalui</Code.Line>
+  <Code.Line prefix="1">npm install bloomui</Code.Line>
   <Code.Line prefix="2">importing...</Code.Line>
   <Code.Line prefix="3" className="text-success">Done!</Code.Line>
 </Code>`}
         >
           <Code className="w-full">
-            <Code.Line prefix="1">npm install @edadma/petalui</Code.Line>
+            <Code.Line prefix="1">npm install bloomui</Code.Line>
             <Code.Line prefix="2">importing...</Code.Line>
             <Code.Line prefix="3" className="text-success">Done!</Code.Line>
           </Code>
@@ -77,7 +77,7 @@ export function CodePage() {
           description="Code with line numbers."
           code={`<Code className="w-full">
   <Code.Line prefix="1">import React from 'react'</Code.Line>
-  <Code.Line prefix="2">import { Code } from '@edadma/petalui'</Code.Line>
+  <Code.Line prefix="2">import { Code } from 'bloomui'</Code.Line>
   <Code.Line prefix="3">{' '}</Code.Line>
   <Code.Line prefix="4">export default function App() {'{'}</Code.Line>
   <Code.Line prefix="5">{'  return <Code />'}</Code.Line>
@@ -86,7 +86,7 @@ export function CodePage() {
         >
           <Code className="w-full">
             <Code.Line prefix="1">import React from 'react'</Code.Line>
-            <Code.Line prefix="2">import {'{ Code }'} from '@edadma/petalui'</Code.Line>
+            <Code.Line prefix="2">import {'{ Code }'} from 'bloomui'</Code.Line>
             <Code.Line prefix="3">{' '}</Code.Line>
             <Code.Line prefix="4">export default function App() {'{'}</Code.Line>
             <Code.Line prefix="5">{'  return <Code />'}</Code.Line>
@@ -100,15 +100,15 @@ export function CodePage() {
           code={`<Code className="w-full">
   <Code.Line>cd my-project</Code.Line>
   <Code.Line>npm init -y</Code.Line>
-  <Code.Line>npm install @edadma/petalui</Code.Line>
-  <Code.Line className="text-success">+ @edadma/petalui@0.9.0</Code.Line>
+  <Code.Line>npm install bloomui</Code.Line>
+  <Code.Line className="text-success">+ bloomui@0.9.0</Code.Line>
 </Code>`}
         >
           <Code className="w-full">
             <Code.Line>cd my-project</Code.Line>
             <Code.Line>npm init -y</Code.Line>
-            <Code.Line>npm install @edadma/petalui</Code.Line>
-            <Code.Line className="text-success">+ @edadma/petalui@0.9.0</Code.Line>
+            <Code.Line>npm install bloomui</Code.Line>
+            <Code.Line className="text-success">+ bloomui@0.9.0</Code.Line>
           </Code>
         </ExampleSection>
 

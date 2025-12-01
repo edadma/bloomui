@@ -1,17 +1,17 @@
-import { Alert, Button, Card, Masonry } from '@edadma/petalui'
+import { Alert, Button, Card, Masonry } from 'bloomui'
 
 export function HomePage() {
   return (
     <div className="space-y-8">
       <div className="text-center py-12">
-        <h1 className="text-5xl font-bold mb-4">PetalUI</h1>
+        <h1 className="text-5xl font-bold mb-4">BloomUI</h1>
         <p className="text-xl text-base-content/70 mb-8">
           A modern React UI component library built with DaisyUI and Tailwind CSS
         </p>
         <div className="flex justify-center">
           <Button
             outline
-            onClick={() => window.open('https://github.com/edadma/petalui', '_blank')}
+            onClick={() => window.open('https://github.com/edadma/bloomui', '_blank')}
           >
             View on GitHub
           </Button>
@@ -22,7 +22,7 @@ export function HomePage() {
         <div>
           <div className="font-semibold">Documentation Site</div>
           <div className="text-sm">
-            This is the official component documentation for PetalUI. Browse components in the sidebar
+            This is the official component documentation for BloomUI. Browse components in the sidebar
             to see live examples, API documentation, and code samples.
           </div>
         </div>
@@ -38,11 +38,11 @@ export function HomePage() {
               </p>
               <div className="relative group mb-2">
                 <pre className="bg-base-300 p-4 rounded-lg overflow-x-auto text-sm">
-                  <code>npm install tailwindcss @tailwindcss/vite daisyui @edadma/petalui</code>
+                  <code>npm install tailwindcss @tailwindcss/vite daisyui bloomui</code>
                 </pre>
                 <button
                   className="absolute top-2 right-2 btn btn-xs btn-ghost opacity-0 group-hover:opacity-100 transition-opacity"
-                  onClick={() => navigator.clipboard.writeText('npm install tailwindcss @tailwindcss/vite daisyui @edadma/petalui')}
+                  onClick={() => navigator.clipboard.writeText('npm install tailwindcss @tailwindcss/vite daisyui bloomui')}
                 >
                   Copy
                 </button>
@@ -80,11 +80,11 @@ export default {
                 <pre className="bg-base-300 p-4 rounded-lg overflow-x-auto text-sm">
                   <code>{`@import "tailwindcss";
 @plugin "daisyui";
-@source "../node_modules/@edadma/petalui/dist";`}</code>
+@source "../node_modules/bloomui/dist";`}</code>
                 </pre>
                 <button
                   className="absolute top-2 right-2 btn btn-xs btn-ghost opacity-0 group-hover:opacity-100 transition-opacity"
-                  onClick={() => navigator.clipboard.writeText(`@import "tailwindcss";\n@plugin "daisyui";\n@source "../node_modules/@edadma/petalui/dist";`)}
+                  onClick={() => navigator.clipboard.writeText(`@import "tailwindcss";\n@plugin "daisyui";\n@source "../node_modules/bloomui/dist";`)}
                 >
                   Copy
                 </button>
@@ -115,7 +115,7 @@ export default {
               <p>Import and use components in your React app:</p>
               <div className="relative group">
                 <pre className="bg-base-300 p-4 rounded-lg overflow-x-auto text-sm">
-                  <code>{`import { Button, Card } from '@edadma/petalui'
+                  <code>{`import { Button, Card } from 'bloomui'
 
 const App = () => {
   return (
@@ -130,7 +130,7 @@ export default App`}</code>
                 <button
                   className="absolute top-2 right-2 btn btn-xs btn-ghost opacity-0 group-hover:opacity-100 transition-opacity"
                   onClick={() => {
-                    navigator.clipboard.writeText(`import { Button, Card } from '@edadma/petalui'
+                    navigator.clipboard.writeText(`import { Button, Card } from 'bloomui'
 
 const App = () => {
   return (

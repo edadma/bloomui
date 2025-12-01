@@ -34,7 +34,7 @@ cat > "$APP_DIR/package.json" << 'EOF'
     "preview": "vite preview"
   },
   "dependencies": {
-    "@edadma/petalui": "workspace:*",
+    "bloomui": "workspace:*",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
@@ -97,7 +97,7 @@ export default {
   content: [
     './index.html',
     './src/**/*.{js,ts,jsx,tsx}',
-    '../../petalui/src/**/*.{js,ts,jsx,tsx}',
+    '../../bloomui/src/**/*.{js,ts,jsx,tsx}',
   ],
   plugins: [daisyui],
   daisyui: {
@@ -155,7 +155,7 @@ EOF
 
 # Create src/App.tsx
 cat > "$APP_DIR/src/App.tsx" << EOF
-import { Navbar, ThemeController } from '@edadma/petalui'
+import { Navbar, ThemeController } from 'bloomui'
 
 function App() {
   return (
