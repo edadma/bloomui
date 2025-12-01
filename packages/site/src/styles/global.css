@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@plugin "daisyui";
+@source "../../node_modules/@edadma/bloomui/dist";
+
+/* Shiki dual theme - Dark mode (default) */
+.astro-code,
+.astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+}
+
+/* Shiki dual theme - Light mode */
+[data-theme="light"] .astro-code,
+[data-theme="light"] .astro-code span {
+  color: var(--shiki-light) !important;
+  background-color: var(--shiki-light-bg) !important;
+}
+
+/* Code blocks styling */
+pre {
+  @apply overflow-x-auto;
+}
+
+code {
+  @apply font-mono;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}

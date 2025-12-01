@@ -1,0 +1,177 @@
+# BloomUI
+
+> React component library built on DaisyUI v5 with enterprise-level developer convenience
+
+## Overview
+
+BloomUI provides 80+ production-ready React components with:
+- Familiar, intuitive API patterns (Form.Item, Table columns, etc.)
+- DaisyUI v5 styling and theming
+- Full TypeScript support
+- Test-friendly attributes (data-testid, data-state, ARIA roles)
+- Prop pass-through for custom attributes
+
+## Installation
+
+```bash
+npm install @edadma/bloomui
+```
+
+## Component Documentation
+
+### Actions
+
+- [Button](/docs/button.md)
+- [Dropdown](/docs/dropdown.md)
+- [FloatButton](/docs/floatbutton.md)
+- [Modal](/docs/modal.md)
+- [ThemeController](/docs/themecontroller.md)
+
+### General
+
+- [Typography](/docs/typography.md)
+
+### Layout
+
+- [Affix](/docs/affix.md)
+- [Container](/docs/container.md)
+- [Divider](/docs/divider.md)
+- [Fieldset](/docs/fieldset.md)
+- [Footer](/docs/footer.md)
+- [Grid](/docs/grid.md)
+- [Hero](/docs/hero.md)
+- [Join](/docs/join.md)
+- [Layout](/docs/layout.md)
+- [Masonry](/docs/masonry.md)
+- [PageLayout](/docs/pagelayout.md)
+- [Space](/docs/space.md)
+- [Splitter](/docs/splitter.md)
+- [Stack](/docs/stack.md)
+
+### Navigation
+
+- [Breadcrumb](/docs/breadcrumb.md)
+- [ContextMenu](/docs/contextmenu.md)
+- [Menu](/docs/menu.md)
+- [Navbar](/docs/navbar.md)
+- [Pagination](/docs/pagination.md)
+- [Steps](/docs/steps.md)
+- [Tabs](/docs/tabs.md)
+
+### Data Entry
+
+- [Autocomplete](/docs/autocomplete.md)
+- [Cascader](/docs/cascader.md)
+- [Checkbox](/docs/checkbox.md)
+- [ColorPicker](/docs/colorpicker.md)
+- [DatePicker](/docs/datepicker.md)
+- [FileInput](/docs/fileinput.md)
+- [Form](/docs/form.md)
+- [Input](/docs/input.md)
+- [InputNumber](/docs/inputnumber.md)
+- [Label](/docs/label.md)
+- [Mention](/docs/mention.md)
+- [OTPInput](/docs/otpinput.md)
+- [Radio](/docs/radio.md)
+- [Range](/docs/range.md)
+- [Rating](/docs/rating.md)
+- [Select](/docs/select.md)
+- [Textarea](/docs/textarea.md)
+- [TimePicker](/docs/timepicker.md)
+- [Toggle](/docs/toggle.md)
+- [Transfer](/docs/transfer.md)
+- [TreeSelect](/docs/treeselect.md)
+- [Upload](/docs/upload.md)
+
+### Data Display
+
+- [Avatar](/docs/avatar.md)
+- [Badge](/docs/badge.md)
+- [Card](/docs/card.md)
+- [Carousel](/docs/carousel.md)
+- [Chart](/docs/chart.md)
+- [Chat](/docs/chat.md)
+- [Collapse](/docs/collapse.md)
+- [Countdown](/docs/countdown.md)
+- [Descriptions](/docs/descriptions.md)
+- [Empty](/docs/empty.md)
+- [Image](/docs/image.md)
+- [Indicator](/docs/indicator.md)
+- [List](/docs/list.md)
+- [Popover](/docs/popover.md)
+- [QRCode](/docs/qrcode.md)
+- [Stat](/docs/stat.md)
+- [Table](/docs/table.md)
+- [Tag](/docs/tag.md)
+- [Timeline](/docs/timeline.md)
+- [Tooltip](/docs/tooltip.md)
+- [Tree](/docs/tree.md)
+
+### Feedback
+
+- [Alert](/docs/alert.md)
+- [Drawer](/docs/drawer.md)
+- [Loading](/docs/loading.md)
+- [Notification](/docs/notification.md)
+- [Popconfirm](/docs/popconfirm.md)
+- [Progress](/docs/progress.md)
+- [RadialProgress](/docs/radialprogress.md)
+- [Result](/docs/result.md)
+- [Skeleton](/docs/skeleton.md)
+
+### Mockups
+
+- [Browser](/docs/browser.md)
+- [Code](/docs/code.md)
+- [Phone](/docs/phone.md)
+- [Window](/docs/window.md)
+
+## Quick Start
+
+```tsx
+import { Form, Input, Button, Table } from '@edadma/bloomui';
+
+// Form example
+<Form onFinish={handleSubmit}>
+  <Form.Item name="email" label="Email" rules={[{ required: true, type: 'email' }]}>
+    <Input />
+  </Form.Item>
+  <Button type="primary" htmlType="submit">Submit</Button>
+</Form>
+
+// Table example
+<Table
+  columns={[
+    { title: 'Name', dataIndex: 'name', sorter: true },
+    { title: 'Email', dataIndex: 'email' }
+  ]}
+  dataSource={users}
+  pagination={{ pageSize: 10 }}
+/>
+```
+
+## Testing
+
+All components include:
+- `data-testid` attributes
+- `data-state` attributes for component state
+- Proper ARIA roles and labels
+- Predictable DOM structure
+- Prop pass-through (`...rest`) for custom attributes
+
+```tsx
+import { render, screen } from '@testing-library/react';
+import { Button, Modal } from '@edadma/bloomui';
+
+screen.getByRole('button', { name: 'Submit' });
+screen.getByTestId('form-item-email');
+expect(screen.getByRole('dialog')).toHaveAttribute('data-state', 'open');
+```
+
+## Links
+
+- Website: https://bloomui.io
+- Components: https://bloomui.io/components
+- Interactive Demos: https://edadma.github.io/bloomui/
+- GitHub: https://github.com/edadma/bloomui
+- npm: https://www.npmjs.com/package/@edadma/bloomui

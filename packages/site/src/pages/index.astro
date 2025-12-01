@@ -1,0 +1,137 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const features = [
+  {
+    title: 'Developer-Friendly',
+    description: 'Familiar API patterns from Ant Design. Form.Item, Table columns, Modal, and more.'
+  },
+  {
+    title: 'DaisyUI Styling',
+    description: 'Beautiful, themeable components with 30+ DaisyUI themes out of the box.'
+  },
+  {
+    title: 'Test-Friendly',
+    description: 'Built-in data-testid, data-state attributes, and ARIA roles for reliable testing.'
+  },
+  {
+    title: 'TypeScript First',
+    description: 'Full type safety with comprehensive prop types and IntelliSense support.'
+  },
+  {
+    title: '80+ Components',
+    description: 'Forms, tables, modals, navigation, charts, and everything you need.'
+  },
+  {
+    title: 'Lightweight',
+    description: 'No heavy dependencies. Just React, DaisyUI, and Tailwind CSS v4.'
+  }
+];
+
+const codeExample = `import { Form, Input, Button, Table } from '@edadma/bloomui';
+
+function App() {
+  return (
+    <Form onFinish={handleSubmit}>
+      <Form.Item name="email" label="Email" rules={[{ required: true }]}>
+        <Input />
+      </Form.Item>
+      <Button type="primary" htmlType="submit">
+        Submit
+      </Button>
+    </Form>
+  );
+}`;
+---
+
+<Layout title="BloomUI - React Components for DaisyUI">
+  <article itemscope itemtype="https://schema.org/SoftwareApplication">
+    <section class="text-center py-16">
+      <h1 class="text-5xl font-bold mb-4" itemprop="name">BloomUI</h1>
+      <p class="text-xl text-base-content/70 max-w-2xl mx-auto" itemprop="description">
+        React component library built on DaisyUI v5 with enterprise-level developer convenience.
+        Production-ready, test-friendly, and fully typed.
+      </p>
+
+      <div class="flex gap-4 justify-center mt-8">
+        <a href="/components" class="btn btn-primary">View Components</a>
+        <a href="https://edadma.github.io/bloomui/" class="btn btn-outline">Interactive Demos</a>
+      </div>
+    </section>
+
+    <section class="py-12">
+      <h2 class="text-3xl font-bold text-center mb-8">Why BloomUI?</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map(feature => (
+          <div class="card bg-base-200">
+            <div class="card-body">
+              <h3 class="card-title">{feature.title}</h3>
+              <p>{feature.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="py-12">
+      <h2 class="text-3xl font-bold text-center mb-8">Quick Start</h2>
+      <div class="max-w-2xl mx-auto">
+        <div class="mockup-code mb-6">
+          <pre data-prefix="$"><code>npm install @edadma/bloomui</code></pre>
+        </div>
+
+        <div class="bg-base-200 rounded-lg p-4">
+          <pre><code class="language-tsx">{codeExample}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12 bg-base-200 rounded-lg">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-8">Component Categories</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+          <div>
+            <div class="text-3xl font-bold text-primary">21</div>
+            <div class="text-sm text-base-content/70">Data Entry</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-primary">17</div>
+            <div class="text-sm text-base-content/70">Data Display</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-primary">10</div>
+            <div class="text-sm text-base-content/70">Feedback</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-primary">30+</div>
+            <div class="text-sm text-base-content/70">Layout & More</div>
+          </div>
+        </div>
+        <div class="text-center mt-8">
+          <a href="/components" class="btn btn-primary">Browse All Components</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12">
+      <h2 class="text-3xl font-bold text-center mb-8">Built for Testing</h2>
+      <div class="max-w-2xl mx-auto">
+        <p class="text-center text-base-content/70 mb-6">
+          Every component includes test-friendly attributes for reliable automated testing.
+        </p>
+        <div class="bg-base-200 rounded-lg p-4">
+          <pre><code class="language-tsx">{`// React Testing Library
+screen.getByRole('button', { name: 'Submit' });
+screen.getByTestId('form-item-email');
+expect(modal).toHaveAttribute('data-state', 'open');`}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-8">
+      <p class="text-center text-base-content/60 text-sm">
+        <a href="https://bloomui.io/llms.txt" class="link">Plain text documentation index</a>
+      </p>
+    </section>
+  </article>
+</Layout>

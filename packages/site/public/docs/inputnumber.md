@@ -1,0 +1,199 @@
+# InputNumber
+
+**Import:** `import { InputNumber } from '@edadma/bloomui'`
+
+## Examples
+
+### Basic Input Number
+
+Simple number input with increment/decrement controls.
+
+```tsx
+import React, { useState } from 'react'
+import { InputNumber } from '@edadma/bloomui'
+
+const App: React.FC = () => {
+  const [value, setValue] = useState(0)
+
+  return (
+    <InputNumber value={value} onChange={setValue} />
+  )
+}
+
+export default App
+```
+
+### Min/Max Limits
+
+Number input with minimum and maximum value constraints.
+
+```tsx
+import React, { useState } from 'react'
+import { InputNumber, Space } from '@edadma/bloomui'
+
+const App: React.FC = () => {
+  const [value, setValue] = useState(5)
+
+  return (
+    <Space direction="vertical" size="sm">
+      <InputNumber
+        value={value}
+        onChange={setValue}
+        min={0}
+        max={10}
+      />
+      <div className="text-sm text-base-content/70">
+        Value: {value} (min: 0, max: 10)
+      </div>
+    </Space>
+  )
+}
+
+export default App
+```
+
+### Custom Step
+
+Number input with custom increment/decrement step value.
+
+```tsx
+import React, { useState } from 'react'
+import { InputNumber, Space } from '@edadma/bloomui'
+
+const App: React.FC = () => {
+  const [value, setValue] = useState(0)
+
+  return (
+    <Space direction="vertical" size="sm">
+      <InputNumber
+        value={value}
+        onChange={setValue}
+        step={5}
+      />
+      <div className="text-sm text-base-content/70">
+        Step: 5
+      </div>
+    </Space>
+  )
+}
+
+export default App
+```
+
+### Decimal Precision
+
+Number input with decimal precision control.
+
+```tsx
+import React, { useState } from 'react'
+import { InputNumber, Space } from '@edadma/bloomui'
+
+const App: React.FC = () => {
+  const [value, setValue] = useState(0)
+
+  return (
+    <Space direction="vertical" size="sm">
+      <InputNumber
+        value={value}
+        onChange={setValue}
+        step={0.1}
+        precision={2}
+      />
+      <div className="text-sm text-base-content/70">
+        Precision: 2 decimal places
+      </div>
+    </Space>
+  )
+}
+
+export default App
+```
+
+### Sizes
+
+Four sizes: xs, sm, md (default), and lg.
+
+```tsx
+import React, { useState } from 'react'
+import { InputNumber, Space } from '@edadma/bloomui'
+
+const App: React.FC = () => {
+  const [value1, setValue1] = useState(0)
+  const [value2, setValue2] = useState(0)
+  const [value3, setValue3] = useState(0)
+  const [value4, setValue4] = useState(0)
+
+  return (
+    <Space direction="vertical" size="sm">
+      <InputNumber size="xs" value={value1} onChange={setValue1} />
+      <InputNumber size="sm" value={value2} onChange={setValue2} />
+      <InputNumber size="md" value={value3} onChange={setValue3} />
+      <InputNumber size="lg" value={value4} onChange={setValue4} />
+    </Space>
+  )
+}
+
+export default App
+```
+
+### Without Controls
+
+Number input without increment/decrement buttons.
+
+```tsx
+import React, { useState } from 'react'
+import { InputNumber } from '@edadma/bloomui'
+
+const App: React.FC = () => {
+  const [value, setValue] = useState(0)
+
+  return (
+    <InputNumber
+      value={value}
+      onChange={setValue}
+      controls={false}
+    />
+  )
+}
+
+export default App
+```
+
+### Disabled
+
+Disabled input number state.
+
+```tsx
+import React, { useState } from 'react'
+import { InputNumber, Space } from '@edadma/bloomui'
+
+const App: React.FC = () => {
+  const [value, setValue] = useState(42)
+
+  return (
+    <Space direction="vertical" size="sm">
+      <InputNumber value={value} onChange={setValue} />
+      <InputNumber value={42} onChange={() => {}} disabled />
+    </Space>
+  )
+}
+
+export default App
+```
+
+## API
+
+### Input Number
+
+| Property | Description | Type | Default |
+|----------|-------------|------|---------|
+| `value` | Current number value | `number` | `-` |
+| `onChange` | Callback when value changes | `(value: number) => void` | `-` |
+| `min` | Minimum value | `number` | `-` |
+| `max` | Maximum value | `number` | `-` |
+| `step` | Value increment/decrement step | `number` | `1` |
+| `precision` | Decimal precision for display | `number` | `-` |
+| `controls` | Show increment/decrement buttons | `boolean` | `true` |
+| `disabled` | Disabled state | `boolean` | `false` |
+| `size` | Input size | `xs' \| 'sm' \| 'md' \| 'lg` | `md` |
+| `className` | Additional CSS classes | `string` | `-` |
