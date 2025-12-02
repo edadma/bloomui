@@ -171,7 +171,7 @@ function App() {
 
 ## Demo
 
-View live examples and documentation at [https://edadma.github.io/bloomui](https://edadma.github.io/bloomui)
+View live examples and documentation at [https://bloomui.io](https://bloomui.io)
 
 ## Requirements
 

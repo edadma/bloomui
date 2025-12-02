@@ -8,7 +8,7 @@ A comprehensive React component library built with DaisyUI and Tailwind CSS.
 
 ## Demo
 
-View the live demo at: [https://edadma.github.io/bloomui](https://edadma.github.io/bloomui)
+View the documentation at: [https://bloomui.io](https://bloomui.io)
 
 ## Prerequisites
 
@@ -179,10 +179,10 @@ function App() {
 
 ## Development
 
-This is a pnpm monorepo with two packages:
+This is a pnpm monorepo with the following packages:
 
 - `packages/bloomui` - The component library
-- `packages/docs` - Documentation site
+- `packages/site` - Documentation website (bloomui.io)
 
 ### Setup
 

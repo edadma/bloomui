@@ -5,7 +5,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://petalui.io',
+  site: 'https://bloomui.io',
   integrations: [sitemap(), react()],
   vite: {
     plugins: [tailwindcss()],

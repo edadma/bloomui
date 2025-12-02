@@ -27,8 +27,6 @@ interface Props {
 }
 
 const { name, description, category, props, subComponents, methods } = Astro.props;
-const docsBase = 'https://edadma.github.io/bloomui';
-const slug = name.toLowerCase().replace(/\./g, '');
 ---
 
 <Layout title={`${name} - BloomUI`} description={description}>
@@ -46,12 +44,9 @@ const slug = name.toLowerCase().replace(/\./g, '');
       <h1 class="text-4xl font-bold" itemprop="name">{name}</h1>
       <p class="text-lg text-base-content/70 mt-2" itemprop="description">{description}</p>
 
-      <div class="flex gap-4 mt-4">
-        <a href={`${docsBase}/${slug}`} class="btn btn-primary btn-sm" target="_blank" rel="noopener">
-          Interactive Demo
-        </a>
+      <div class="mt-4">
         <a href={`https://github.com/edadma/bloomui/blob/main/packages/bloomui/src/components/${name.split('.')[0]}.tsx`} class="btn btn-outline btn-sm" target="_blank" rel="noopener">
-          Source
+          View Source
         </a>
       </div>
     </header>

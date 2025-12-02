@@ -1,9 +1,10 @@
 {
   "name": "bloomui-site",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
-    "dev": "astro dev",
+    "clean": "rm -rf .astro node_modules/.vite",
+    "dev": "npm run clean && astro dev --force",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
@@ -12,7 +13,7 @@
   "dependencies": {
     "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.2.0",
-    "@edadma/bloomui": "workspace:*",
+    "@edadma/bloomui": "^0.9.0",
     "@heroicons/react": "^2.2.0",
     "@tailwindcss/vite": "^4.0.0",
     "astro": "^5.9.0",

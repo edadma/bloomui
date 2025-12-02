@@ -172,6 +172,5 @@ expect(screen.getByRole('dialog')).toHaveAttribute('data-state', 'open');
 
 - Website: https://bloomui.io
 - Components: https://bloomui.io/components
-- Interactive Demos: https://edadma.github.io/bloomui/
 - GitHub: https://github.com/edadma/bloomui
 - npm: https://www.npmjs.com/package/@edadma/bloomui
