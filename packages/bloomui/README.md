@@ -1,10 +1,10 @@
 # BloomUI
 
-A comprehensive React component library built with DaisyUI and Tailwind CSS.
+A comprehensive React component library built with [DaisyUI](https://daisyui.com) and [Tailwind CSS](https://tailwindcss.com).
 
 ## Prerequisites
 
-BloomUI requires Tailwind CSS v4 and DaisyUI to be configured in your project.
+BloomUI requires Tailwind CSS v4 and DaisyUI v5 to be configured in your project.
 
 Install Tailwind and DaisyUI:
 
