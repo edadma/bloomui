@@ -18,6 +18,8 @@ const formItemApi = [
   { property: 'label', description: 'Field label text', type: 'string' },
   { property: 'rules', description: 'Validation rules', type: 'ValidationRule[]' },
   { property: 'required', description: 'Mark field as required (shorthand)', type: 'boolean', default: 'false' },
+  { property: 'valuePropName', description: 'Prop name for value (e.g., "checked" for checkboxes)', type: 'string', default: "'value'" },
+  { property: 'inline', description: 'Render with auto width instead of full width', type: 'boolean', default: 'false' },
   { property: 'children', description: 'Form control element (Input, Select, etc.)', type: 'React.ReactNode' },
   { property: 'className', description: 'Additional CSS classes', type: 'string' },
 ];

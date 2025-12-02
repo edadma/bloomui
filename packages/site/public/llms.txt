@@ -37,6 +37,7 @@ npm install @edadma/bloomui
 - [Container](/docs/container.md)
 - [Divider](/docs/divider.md)
 - [Fieldset](/docs/fieldset.md)
+- [Flex](/docs/flex.md)
 - [Footer](/docs/footer.md)
 - [Grid](/docs/grid.md)
 - [Hero](/docs/hero.md)
@@ -129,12 +130,15 @@ npm install @edadma/bloomui
 ## Quick Start
 
 ```tsx
-import { Form, Input, Button, Table } from '@edadma/bloomui';
+import { Form, Input, Button, Table, Checkbox } from '@edadma/bloomui';
 
 // Form example
 <Form onFinish={handleSubmit}>
-  <Form.Item name="email" label="Email" rules={[{ required: true, type: 'email' }]}>
+  <Form.Item name="email" label="Email" rules={{ required: true, type: 'email' }}>
     <Input />
+  </Form.Item>
+  <Form.Item name="remember" valuePropName="checked" inline>
+    <Checkbox>Remember me</Checkbox>
   </Form.Item>
   <Button type="primary" htmlType="submit">Submit</Button>
 </Form>
@@ -149,6 +153,29 @@ import { Form, Input, Button, Table } from '@edadma/bloomui';
   pagination={{ pageSize: 10 }}
 />
 ```
+
+## Form.Item Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| name | string | - | Field name (required for validation) |
+| label | string | - | Field label text |
+| rules | object | - | Validation rules (see below) |
+| required | boolean | false | Mark field as required (shorthand) |
+| valuePropName | string | 'value' | Prop name for value (e.g., 'checked' for checkboxes) |
+| inline | boolean | false | Render with auto width instead of full width |
+| className | string | - | Additional CSS classes |
+| children | ReactElement | - | Form control element (Input, Select, etc.) |
+
+### Validation Rules
+
+The `rules` prop accepts an object with:
+- `required`: boolean | string - Field is required
+- `type`: 'email' | 'url' | 'number' - Built-in type validation
+- `min`: number | { value: number; message: string } - Minimum length
+- `max`: number | { value: number; message: string } - Maximum length
+- `pattern`: { value: RegExp; message: string } - Custom regex validation
+- `validate`: (value) => boolean | string - Custom validation function
 
 ## Testing
 

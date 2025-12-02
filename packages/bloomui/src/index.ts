@@ -70,6 +70,9 @@ export type { FieldsetProps, FieldsetLegendProps } from './components/Fieldset'
 export { FileInput } from './components/FileInput'
 export type { FileInputProps } from './components/FileInput'
 
+export { Flex } from './components/Flex'
+export type { FlexProps } from './components/Flex'
+
 export { FloatButton } from './components/FloatButton'
 export type { FloatButtonProps, BackTopProps } from './components/FloatButton'
 

@@ -50,6 +50,7 @@ export interface FormItemProps {
     validate?: (value: any) => boolean | string | Promise<boolean | string>
   }
   valuePropName?: string
+  inline?: boolean
   className?: string
   children: React.ReactElement
 }
@@ -114,6 +115,7 @@ function FormItem({
   required = false,
   rules,
   valuePropName = 'value',
+  inline = false,
   className = '',
   children,
 }: FormItemProps) {
@@ -123,7 +125,7 @@ function FormItem({
 
   if (!name) {
     // Render without form control if no name provided
-    return <div className={`form-control w-full ${className}`}>{children}</div>
+    return <div className={`form-control ${inline ? 'w-auto' : 'w-full'} ${className}`}>{children}</div>
   }
 
   // Handle nested field names (for Form.List)
@@ -230,13 +232,13 @@ function FormItem({
         }
 
         const enhancedChild = isValidElement(children)
-          ? cloneElement(children as React.ReactElement<any>, { ...childProps, ...(children.props as any) })
+          ? cloneElement(children as React.ReactElement<any>, childProps)
           : children
 
         const isHorizontal = layout === 'horizontal'
 
         return (
-          <div className={`form-control w-full ${className}`}>
+          <div className={`form-control ${inline ? 'w-auto' : 'w-full'} ${className}`}>
             <div className={isHorizontal ? 'flex items-center gap-4' : ''}>
               {label && (
                 <label htmlFor={inputId} className={`label ${isHorizontal ? 'flex-shrink-0' : 'mb-2'}`}>
@@ -250,7 +252,7 @@ function FormItem({
                 {enhancedChild}
               </div>
             </div>
-            {!isHorizontal && (
+            {!isHorizontal && !inline && (
               <div className="label">
                 <span id={errorId} className="label-text-alt text-error min-h-[1.25rem]" role={errorMessage ? 'alert' : undefined}>
                   {errorMessage || (help && <span className="text-base-content/70">{help}</span>) || '\u00A0'}

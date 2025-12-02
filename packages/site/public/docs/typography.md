@@ -154,15 +154,17 @@ export default App
 
 | Property | Description | Type | Default |
 |----------|-------------|------|---------|
-| `copyable` | Enable copy to clipboard | `boolean \| { text?: string` | `-` |
-| `ellipsis` | Truncate with ellipsis | `boolean \| { rows?: number` | `-` |
-| `editable` | Enable inline editing | `boolean` | `false` |
+| `copyable` | Enable copy to clipboard | `boolean \| { text?: string }` | `-` |
+| `ellipsis` | Truncate with ellipsis | `boolean \| { rows?: number }` | `-` |
+| `size` | Text size | `'sm' \| 'base' \| 'lg' \| 'xl' \| '2xl'` | `-` |
+| `align` | Text alignment | `'left' \| 'center' \| 'right'` | `-` |
 | `className` | Additional CSS classes | `string` | `-` |
 
 ### Link
 
 | Property | Description | Type | Default |
 |----------|-------------|------|---------|
-| `href` | Link URL | `string` | `-` |
-| `type` | Link type for styling | `secondary' \| 'success' \| 'warning' \| 'danger` | `-` |
+| `href` | Link URL | `string` | `'#'` |
+| `size` | Text size | `'sm' \| 'base' \| 'lg' \| 'xl' \| '2xl'` | `-` |
+| `external` | Open in new tab with external icon | `boolean` | `false` |
 | `className` | Additional CSS classes | `string` | `-` |

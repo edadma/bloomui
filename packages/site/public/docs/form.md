@@ -59,20 +59,14 @@ const App: React.FC = () => {
       <Form.Item
         name="email"
         label="Email"
-        rules={[
-          { required: true, message: 'Please enter your email' },
-          { type: 'email', message: 'Please enter a valid email' }
-        ]}
+        rules={{ required: true, type: 'email' }}
       >
         <Input placeholder="name@example.com" />
       </Form.Item>
       <Form.Item
         name="password"
         label="Password"
-        rules={[
-          { required: true, message: 'Please enter your password' },
-          { min: 6, message: 'Password must be at least 6 characters' }
-        ]}
+        rules={{ required: true, min: 6 }}
       >
         <Input type="password" placeholder="Enter password" />
       </Form.Item>
@@ -81,6 +75,34 @@ const App: React.FC = () => {
           Submit
         </Button>
       </Form.Item>
+    </Form>
+  )
+}
+
+export default App
+```
+
+### Checkbox with valuePropName
+
+Use `valuePropName="checked"` for checkboxes and toggles. Use `inline` for auto-width items.
+
+```tsx
+import React from 'react'
+import { Form, Input, Checkbox, Button } from '@edadma/bloomui'
+
+const App: React.FC = () => {
+  return (
+    <Form onFinish={(values) => console.log(values)} initialValues={{ remember: false }}>
+      <Form.Item name="email" label="Email" rules={{ required: true, type: 'email' }}>
+        <Input placeholder="you@example.com" />
+      </Form.Item>
+      <div className="flex justify-between items-center mb-4">
+        <Form.Item name="remember" valuePropName="checked" inline>
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+        <a href="#" className="link link-primary text-sm">Forgot password?</a>
+      </div>
+      <Button type="primary" htmlType="submit" shape="block">Sign In</Button>
     </Form>
   )
 }
@@ -180,18 +202,34 @@ export default App
 |----------|-------------|------|---------|
 | `onFinish` | Success handler (called when validation passes) | `(values: any) => void` | `-` |
 | `onFinishFailed` | Failed handler (called when validation fails) | `(errorInfo: any) => void` | `-` |
-| `layout` | Form layout orientation | `horizontal' \| 'vertical' \| 'inline` | `vertical` |
+| `initialValues` | Initial form field values | `Record<string, any>` | `-` |
+| `layout` | Form layout orientation | `'horizontal' \| 'vertical' \| 'inline'` | `'vertical'` |
 | `disabled` | Disable all form fields | `boolean` | `false` |
 | `children` | Form content (Form.Item elements) | `React.ReactNode` | `-` |
 | `className` | Additional CSS classes | `string` | `-` |
 
-### Form Item
+### Form.Item
 
 | Property | Description | Type | Default |
 |----------|-------------|------|---------|
 | `name` | Field name (required for validation) | `string` | `-` |
 | `label` | Field label text | `string` | `-` |
-| `rules` | Validation rules | `ValidationRule[]` | `-` |
+| `rules` | Validation rules (see below) | `object` | `-` |
 | `required` | Mark field as required (shorthand) | `boolean` | `false` |
+| `valuePropName` | Prop name for value (e.g., `'checked'` for checkboxes) | `string` | `'value'` |
+| `inline` | Render with auto width instead of full width | `boolean` | `false` |
 | `children` | Form control element (Input, Select, etc.) | `React.ReactNode` | `-` |
 | `className` | Additional CSS classes | `string` | `-` |
+
+### Validation Rules
+
+The `rules` prop accepts an object with:
+
+| Property | Description | Type |
+|----------|-------------|------|
+| `required` | Field is required | `boolean \| string` |
+| `type` | Built-in type validation | `'email' \| 'url' \| 'number'` |
+| `min` | Minimum length | `number \| { value: number; message: string }` |
+| `max` | Maximum length | `number \| { value: number; message: string }` |
+| `pattern` | Custom regex validation | `{ value: RegExp; message: string }` |
+| `validate` | Custom validation function | `(value: any) => boolean \| string`

@@ -19,6 +19,8 @@ export interface ParagraphProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
   ellipsis?: boolean | { rows?: number; expandable?: boolean; onExpand?: () => void }
   copyable?: boolean
+  size?: TypographySize
+  align?: 'left' | 'center' | 'right'
 }
 
 export interface TextProps extends React.HTMLAttributes<HTMLSpanElement> {
@@ -34,9 +36,10 @@ export interface TextProps extends React.HTMLAttributes<HTMLSpanElement> {
 }
 
 export interface TypographyLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  href: string
+  href?: string
   children: React.ReactNode
   external?: boolean
+  size?: TypographySize
 }
 
 function CopyButton({ text }: { text: string }) {
@@ -146,7 +149,7 @@ const lineClampClasses = {
   6: 'line-clamp-6',
 } as const
 
-function Paragraph({ children, ellipsis, copyable, className = '', ...rest }: ParagraphProps) {
+function Paragraph({ children, ellipsis, copyable, size, align, className = '', ...rest }: ParagraphProps) {
   const [expanded, setExpanded] = useState(false)
   const textContent = typeof children === 'string' ? children : ''
 
@@ -158,7 +161,20 @@ function Paragraph({ children, ellipsis, copyable, className = '', ...rest }: Pa
   const ellipsisClass =
     ellipsis && !expanded ? lineClampClasses[clampedRows] : ''
 
-  const classes = `group mb-4 ${ellipsisClass} ${className}`.trim()
+  const classes = [
+    'group',
+    'mb-4',
+    ellipsisClass,
+    size === 'sm' && 'text-sm',
+    size === 'base' && 'text-base',
+    size === 'lg' && 'text-lg',
+    size === 'xl' && 'text-xl',
+    size === '2xl' && 'text-2xl',
+    align === 'left' && 'text-left',
+    align === 'center' && 'text-center',
+    align === 'right' && 'text-right',
+    className,
+  ].filter(Boolean).join(' ')
 
   return (
     <div {...rest}>
@@ -244,17 +260,28 @@ function Text({
   )
 }
 
-function Link({ href, children, target, external, className = '', ...rest }: TypographyLinkProps) {
-  const isExternal = external || href.startsWith('http')
+function Link({ href = '#', children, target, external, size, className = '', ...rest }: TypographyLinkProps) {
+  const isExternal = external || (href && href.startsWith('http'))
   const linkTarget = target || (isExternal ? '_blank' : undefined)
   const rel = isExternal ? 'noopener noreferrer' : undefined
+
+  const classes = [
+    'link',
+    'link-primary',
+    size === 'sm' && 'text-sm',
+    size === 'base' && 'text-base',
+    size === 'lg' && 'text-lg',
+    size === 'xl' && 'text-xl',
+    size === '2xl' && 'text-2xl',
+    className,
+  ].filter(Boolean).join(' ')
 
   return (
     <a
       href={href}
       target={linkTarget}
       rel={rel}
-      className={`link link-primary ${className}`}
+      className={classes}
       {...rest}
     >
       {children}

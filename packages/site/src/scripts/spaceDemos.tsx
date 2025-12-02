@@ -3,50 +3,50 @@ import { createRoot } from 'react-dom/client';
 import { Space, Button, Badge, Card } from '@edadma/bloomui';
 
 const demos: Record<string, React.ReactNode> = {
-  vertical: (
+  horizontal: (
     <Space>
       <Button type="primary">Button 1</Button>
       <Button type="secondary">Button 2</Button>
       <Button type="accent">Button 3</Button>
     </Space>
   ),
-  horizontal: (
-    <Space direction="horizontal">
+  vertical: (
+    <Space direction="vertical">
       <Button type="primary">Button 1</Button>
       <Button type="secondary">Button 2</Button>
       <Button type="accent">Button 3</Button>
     </Space>
   ),
   sizes: (
-    <Space>
-      <Space size="xs" direction="horizontal">
+    <Space direction="vertical">
+      <Space size="xs">
         <Badge>Extra Small</Badge>
         <Badge>Spacing</Badge>
       </Space>
 
-      <Space size="sm" direction="horizontal">
+      <Space size="sm">
         <Badge>Small</Badge>
         <Badge>Spacing</Badge>
       </Space>
 
-      <Space size="md" direction="horizontal">
+      <Space size="md">
         <Badge>Medium</Badge>
         <Badge>Spacing</Badge>
       </Space>
 
-      <Space size="lg" direction="horizontal">
+      <Space size="lg">
         <Badge>Large</Badge>
         <Badge>Spacing</Badge>
       </Space>
 
-      <Space size="xl" direction="horizontal">
+      <Space size="xl">
         <Badge>Extra Large</Badge>
         <Badge>Spacing</Badge>
       </Space>
     </Space>
   ),
   alignment: (
-    <Space direction="horizontal" align="center">
+    <Space align="center">
       <Button type="primary" size="xs">
         Small
       </Button>
@@ -59,7 +59,7 @@ const demos: Record<string, React.ReactNode> = {
     </Space>
   ),
   wrap: (
-    <Space direction="horizontal" wrap>
+    <Space wrap>
       <Badge>Tag 1</Badge>
       <Badge>Tag 2</Badge>
       <Badge>Tag 3</Badge>
@@ -71,9 +71,9 @@ const demos: Record<string, React.ReactNode> = {
     </Space>
   ),
   nested: (
-    <Space>
+    <Space direction="vertical">
       <Card title="Card 1">
-        <Space direction="horizontal">
+        <Space>
           <Button type="primary" size="sm">
             Action 1
           </Button>
@@ -84,7 +84,7 @@ const demos: Record<string, React.ReactNode> = {
       </Card>
 
       <Card title="Card 2">
-        <Space direction="horizontal">
+        <Space>
           <Button type="primary" size="sm">
             Action 1
           </Button>

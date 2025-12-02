@@ -4,18 +4,19 @@ import ApiTable from '../../components/ApiTable.astro';
 import { Code } from 'astro:components';
 
 const spaceApi = [
-  { property: 'direction', description: 'Layout direction', type: "'horizontal' | 'vertical'", default: "'vertical'" },
+  { property: 'direction', description: 'Layout direction', type: "'horizontal' | 'vertical'", default: "'horizontal'" },
   { property: 'size', description: 'Spacing size between children', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | number", default: "'md'" },
   { property: 'align', description: 'Alignment of items', type: "'start' | 'end' | 'center' | 'baseline' | 'stretch'", default: '-' },
-  { property: 'wrap', description: 'Whether to wrap items (horizontal only)', type: 'boolean', default: 'false' },
+  { property: 'justify', description: 'Justification of items along main axis', type: "'start' | 'end' | 'center' | 'between' | 'around' | 'evenly'", default: '-' },
+  { property: 'wrap', description: 'Whether to wrap items', type: 'boolean', default: 'false' },
   { property: 'className', description: 'Additional CSS classes', type: 'string', default: '-' },
 ];
 
 const examples = [
   {
-    id: 'vertical',
-    title: 'Vertical Space',
-    description: 'Default vertical spacing between elements.',
+    id: 'horizontal',
+    title: 'Horizontal Space',
+    description: 'Default horizontal spacing between elements.',
     code: `import React from 'react'
 import { Space, Button } from '@edadma/bloomui'
 
@@ -30,14 +31,14 @@ const App: React.FC = () => (
 export default App`,
   },
   {
-    id: 'horizontal',
-    title: 'Horizontal Space',
-    description: 'Horizontal spacing between elements.',
+    id: 'vertical',
+    title: 'Vertical Space',
+    description: 'Vertical spacing between elements.',
     code: `import React from 'react'
 import { Space, Button } from '@edadma/bloomui'
 
 const App: React.FC = () => (
-  <Space direction="horizontal">
+  <Space direction="vertical">
     <Button type="primary">Button 1</Button>
     <Button type="secondary">Button 2</Button>
     <Button type="accent">Button 3</Button>
@@ -54,32 +55,32 @@ export default App`,
 import { Space, Badge } from '@edadma/bloomui'
 
 const App: React.FC = () => (
-  <>
-    <Space size="xs" direction="horizontal">
+  <Space direction="vertical">
+    <Space size="xs">
       <Badge>Extra Small</Badge>
       <Badge>Spacing</Badge>
     </Space>
 
-    <Space size="sm" direction="horizontal">
+    <Space size="sm">
       <Badge>Small</Badge>
       <Badge>Spacing</Badge>
     </Space>
 
-    <Space size="md" direction="horizontal">
+    <Space size="md">
       <Badge>Medium</Badge>
       <Badge>Spacing</Badge>
     </Space>
 
-    <Space size="lg" direction="horizontal">
+    <Space size="lg">
       <Badge>Large</Badge>
       <Badge>Spacing</Badge>
     </Space>
 
-    <Space size="xl" direction="horizontal">
+    <Space size="xl">
       <Badge>Extra Large</Badge>
       <Badge>Spacing</Badge>
     </Space>
-  </>
+  </Space>
 )
 
 export default App`,
@@ -92,7 +93,7 @@ export default App`,
 import { Space, Button } from '@edadma/bloomui'
 
 const App: React.FC = () => (
-  <Space direction="horizontal" align="center">
+  <Space align="center">
     <Button type="primary" size="xs">Small</Button>
     <Button type="secondary" size="md">Medium</Button>
     <Button type="accent" size="lg">Large</Button>
@@ -109,7 +110,7 @@ export default App`,
 import { Space, Badge } from '@edadma/bloomui'
 
 const App: React.FC = () => (
-  <Space direction="horizontal" wrap>
+  <Space wrap>
     <Badge>Tag 1</Badge>
     <Badge>Tag 2</Badge>
     <Badge>Tag 3</Badge>
@@ -131,16 +132,16 @@ export default App`,
 import { Space, Card, Button } from '@edadma/bloomui'
 
 const App: React.FC = () => (
-  <Space>
+  <Space direction="vertical">
     <Card title="Card 1">
-      <Space direction="horizontal">
+      <Space>
         <Button type="primary" size="sm">Action 1</Button>
         <Button type="secondary" size="sm">Action 2</Button>
       </Space>
     </Card>
 
     <Card title="Card 2">
-      <Space direction="horizontal">
+      <Space>
         <Button type="primary" size="sm">Action 1</Button>
         <Button type="secondary" size="sm">Action 2</Button>
       </Space>

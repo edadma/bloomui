@@ -6,7 +6,7 @@ Set consistent spacing between components.
 
 ## Examples
 
-### Vertical
+### Horizontal
 
 ```tsx
 import React from 'react'
@@ -23,14 +23,14 @@ const App: React.FC = () => (
 export default App
 ```
 
-### Horizontal
+### Vertical
 
 ```tsx
 import React from 'react'
 import { Space, Button } from '@edadma/bloomui'
 
 const App: React.FC = () => (
-  <Space direction="horizontal">
+  <Space direction="vertical">
     <Button type="primary">Button 1</Button>
     <Button type="secondary">Button 2</Button>
     <Button type="accent">Button 3</Button>
@@ -47,32 +47,32 @@ import React from 'react'
 import { Space, Badge } from '@edadma/bloomui'
 
 const App: React.FC = () => (
-  <>
-    <Space size="xs" direction="horizontal">
+  <Space direction="vertical">
+    <Space size="xs">
       <Badge>Extra Small</Badge>
       <Badge>Spacing</Badge>
     </Space>
 
-    <Space size="sm" direction="horizontal">
+    <Space size="sm">
       <Badge>Small</Badge>
       <Badge>Spacing</Badge>
     </Space>
 
-    <Space size="md" direction="horizontal">
+    <Space size="md">
       <Badge>Medium</Badge>
       <Badge>Spacing</Badge>
     </Space>
 
-    <Space size="lg" direction="horizontal">
+    <Space size="lg">
       <Badge>Large</Badge>
       <Badge>Spacing</Badge>
     </Space>
 
-    <Space size="xl" direction="horizontal">
+    <Space size="xl">
       <Badge>Extra Large</Badge>
       <Badge>Spacing</Badge>
     </Space>
-  </>
+  </Space>
 )
 
 export default App
@@ -85,7 +85,7 @@ import React from 'react'
 import { Space, Button } from '@edadma/bloomui'
 
 const App: React.FC = () => (
-  <Space direction="horizontal" align="center">
+  <Space align="center">
     <Button type="primary" size="xs">Small</Button>
     <Button type="secondary" size="md">Medium</Button>
     <Button type="accent" size="lg">Large</Button>
@@ -102,7 +102,7 @@ import React from 'react'
 import { Space, Badge } from '@edadma/bloomui'
 
 const App: React.FC = () => (
-  <Space direction="horizontal" wrap>
+  <Space wrap>
     <Badge>Tag 1</Badge>
     <Badge>Tag 2</Badge>
     <Badge>Tag 3</Badge>
@@ -124,16 +124,16 @@ import React from 'react'
 import { Space, Card, Button } from '@edadma/bloomui'
 
 const App: React.FC = () => (
-  <Space>
+  <Space direction="vertical">
     <Card title="Card 1">
-      <Space direction="horizontal">
+      <Space>
         <Button type="primary" size="sm">Action 1</Button>
         <Button type="secondary" size="sm">Action 2</Button>
       </Space>
     </Card>
 
     <Card title="Card 2">
-      <Space direction="horizontal">
+      <Space>
         <Button type="primary" size="sm">Action 1</Button>
         <Button type="secondary" size="sm">Action 2</Button>
       </Space>
@@ -143,3 +143,14 @@ const App: React.FC = () => (
 
 export default App
 ```
+
+## API
+
+| Property | Description | Type | Default |
+|----------|-------------|------|---------|
+| `direction` | Layout direction | `'horizontal' \| 'vertical'` | `'horizontal'` |
+| `size` | Spacing size between children | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| number` | `'md'` |
+| `align` | Alignment of items | `'start' \| 'end' \| 'center' \| 'baseline' \| 'stretch'` | `-` |
+| `justify` | Justification along main axis | `'start' \| 'end' \| 'center' \| 'between' \| 'around' \| 'evenly'` | `-` |
+| `wrap` | Whether to wrap items | `boolean` | `false` |
+| `className` | Additional CSS classes | `string` | `-` |

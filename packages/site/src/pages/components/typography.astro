@@ -32,13 +32,15 @@ const textApi = [
 const paragraphApi = [
   { property: 'copyable', description: 'Enable copy to clipboard', type: 'boolean | { text?: string }', default: 'false' },
   { property: 'ellipsis', description: 'Truncate with ellipsis', type: 'boolean | { rows?: number }', default: 'false' },
-  { property: 'editable', description: 'Enable inline editing', type: 'boolean', default: 'false' },
+  { property: 'size', description: 'Text size', type: "'sm' | 'base' | 'lg' | 'xl' | '2xl'", default: '-' },
+  { property: 'align', description: 'Text alignment', type: "'left' | 'center' | 'right'", default: '-' },
   { property: 'className', description: 'Additional CSS classes', type: 'string', default: '-' },
 ];
 
 const linkApi = [
-  { property: 'href', description: 'Link URL', type: 'string', default: '-' },
-  { property: 'type', description: 'Link type for styling', type: "'secondary' | 'success' | 'warning' | 'danger'", default: '-' },
+  { property: 'href', description: 'Link URL', type: 'string', default: "'#'" },
+  { property: 'size', description: 'Text size', type: "'sm' | 'base' | 'lg' | 'xl' | '2xl'", default: '-' },
+  { property: 'external', description: 'Open in new tab with external icon', type: 'boolean', default: 'false' },
   { property: 'className', description: 'Additional CSS classes', type: 'string', default: '-' },
 ];
 
