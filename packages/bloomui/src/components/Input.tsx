@@ -105,8 +105,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     const inputClasses = [
       'input',
-      'w-full',
-      bordered ? 'input-bordered' : 'border-0',
+      !bordered && 'border-0',
       ghost && 'input-ghost',
       size && sizeClasses[size],
       color && colorClasses[color],

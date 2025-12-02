@@ -182,7 +182,7 @@ export default App
 | `size` | Input size | `xs' \| 'sm' \| 'md' \| 'lg' \| 'xl` | `md` |
 | `color` | Input color variant | `neutral' \| 'primary' \| 'secondary' \| 'accent' \| 'info' \| 'success' \| 'warning' \| 'error` | `-` |
 | `ghost` | Ghost variant (transparent) | `boolean` | `false` |
-| `bordered` | Show border | `boolean` | `true` |
+| `bordered` | Show border (set to false to remove) | `boolean` | `true` |
 | `mask` | Input mask pattern. Use # for digits, A for letters, * for alphanumeric | `string` | `-` |
 | `maskPlaceholder` | Placeholder character shown in mask | `string` | `_` |
 | `disabled` | Disabled state | `boolean` | `false` |
