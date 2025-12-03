@@ -12,7 +12,7 @@ View the documentation at: [https://bloomui.io](https://bloomui.io)
 
 ## Prerequisites
 
-BloomUI requires Tailwind CSS v4 and DaisyUI to be configured in your project.
+BloomUI requires Tailwind CSS v4 and DaisyUI v5 to be configured in your project.
 
 Install Tailwind and DaisyUI:
 
