@@ -81,6 +81,7 @@ npm install asterui
 - [Range](https://asterui.com/docs/range.md)
 - [Rating](https://asterui.com/docs/rating.md)
 - [Select](https://asterui.com/docs/select.md)
+- [Segmented](https://asterui.com/docs/segmented.md)
 - [Textarea](https://asterui.com/docs/textarea.md)
 - [TimePicker](https://asterui.com/docs/timepicker.md)
 - [Toggle](https://asterui.com/docs/toggle.md)

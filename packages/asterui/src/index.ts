@@ -190,6 +190,9 @@ export type { ResultProps, ResultStatus } from './components/Result'
 export { Select } from './components/Select'
 export type { SelectProps } from './components/Select'
 
+export { Segmented } from './components/Segmented'
+export type { SegmentedProps, SegmentedOption, SegmentedValue } from './components/Segmented'
+
 export { Skeleton } from './components/Skeleton'
 export type { SkeletonProps } from './components/Skeleton'
 
