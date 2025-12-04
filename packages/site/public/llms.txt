@@ -131,6 +131,20 @@ npm install asterui
 - [Phone](https://asterui.com/docs/phone.md)
 - [Window](https://asterui.com/docs/window.md)
 
+### Hooks
+
+- [Hooks](https://asterui.com/docs/hooks.md) - Utility hooks for common UI patterns:
+  - `useDisclosure` - Modal/drawer open/close state
+  - `useClipboard` - Copy to clipboard with feedback
+  - `useLocalStorage` - Persistent state with cross-tab sync
+  - `useDebounce` - Delay value updates
+  - `useClickOutside` - Detect clicks outside element
+  - `usePrevious` - Access previous render value
+  - `useHover` - Track element hover state
+  - `useKeyPress` / `useKeyPressCallback` - Detect key presses
+  - `useWindowSize` - Track window dimensions
+  - `useBreakpoint` - Responsive breakpoint detection (see Responsive)
+
 ## Quick Start
 
 ```tsx
