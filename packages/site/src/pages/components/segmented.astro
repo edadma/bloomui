@@ -4,7 +4,6 @@ import ApiTable from '../../components/ApiTable.astro';
 import { Code } from 'astro:components';
 
 const segmentedApi = [
-  { property: 'options', description: 'Options to display', type: "(string | number | SegmentedOption)[]", default: '-' },
   { property: 'value', description: 'Currently selected value (controlled)', type: 'string | number', default: '-' },
   { property: 'defaultValue', description: 'Default selected value (uncontrolled)', type: 'string | number', default: '-' },
   { property: 'onChange', description: 'Callback when selection changes', type: '(value: string | number) => void', default: '-' },
@@ -12,20 +11,22 @@ const segmentedApi = [
   { property: 'block', description: 'Take full width of container', type: 'boolean', default: 'false' },
   { property: 'disabled', description: 'Disable all options', type: 'boolean', default: 'false' },
   { property: 'className', description: 'Additional CSS class', type: 'string', default: '-' },
+  { property: 'children', description: 'Segmented.Item components', type: 'ReactNode', default: '-' },
 ];
 
-const optionApi = [
-  { property: 'label', description: 'Display label', type: 'ReactNode', default: '-' },
-  { property: 'value', description: 'Option value', type: 'string | number', default: '-' },
+const itemApi = [
+  { property: 'value', description: 'Option value (required)', type: 'string | number', default: '-' },
   { property: 'disabled', description: 'Disable this option', type: 'boolean', default: 'false' },
   { property: 'icon', description: 'Icon before label', type: 'ReactNode', default: '-' },
+  { property: 'children', description: 'Label content', type: 'ReactNode', default: '-' },
+  { property: 'className', description: 'Additional CSS class', type: 'string', default: '-' },
 ];
 
 const examples = [
   {
     id: 'basic',
     title: 'Basic Usage',
-    description: 'Simple string options for view switching.',
+    description: 'Simple segmented control for view switching.',
     code: `import React, { useState } from 'react'
 import { Segmented } from 'asterui'
 
@@ -33,11 +34,14 @@ const App: React.FC = () => {
   const [view, setView] = useState('List')
 
   return (
-    <Segmented
-      options={['List', 'Grid', 'Table']}
-      value={view}
-      onChange={setView}
-    />
+    <div>
+      <Segmented value={view} onChange={setView}>
+        <Segmented.Item value="List">List</Segmented.Item>
+        <Segmented.Item value="Grid">Grid</Segmented.Item>
+        <Segmented.Item value="Table">Table</Segmented.Item>
+      </Segmented>
+      <p className="mt-2 text-sm text-base-content/70">Selected: {view}</p>
+    </div>
   )
 }
 
@@ -45,8 +49,8 @@ export default App`,
   },
   {
     id: 'objects',
-    title: 'Object Options',
-    description: 'Options with labels, values, and disabled states.',
+    title: 'Disabled Items',
+    description: 'Individual items can be disabled.',
     code: `import React, { useState } from 'react'
 import { Segmented } from 'asterui'
 
@@ -54,16 +58,15 @@ const App: React.FC = () => {
   const [period, setPeriod] = useState('week')
 
   return (
-    <Segmented
-      options={[
-        { label: 'Daily', value: 'day' },
-        { label: 'Weekly', value: 'week' },
-        { label: 'Monthly', value: 'month' },
-        { label: 'Yearly', value: 'year', disabled: true },
-      ]}
-      value={period}
-      onChange={setPeriod}
-    />
+    <div>
+      <Segmented value={period} onChange={setPeriod}>
+        <Segmented.Item value="day">Daily</Segmented.Item>
+        <Segmented.Item value="week">Weekly</Segmented.Item>
+        <Segmented.Item value="month">Monthly</Segmented.Item>
+        <Segmented.Item value="year" disabled>Yearly</Segmented.Item>
+      </Segmented>
+      <p className="mt-2 text-sm text-base-content/70">Selected: {period}</p>
+    </div>
   )
 }
 
@@ -78,10 +81,26 @@ import { Segmented, Space } from 'asterui'
 
 const App: React.FC = () => (
   <Space direction="vertical" gap="md">
-    <Segmented options={['S', 'M', 'L']} size="xs" defaultValue="M" />
-    <Segmented options={['S', 'M', 'L']} size="sm" defaultValue="M" />
-    <Segmented options={['S', 'M', 'L']} size="md" defaultValue="M" />
-    <Segmented options={['S', 'M', 'L']} size="lg" defaultValue="M" />
+    <Segmented size="xs" defaultValue="M">
+      <Segmented.Item value="S">S</Segmented.Item>
+      <Segmented.Item value="M">M</Segmented.Item>
+      <Segmented.Item value="L">L</Segmented.Item>
+    </Segmented>
+    <Segmented size="sm" defaultValue="M">
+      <Segmented.Item value="S">S</Segmented.Item>
+      <Segmented.Item value="M">M</Segmented.Item>
+      <Segmented.Item value="L">L</Segmented.Item>
+    </Segmented>
+    <Segmented size="md" defaultValue="M">
+      <Segmented.Item value="S">S</Segmented.Item>
+      <Segmented.Item value="M">M</Segmented.Item>
+      <Segmented.Item value="L">L</Segmented.Item>
+    </Segmented>
+    <Segmented size="lg" defaultValue="M">
+      <Segmented.Item value="S">S</Segmented.Item>
+      <Segmented.Item value="M">M</Segmented.Item>
+      <Segmented.Item value="L">L</Segmented.Item>
+    </Segmented>
   </Space>
 )
 
@@ -99,12 +118,11 @@ const App: React.FC = () => {
 
   return (
     <div className="w-full max-w-md">
-      <Segmented
-        options={['Left', 'Center', 'Right']}
-        value={align}
-        onChange={setAlign}
-        block
-      />
+      <Segmented value={align} onChange={setAlign} block>
+        <Segmented.Item value="Left">Left</Segmented.Item>
+        <Segmented.Item value="Center">Center</Segmented.Item>
+        <Segmented.Item value="Right">Right</Segmented.Item>
+      </Segmented>
     </div>
   )
 }
@@ -119,11 +137,11 @@ export default App`,
 import { Segmented } from 'asterui'
 
 const App: React.FC = () => (
-  <Segmented
-    options={['Option A', 'Option B', 'Option C']}
-    defaultValue="Option A"
-    disabled
-  />
+  <Segmented defaultValue="A" disabled>
+    <Segmented.Item value="A">Option A</Segmented.Item>
+    <Segmented.Item value="B">Option B</Segmented.Item>
+    <Segmented.Item value="C">Option C</Segmented.Item>
+  </Segmented>
 )
 
 export default App`,
@@ -134,31 +152,23 @@ export default App`,
     description: 'Options with icons and labels.',
     code: `import React, { useState } from 'react'
 import { Segmented } from 'asterui'
-
-const ListIcon = () => (
-  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-  </svg>
-)
-
-const GridIcon = () => (
-  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-  </svg>
-)
+import { Bars3Icon, Squares2X2Icon } from '@heroicons/react/24/outline'
 
 const App: React.FC = () => {
   const [view, setView] = useState('list')
 
   return (
-    <Segmented
-      options={[
-        { label: 'List', value: 'list', icon: <ListIcon /> },
-        { label: 'Grid', value: 'grid', icon: <GridIcon /> },
-      ]}
-      value={view}
-      onChange={setView}
-    />
+    <div>
+      <Segmented value={view} onChange={setView}>
+        <Segmented.Item value="list" icon={<Bars3Icon className="w-4 h-4" />}>
+          List
+        </Segmented.Item>
+        <Segmented.Item value="grid" icon={<Squares2X2Icon className="w-4 h-4" />}>
+          Grid
+        </Segmented.Item>
+      </Segmented>
+      <p className="mt-2 text-sm text-base-content/70">View: {view}</p>
+    </div>
   )
 }
 
@@ -220,7 +230,7 @@ export default App`,
       <h2 class="text-2xl font-bold mb-6">API</h2>
       <ApiTable title="Segmented" data={segmentedApi} />
       <div class="mt-6">
-        <ApiTable title="SegmentedOption" data={optionApi} />
+        <ApiTable title="Segmented.Item" data={itemApi} />
       </div>
     </section>
 
@@ -275,7 +285,7 @@ export default App`,
 </style>
 
 <script>
-  import '../../scripts/toggleDemos.tsx';
+  import '../../scripts/segmentedDemos.tsx';
   document.querySelectorAll('.toggle-code').forEach(btn => {
     btn.addEventListener('click', () => {
       const card = btn.closest('.example-card');

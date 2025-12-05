@@ -191,7 +191,7 @@ export { Select } from './components/Select'
 export type { SelectProps } from './components/Select'
 
 export { Segmented } from './components/Segmented'
-export type { SegmentedProps, SegmentedOption, SegmentedValue } from './components/Segmented'
+export type { SegmentedProps, SegmentedItemProps, SegmentedValue } from './components/Segmented'
 
 export { Skeleton } from './components/Skeleton'
 export type { SkeletonProps } from './components/Skeleton'
@@ -234,6 +234,9 @@ export type { TimelineProps, TimelineItemProps } from './components/Timeline'
 
 export { Toggle } from './components/Toggle'
 export type { ToggleProps } from './components/Toggle'
+
+export { Tour } from './components/Tour'
+export type { TourProps, TourStepProps, TourPlacement } from './components/Tour'
 
 export { Tooltip } from './components/Tooltip'
 export type { TooltipProps } from './components/Tooltip'

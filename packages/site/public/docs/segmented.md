@@ -8,30 +8,33 @@ Inline toggle for switching between mutually exclusive options.
 
 ### Basic Usage
 
-Simple string options.
+Simple compound component pattern.
 
 ```tsx
 import React, { useState } from 'react'
 import { Segmented } from 'asterui'
 
 const App: React.FC = () => {
-  const [view, setView] = useState('list')
+  const [view, setView] = useState('List')
 
   return (
-    <Segmented
-      options={['List', 'Grid', 'Table']}
-      value={view}
-      onChange={setView}
-    />
+    <div>
+      <Segmented value={view} onChange={setView}>
+        <Segmented.Item value="List">List</Segmented.Item>
+        <Segmented.Item value="Grid">Grid</Segmented.Item>
+        <Segmented.Item value="Table">Table</Segmented.Item>
+      </Segmented>
+      <p className="mt-2 text-sm text-base-content/70">Selected: {view}</p>
+    </div>
   )
 }
 
 export default App
 ```
 
-### With Object Options
+### Disabled Items
 
-Options with labels, values, and disabled states.
+Individual items can be disabled.
 
 ```tsx
 import React, { useState } from 'react'
@@ -41,16 +44,15 @@ const App: React.FC = () => {
   const [period, setPeriod] = useState('week')
 
   return (
-    <Segmented
-      options={[
-        { label: 'Daily', value: 'day' },
-        { label: 'Weekly', value: 'week' },
-        { label: 'Monthly', value: 'month' },
-        { label: 'Yearly', value: 'year', disabled: true },
-      ]}
-      value={period}
-      onChange={setPeriod}
-    />
+    <div>
+      <Segmented value={period} onChange={setPeriod}>
+        <Segmented.Item value="day">Daily</Segmented.Item>
+        <Segmented.Item value="week">Weekly</Segmented.Item>
+        <Segmented.Item value="month">Monthly</Segmented.Item>
+        <Segmented.Item value="year" disabled>Yearly</Segmented.Item>
+      </Segmented>
+      <p className="mt-2 text-sm text-base-content/70">Selected: {period}</p>
+    </div>
   )
 }
 
@@ -59,36 +61,28 @@ export default App
 
 ### With Icons
 
-Options with icons and labels.
+Options with icons and labels using Heroicons.
 
 ```tsx
 import React, { useState } from 'react'
 import { Segmented } from 'asterui'
-
-const ListIcon = () => (
-  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-  </svg>
-)
-
-const GridIcon = () => (
-  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-  </svg>
-)
+import { Bars3Icon, Squares2X2Icon } from '@heroicons/react/24/outline'
 
 const App: React.FC = () => {
   const [view, setView] = useState('list')
 
   return (
-    <Segmented
-      options={[
-        { label: 'List', value: 'list', icon: <ListIcon /> },
-        { label: 'Grid', value: 'grid', icon: <GridIcon /> },
-      ]}
-      value={view}
-      onChange={setView}
-    />
+    <div>
+      <Segmented value={view} onChange={setView}>
+        <Segmented.Item value="list" icon={<Bars3Icon className="w-4 h-4" />}>
+          List
+        </Segmented.Item>
+        <Segmented.Item value="grid" icon={<Squares2X2Icon className="w-4 h-4" />}>
+          Grid
+        </Segmented.Item>
+      </Segmented>
+      <p className="mt-2 text-sm text-base-content/70">View: {view}</p>
+    </div>
   )
 }
 
@@ -105,10 +99,16 @@ import { Segmented, Space } from 'asterui'
 
 const App: React.FC = () => (
   <Space direction="vertical">
-    <Segmented options={['S', 'M', 'L']} size="xs" defaultValue="M" />
-    <Segmented options={['S', 'M', 'L']} size="sm" defaultValue="M" />
-    <Segmented options={['S', 'M', 'L']} size="md" defaultValue="M" />
-    <Segmented options={['S', 'M', 'L']} size="lg" defaultValue="M" />
+    <Segmented size="xs" defaultValue="M">
+      <Segmented.Item value="S">S</Segmented.Item>
+      <Segmented.Item value="M">M</Segmented.Item>
+      <Segmented.Item value="L">L</Segmented.Item>
+    </Segmented>
+    <Segmented size="lg" defaultValue="M">
+      <Segmented.Item value="S">S</Segmented.Item>
+      <Segmented.Item value="M">M</Segmented.Item>
+      <Segmented.Item value="L">L</Segmented.Item>
+    </Segmented>
   </Space>
 )
 
@@ -124,16 +124,15 @@ import React, { useState } from 'react'
 import { Segmented } from 'asterui'
 
 const App: React.FC = () => {
-  const [align, setAlign] = useState('center')
+  const [align, setAlign] = useState('Center')
 
   return (
     <div className="w-full max-w-md">
-      <Segmented
-        options={['Left', 'Center', 'Right']}
-        value={align}
-        onChange={setAlign}
-        block
-      />
+      <Segmented value={align} onChange={setAlign} block>
+        <Segmented.Item value="Left">Left</Segmented.Item>
+        <Segmented.Item value="Center">Center</Segmented.Item>
+        <Segmented.Item value="Right">Right</Segmented.Item>
+      </Segmented>
     </div>
   )
 }
@@ -150,11 +149,11 @@ import React from 'react'
 import { Segmented } from 'asterui'
 
 const App: React.FC = () => (
-  <Segmented
-    options={['Option A', 'Option B', 'Option C']}
-    defaultValue="Option A"
-    onChange={(value) => console.log('Selected:', value)}
-  />
+  <Segmented defaultValue="A" onChange={(value) => console.log('Selected:', value)}>
+    <Segmented.Item value="A">Option A</Segmented.Item>
+    <Segmented.Item value="B">Option B</Segmented.Item>
+    <Segmented.Item value="C">Option C</Segmented.Item>
+  </Segmented>
 )
 
 export default App
@@ -166,7 +165,6 @@ export default App
 
 | Property | Description | Type | Default |
 |----------|-------------|------|---------|
-| `options` | Options to display | `(string \| number \| SegmentedOption)[]` | `-` |
 | `value` | Currently selected value (controlled) | `string \| number` | `-` |
 | `defaultValue` | Default selected value (uncontrolled) | `string \| number` | `-` |
 | `onChange` | Callback when selection changes | `(value: string \| number) => void` | `-` |
@@ -174,15 +172,17 @@ export default App
 | `block` | Take full width of container | `boolean` | `false` |
 | `disabled` | Disable all options | `boolean` | `false` |
 | `className` | Additional CSS class | `string` | `-` |
+| `children` | Segmented.Item components | `ReactNode` | `-` |
 
-### SegmentedOption
+### Segmented.Item Props
 
 | Property | Description | Type | Default |
 |----------|-------------|------|---------|
-| `label` | Display label | `ReactNode` | `-` |
-| `value` | Option value | `string \| number` | `-` |
+| `value` | Option value (required) | `string \| number` | `-` |
 | `disabled` | Disable this option | `boolean` | `false` |
 | `icon` | Icon before label | `ReactNode` | `-` |
+| `children` | Label content | `ReactNode` | `-` |
+| `className` | Additional CSS class | `string` | `-` |
 
 ## When to Use
 
