@@ -49,7 +49,7 @@ const BoxedDemo = () => {
 }
 
 const CallbackDemo = () => {
-  const target = Date.now() + 10 * 1000
+  const target = Date.now() + 5 * 60 * 1000 // 5 minutes
   return (
     <Countdown
       value={target}
