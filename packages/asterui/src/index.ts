@@ -217,6 +217,9 @@ export type { StackProps } from './components/Stack'
 export { Stats } from './components/Stat'
 export type { StatsProps, StatProps } from './components/Stat'
 
+export { Status } from './components/Status'
+export type { StatusProps, StatusType, StatusSize } from './components/Status'
+
 export { Steps } from './components/Steps'
 export type { StepsProps, StepProps } from './components/Steps'
 
