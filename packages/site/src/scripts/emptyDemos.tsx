@@ -1,5 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { Empty, Button } from 'asterui';
+import { CheckIconSvg } from './icons'
+import { InboxIcon } from '@heroicons/react/24/outline';
 
 // Demo components for each example
 const demos: Record<string, React.ReactNode> = {
@@ -11,11 +13,7 @@ const demos: Record<string, React.ReactNode> = {
   ),
   'custom-image': (
     <Empty
-      image={
-        <svg className="w-16 h-16 text-base-content/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-        </svg>
-      }
+      image={<InboxIcon className="w-16 h-16 text-base-content/30" />}
       description="No files found"
     />
   ),
@@ -42,7 +40,7 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
     if (code) {
       await navigator.clipboard.writeText(code);
       const originalHTML = btn.innerHTML;
-      btn.innerHTML = '<svg class="w-4 h-4 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>';
+      btn.innerHTML = CheckIconSvg;
       setTimeout(() => {
         btn.innerHTML = originalHTML;
       }, 2000);

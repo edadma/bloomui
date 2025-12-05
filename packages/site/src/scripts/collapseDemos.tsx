@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { Collapse, Button, Space } from 'asterui';
+import { CheckIconSvg } from './icons'
 
 // Demo components for each example
 const demos: Record<string, React.ReactNode> = {
@@ -109,7 +110,7 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
     if (code) {
       await navigator.clipboard.writeText(code);
       const originalHTML = btn.innerHTML;
-      btn.innerHTML = '<svg class="w-4 h-4 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>';
+      btn.innerHTML = CheckIconSvg;
       setTimeout(() => {
         btn.innerHTML = originalHTML;
       }, 2000);

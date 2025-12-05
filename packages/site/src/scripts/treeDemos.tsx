@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Tree } from 'asterui'
+import { FolderIcon, DocumentIcon } from '@heroicons/react/24/solid'
 
 interface TreeNode {
   key: string
@@ -127,30 +128,14 @@ function ShowLineTree() {
 }
 
 function ShowIconTree() {
-  const FolderIcon = () => (
-    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-      <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
-    </svg>
-  )
-
-  const FileIcon = () => (
-    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-      <path
-        fillRule="evenodd"
-        d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"
-        clipRule="evenodd"
-      />
-    </svg>
-  )
-
   const treeDataWithIcons: TreeNode[] = [
     {
       key: 'src',
       title: 'src',
-      icon: <FolderIcon />,
+      icon: <FolderIcon className="w-4 h-4" />,
       children: [
-        { key: 'App.tsx', title: 'App.tsx', icon: <FileIcon /> },
-        { key: 'index.tsx', title: 'index.tsx', icon: <FileIcon /> },
+        { key: 'App.tsx', title: 'App.tsx', icon: <DocumentIcon className="w-4 h-4" /> },
+        { key: 'index.tsx', title: 'index.tsx', icon: <DocumentIcon className="w-4 h-4" /> },
       ],
     },
   ]

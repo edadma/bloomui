@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client'
 import { Avatar, Space } from 'asterui'
 import { UserIcon, UserCircleIcon } from '@heroicons/react/24/outline'
+import { CheckIconSvg } from './icons'
 
 const imgSrc = 'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp'
 
@@ -84,7 +85,7 @@ document.querySelectorAll('.copy-btn').forEach((btn) => {
       await navigator.clipboard.writeText(code)
       const originalHTML = btn.innerHTML
       btn.innerHTML =
-        '<svg class="w-4 h-4 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>'
+        CheckIconSvg
       setTimeout(() => {
         btn.innerHTML = originalHTML
       }, 2000)

@@ -2,8 +2,9 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
+    tags:
+      - 'v*'  # Deploy docs only when version tags are pushed (v1.0.0, v1.2.3, etc.)
+  workflow_dispatch:  # Allow manual deploys
 
 permissions:
   contents: read
