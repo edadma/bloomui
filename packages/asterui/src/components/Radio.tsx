@@ -7,11 +7,18 @@ export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
   children?: React.ReactNode
 }
 
+export interface RadioGroupChangeEvent {
+  target: {
+    value: string | number
+    name?: string
+  }
+}
+
 export interface RadioGroupProps {
   children: React.ReactNode
   value?: string | number
   defaultValue?: string | number
-  onChange?: (value: string | number) => void
+  onChange?: (e: RadioGroupChangeEvent) => void
   name?: string
   className?: string
 }
@@ -32,7 +39,7 @@ function RadioGroup({ children, value, defaultValue, onChange, name, className =
     if (value === undefined) {
       setInternalValue(newValue)
     }
-    onChange?.(newValue)
+    onChange?.({ target: { value: newValue, name } })
   }
 
   return (
@@ -100,7 +107,7 @@ const RadioRoot = forwardRef<HTMLInputElement, RadioProps>(
     if (children) {
       return (
         <label className={`flex items-center gap-2 cursor-pointer ${className}`}>
-          {input}
+          <span className="flex-shrink-0">{input}</span>
           <span>{children}</span>
         </label>
       )

@@ -86,7 +86,7 @@ export { Footer } from './components/Footer'
 export type { FooterProps, FooterTitleProps } from './components/Footer'
 
 export { Form, useFormInstance } from './components/Form'
-export type { FormProps, FormItemProps, FormRule, FormInstance } from './components/Form'
+export type { FormProps, FormItemProps, FormRule, FormInstance, FormErrorListProps, ValidateTrigger } from './components/Form'
 
 export { Grid, Row, Col } from './components/Grid'
 export type { RowProps, ColProps } from './components/Grid'
@@ -182,7 +182,7 @@ export { QRCode } from './components/QRCode'
 export type { QRCodeProps, QRCodeErrorLevel, QRCodeType, QRCodeStatus } from './components/QRCode'
 
 export { Radio } from './components/Radio'
-export type { RadioProps, RadioGroupProps } from './components/Radio'
+export type { RadioProps, RadioGroupProps, RadioGroupChangeEvent } from './components/Radio'
 
 export { RadialProgress } from './components/RadialProgress'
 export type { RadialProgressProps } from './components/RadialProgress'

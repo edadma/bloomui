@@ -1,16 +1,23 @@
 import { createRoot } from 'react-dom/client'
 import React, { useState } from 'react'
-import { Form, Input, Button, Radio, Space } from 'asterui'
+import { Form, Input, Button, Radio, Space, Textarea, Modal } from 'asterui'
 import { CheckIconSvg } from './icons'
+
+const showFormValues = (values: any) => {
+  Modal.success({
+    title: 'Form Submitted',
+    content: (
+      <pre className="bg-base-200 p-3 rounded-lg text-sm overflow-auto max-h-60">
+        {JSON.stringify(values, null, 2)}
+      </pre>
+    ),
+  })
+}
 
 // Stateful demo components
 const BasicDemo: React.FC = () => {
-  const handleFinish = (values: any) => {
-    console.log('Form values:', values)
-  }
-
   return (
-    <Form onFinish={handleFinish}>
+    <Form onFinish={showFormValues}>
       <Form.Item name="username" label="Username">
         <Input placeholder="Enter username" />
       </Form.Item>
@@ -27,16 +34,8 @@ const BasicDemo: React.FC = () => {
 }
 
 const ValidationDemo: React.FC = () => {
-  const handleFinish = (values: any) => {
-    console.log('Success:', values)
-  }
-
-  const handleFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo)
-  }
-
   return (
-    <Form onFinish={handleFinish} onFinishFailed={handleFinishFailed}>
+    <Form onFinish={showFormValues}>
       <Form.Item
         name="email"
         label="Email"
@@ -77,7 +76,7 @@ const LayoutsDemo: React.FC = () => {
         <Radio value="inline">Inline</Radio>
       </Radio.Group>
 
-      <Form layout={layout} onFinish={(values) => console.log(values)}>
+      <Form layout={layout} onFinish={showFormValues}>
         <Form.Item name="name" label="Name" required>
           <Input placeholder="Enter name" />
         </Form.Item>
@@ -101,12 +100,8 @@ const InitialValuesDemo: React.FC = () => {
     bio: 'Software developer',
   }
 
-  const handleFinish = (values: any) => {
-    console.log('Updated values:', values)
-  }
-
   return (
-    <Form initialValues={initialValues} onFinish={handleFinish}>
+    <Form initialValues={initialValues} onFinish={showFormValues}>
       <Form.Item name="username" label="Username">
         <Input />
       </Form.Item>
@@ -114,7 +109,7 @@ const InitialValuesDemo: React.FC = () => {
         <Input />
       </Form.Item>
       <Form.Item name="bio" label="Bio">
-        <Input.TextArea rows={3} />
+        <Textarea rows={3} />
       </Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit">
@@ -125,11 +120,163 @@ const InitialValuesDemo: React.FC = () => {
   )
 }
 
+const TooltipExtraDemo: React.FC = () => {
+  return (
+    <Form onFinish={showFormValues}>
+      <Form.Item
+        name="username"
+        label="Username"
+        tooltip="Your unique identifier on the platform"
+        extra="Username must be 3-20 characters"
+        rules={[{ required: true }, { min: 3 }, { max: 20 }]}
+      >
+        <Input placeholder="Choose a username" />
+      </Form.Item>
+      <Form.Item
+        name="website"
+        label="Website"
+        tooltip="Your personal or company website"
+        extra={<span>Include <code className="bg-base-200 px-1 rounded">https://</code></span>}
+        rules={[{ type: 'url' }]}
+      >
+        <Input placeholder="https://example.com" />
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit">Save</Button>
+      </Form.Item>
+    </Form>
+  )
+}
+
+const FeedbackDemo: React.FC = () => {
+  return (
+    <Form onFinish={showFormValues}>
+      <Form.Item
+        name="email"
+        label="Email"
+        hasFeedback
+        rules={[{ required: true }, { type: 'email' }]}
+      >
+        <Input placeholder="you@example.com" />
+      </Form.Item>
+      <Form.Item
+        name="password"
+        label="Password"
+        hasFeedback
+        rules={[
+          { required: true },
+          { min: 8, message: 'At least 8 characters' },
+        ]}
+      >
+        <Input type="password" placeholder="Enter password" />
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit">Register</Button>
+      </Form.Item>
+    </Form>
+  )
+}
+
+const DependenciesDemo: React.FC = () => {
+  const form = Form.useForm()
+
+  return (
+    <Form form={form} onFinish={showFormValues}>
+      <Form.Item
+        name="password"
+        label="Password"
+        rules={[{ required: true }, { min: 8 }]}
+      >
+        <Input type="password" placeholder="Enter password" />
+      </Form.Item>
+      <Form.Item
+        name="confirmPassword"
+        label="Confirm Password"
+        dependencies={['password']}
+        rules={[
+          { required: true, message: 'Please confirm your password' },
+          {
+            validate: (value: string) => {
+              const password = form.getValues('password')
+              return value === password || 'Passwords do not match'
+            },
+          },
+        ]}
+      >
+        <Input type="password" placeholder="Confirm password" />
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit">Submit</Button>
+      </Form.Item>
+    </Form>
+  )
+}
+
+const ValidateTriggerDemo: React.FC = () => {
+  return (
+    <Form onFinish={showFormValues}>
+      <Form.Item
+        name="onChange"
+        label="Validate on Change (default)"
+        rules={[{ required: true }]}
+      >
+        <Input placeholder="Validates as you type" />
+      </Form.Item>
+      <Form.Item
+        name="onBlur"
+        label="Validate on Blur"
+        validateTrigger="onBlur"
+        rules={[{ required: true }]}
+      >
+        <Input placeholder="Validates when you leave the field" />
+      </Form.Item>
+      <Form.Item
+        name="onSubmit"
+        label="Validate on Submit"
+        validateTrigger="onSubmit"
+        rules={[{ required: true }]}
+      >
+        <Input placeholder="Only validates on submit" />
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit">Submit</Button>
+      </Form.Item>
+    </Form>
+  )
+}
+
+const ErrorListDemo: React.FC = () => {
+  return (
+    <Form onFinish={showFormValues}>
+      <Form.Item name="name" label="Name" rules={[{ required: true }]}>
+        <Input placeholder="Enter name" />
+      </Form.Item>
+      <Form.Item name="email" label="Email" rules={[{ required: true }, { type: 'email' }]}>
+        <Input placeholder="Enter email" />
+      </Form.Item>
+      <Form.Item name="phone" label="Phone" rules={[{ required: true }, { pattern: /^\d{10}$/, message: 'Must be 10 digits' }]}>
+        <Input placeholder="Enter phone" />
+      </Form.Item>
+      <div className="mb-4">
+        <Form.ErrorList className="bg-error/10 p-3 rounded-lg" />
+      </div>
+      <Form.Item>
+        <Button type="primary" htmlType="submit">Submit</Button>
+      </Form.Item>
+    </Form>
+  )
+}
+
 const statefulDemos: Record<string, React.FC> = {
   basic: BasicDemo,
   validation: ValidationDemo,
   layouts: LayoutsDemo,
   'initial-values': InitialValuesDemo,
+  'tooltip-extra': TooltipExtraDemo,
+  'feedback': FeedbackDemo,
+  'dependencies': DependenciesDemo,
+  'validate-trigger': ValidateTriggerDemo,
+  'error-list': ErrorListDemo,
 }
 
 // Mount React demos

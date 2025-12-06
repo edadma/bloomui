@@ -8,6 +8,7 @@ const formApi = [
   { property: 'onFinishFailed', description: 'Failed handler (called when validation fails)', type: '(errorInfo: any) => void' },
   { property: 'initialValues', description: 'Initial form field values', type: 'Record<string, any>' },
   { property: 'layout', description: 'Form layout orientation', type: "'horizontal' | 'vertical' | 'inline'", default: "'vertical'" },
+  { property: 'labelWidth', description: 'Label width in pixels for horizontal layout', type: 'number', default: '60' },
   { property: 'disabled', description: 'Disable all form fields', type: 'boolean', default: 'false' },
   { property: 'children', description: 'Form content (Form.Item elements)', type: 'React.ReactNode' },
   { property: 'className', description: 'Additional CSS classes', type: 'string' },
@@ -20,7 +21,19 @@ const formItemApi = [
   { property: 'required', description: 'Mark field as required (shorthand)', type: 'boolean', default: 'false' },
   { property: 'valuePropName', description: 'Prop name for value (e.g., "checked" for checkboxes)', type: 'string', default: "'value'" },
   { property: 'inline', description: 'Render with auto width instead of full width', type: 'boolean', default: 'false' },
+  { property: 'tooltip', description: 'Tooltip text to show next to label', type: 'string' },
+  { property: 'extra', description: 'Additional content below the form control', type: 'React.ReactNode' },
+  { property: 'hasFeedback', description: 'Show validation feedback icon (✓ or ✗)', type: 'boolean', default: 'false' },
+  { property: 'dependencies', description: 'Field names that trigger re-validation when changed', type: 'string[]' },
+  { property: 'validateTrigger', description: 'When to validate', type: "'onChange' | 'onBlur' | 'onSubmit' | array", default: "'onChange'" },
+  { property: 'initialValue', description: 'Initial value for this field (overrides Form initialValues)', type: 'any' },
+  { property: 'hidden', description: 'Hide field but still validate and submit', type: 'boolean', default: 'false' },
   { property: 'children', description: 'Form control element (Input, Select, etc.)', type: 'React.ReactNode' },
+  { property: 'className', description: 'Additional CSS classes', type: 'string' },
+];
+
+const errorListApi = [
+  { property: 'fields', description: 'Specific field names to show errors for (shows all if not specified)', type: 'string[]' },
   { property: 'className', description: 'Additional CSS classes', type: 'string' },
 ];
 
@@ -30,11 +43,14 @@ const examples = [
     title: 'Basic Form',
     description: 'Simple login form with username and password fields.',
     code: `import React from 'react'
-import { Form, Input, Button } from 'asterui'
+import { Form, Input, Button, Modal } from 'asterui'
 
 const App: React.FC = () => {
   const handleFinish = (values: any) => {
-    console.log('Form values:', values)
+    Modal.success({
+      title: 'Form Submitted',
+      content: <pre>{JSON.stringify(values, null, 2)}</pre>,
+    })
   }
 
   return (
@@ -61,19 +77,18 @@ export default App`,
     title: 'Form Validation',
     description: 'Form with validation rules for required fields and email pattern.',
     code: `import React from 'react'
-import { Form, Input, Button } from 'asterui'
+import { Form, Input, Button, Modal } from 'asterui'
 
 const App: React.FC = () => {
   const handleFinish = (values: any) => {
-    console.log('Success:', values)
-  }
-
-  const handleFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo)
+    Modal.success({
+      title: 'Form Submitted',
+      content: <pre>{JSON.stringify(values, null, 2)}</pre>,
+    })
   }
 
   return (
-    <Form onFinish={handleFinish} onFinishFailed={handleFinishFailed}>
+    <Form onFinish={handleFinish}>
       <Form.Item
         name="email"
         label="Email"
@@ -106,14 +121,248 @@ const App: React.FC = () => {
 export default App`,
   },
   {
+    id: 'tooltip-extra',
+    title: 'Tooltip & Extra',
+    description: 'Labels with tooltip help icons and extra helper text below fields.',
+    code: `import React from 'react'
+import { Form, Input, Button, Modal } from 'asterui'
+
+const App: React.FC = () => {
+  const handleFinish = (values: any) => {
+    Modal.success({
+      title: 'Form Submitted',
+      content: <pre>{JSON.stringify(values, null, 2)}</pre>,
+    })
+  }
+
+  return (
+    <Form onFinish={handleFinish}>
+      <Form.Item
+        name="username"
+        label="Username"
+        tooltip="Your unique identifier on the platform"
+        extra="Username must be 3-20 characters"
+        rules={[{ required: true }, { min: 3 }, { max: 20 }]}
+      >
+        <Input placeholder="Choose a username" />
+      </Form.Item>
+      <Form.Item
+        name="website"
+        label="Website"
+        tooltip="Your personal or company website"
+        extra={<span>Include <code>https://</code></span>}
+        rules={[{ type: 'url' }]}
+      >
+        <Input placeholder="https://example.com" />
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit">Save</Button>
+      </Form.Item>
+    </Form>
+  )
+}
+
+export default App`,
+  },
+  {
+    id: 'feedback',
+    title: 'Validation Feedback',
+    description: 'Show validation icons inside inputs with hasFeedback prop.',
+    code: `import React from 'react'
+import { Form, Input, Button, Modal } from 'asterui'
+
+const App: React.FC = () => {
+  const handleFinish = (values: any) => {
+    Modal.success({
+      title: 'Form Submitted',
+      content: <pre>{JSON.stringify(values, null, 2)}</pre>,
+    })
+  }
+
+  return (
+    <Form onFinish={handleFinish}>
+      <Form.Item
+        name="email"
+        label="Email"
+        hasFeedback
+        rules={[{ required: true }, { type: 'email' }]}
+      >
+        <Input placeholder="you@example.com" />
+      </Form.Item>
+      <Form.Item
+        name="password"
+        label="Password"
+        hasFeedback
+        rules={[
+          { required: true },
+          { min: 8, message: 'At least 8 characters' },
+        ]}
+      >
+        <Input type="password" placeholder="Enter password" />
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit">Register</Button>
+      </Form.Item>
+    </Form>
+  )
+}
+
+export default App`,
+  },
+  {
+    id: 'dependencies',
+    title: 'Field Dependencies',
+    description: 'Re-validate confirm password when password changes.',
+    code: `import React from 'react'
+import { Form, Input, Button, Modal } from 'asterui'
+
+const App: React.FC = () => {
+  const form = Form.useForm()
+
+  const handleFinish = (values: any) => {
+    Modal.success({
+      title: 'Form Submitted',
+      content: <pre>{JSON.stringify(values, null, 2)}</pre>,
+    })
+  }
+
+  return (
+    <Form form={form} onFinish={handleFinish}>
+      <Form.Item
+        name="password"
+        label="Password"
+        rules={[{ required: true }, { min: 8 }]}
+      >
+        <Input type="password" placeholder="Enter password" />
+      </Form.Item>
+      <Form.Item
+        name="confirmPassword"
+        label="Confirm Password"
+        dependencies={['password']}
+        rules={[
+          { required: true, message: 'Please confirm your password' },
+          {
+            validate: (value) => {
+              const password = form.getValues('password')
+              return value === password || 'Passwords do not match'
+            },
+          },
+        ]}
+      >
+        <Input type="password" placeholder="Confirm password" />
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit">Submit</Button>
+      </Form.Item>
+    </Form>
+  )
+}
+
+export default App`,
+  },
+  {
+    id: 'validate-trigger',
+    title: 'Validate Trigger',
+    description: 'Control when validation runs: onChange, onBlur, or onSubmit.',
+    code: `import React from 'react'
+import { Form, Input, Button, Modal } from 'asterui'
+
+const App: React.FC = () => {
+  const handleFinish = (values: any) => {
+    Modal.success({
+      title: 'Form Submitted',
+      content: <pre>{JSON.stringify(values, null, 2)}</pre>,
+    })
+  }
+
+  return (
+    <Form onFinish={handleFinish}>
+      <Form.Item
+        name="onChange"
+        label="Validate on Change (default)"
+        rules={[{ required: true }]}
+      >
+        <Input placeholder="Validates as you type" />
+      </Form.Item>
+      <Form.Item
+        name="onBlur"
+        label="Validate on Blur"
+        validateTrigger="onBlur"
+        rules={[{ required: true }]}
+      >
+        <Input placeholder="Validates when you leave the field" />
+      </Form.Item>
+      <Form.Item
+        name="onSubmit"
+        label="Validate on Submit"
+        validateTrigger="onSubmit"
+        rules={[{ required: true }]}
+      >
+        <Input placeholder="Only validates on submit" />
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit">Submit</Button>
+      </Form.Item>
+    </Form>
+  )
+}
+
+export default App`,
+  },
+  {
+    id: 'error-list',
+    title: 'Error List',
+    description: 'Display all form errors in a centralized location.',
+    code: `import React from 'react'
+import { Form, Input, Button, Modal } from 'asterui'
+
+const App: React.FC = () => {
+  const handleFinish = (values: any) => {
+    Modal.success({
+      title: 'Form Submitted',
+      content: <pre>{JSON.stringify(values, null, 2)}</pre>,
+    })
+  }
+
+  return (
+    <Form onFinish={handleFinish}>
+      <Form.Item name="name" label="Name" rules={[{ required: true }]}>
+        <Input placeholder="Enter name" />
+      </Form.Item>
+      <Form.Item name="email" label="Email" rules={[{ required: true }, { type: 'email' }]}>
+        <Input placeholder="Enter email" />
+      </Form.Item>
+      <Form.Item name="phone" label="Phone" rules={[{ required: true }, { pattern: /^\\d{10}$/, message: 'Must be 10 digits' }]}>
+        <Input placeholder="Enter phone" />
+      </Form.Item>
+      <div className="mb-4">
+        <Form.ErrorList className="bg-error/10 p-3 rounded-lg" />
+      </div>
+      <Form.Item>
+        <Button type="primary" htmlType="submit">Submit</Button>
+      </Form.Item>
+    </Form>
+  )
+}
+
+export default App`,
+  },
+  {
     id: 'layouts',
     title: 'Form Layouts',
     description: 'Different form layouts: horizontal, vertical, and inline.',
     code: `import React, { useState } from 'react'
-import { Form, Input, Button, Radio, Space } from 'asterui'
+import { Form, Input, Button, Radio, Space, Modal } from 'asterui'
 
 const App: React.FC = () => {
   const [layout, setLayout] = useState<'horizontal' | 'vertical' | 'inline'>('vertical')
+
+  const handleFinish = (values: any) => {
+    Modal.success({
+      title: 'Form Submitted',
+      content: <pre>{JSON.stringify(values, null, 2)}</pre>,
+    })
+  }
 
   return (
     <Space direction="vertical" size="lg" className="w-full">
@@ -126,7 +375,7 @@ const App: React.FC = () => {
         <Radio value="inline">Inline</Radio>
       </Radio.Group>
 
-      <Form layout={layout} onFinish={(values) => console.log(values)}>
+      <Form layout={layout} onFinish={handleFinish}>
         <Form.Item name="name" label="Name" required>
           <Input placeholder="Enter name" />
         </Form.Item>
@@ -150,7 +399,7 @@ export default App`,
     title: 'Initial Values',
     description: 'Form with pre-populated initial values.',
     code: `import React from 'react'
-import { Form, Input, Button } from 'asterui'
+import { Form, Input, Button, Textarea, Modal } from 'asterui'
 
 const App: React.FC = () => {
   const initialValues = {
@@ -160,7 +409,10 @@ const App: React.FC = () => {
   }
 
   const handleFinish = (values: any) => {
-    console.log('Updated values:', values)
+    Modal.success({
+      title: 'Form Submitted',
+      content: <pre>{JSON.stringify(values, null, 2)}</pre>,
+    })
   }
 
   return (
@@ -172,7 +424,7 @@ const App: React.FC = () => {
         <Input />
       </Form.Item>
       <Form.Item name="bio" label="Bio">
-        <Input.TextArea rows={3} />
+        <Textarea rows={3} />
       </Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit">
@@ -254,6 +506,9 @@ export default App`,
       <div class="mt-8">
         <ApiTable title="Form.Item" data={formItemApi} />
       </div>
+      <div class="mt-8">
+        <ApiTable title="Form.ErrorList" data={errorListApi} />
+      </div>
     </section>
 
     <!-- Validation Rules -->
@@ -269,6 +524,21 @@ export default App`,
         <li><code class="bg-base-200 px-1 rounded">min: number</code> - Minimum length for strings or minimum value for numbers</li>
         <li><code class="bg-base-200 px-1 rounded">max: number</code> - Maximum length for strings or maximum value for numbers</li>
         <li><code class="bg-base-200 px-1 rounded">pattern: RegExp</code> - Custom regex pattern validation</li>
+        <li><code class="bg-base-200 px-1 rounded">validate: (value) =&gt; boolean | string | Promise</code> - Custom validation function</li>
+      </ul>
+    </section>
+
+    <!-- Advanced Features -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">Advanced Features</h2>
+      <ul class="list-disc list-inside space-y-2 text-base-content/80">
+        <li><strong>tooltip</strong> - Show help icon with tooltip next to the label</li>
+        <li><strong>extra</strong> - Display additional content below the form control</li>
+        <li><strong>hasFeedback</strong> - Show validation status icons (checkmark/X) inside the input</li>
+        <li><strong>dependencies</strong> - Re-validate when specified fields change (useful for "confirm password")</li>
+        <li><strong>validateTrigger</strong> - Control when validation runs: onChange, onBlur, or onSubmit</li>
+        <li><strong>hidden</strong> - Hide the field while still including it in validation and form values</li>
+        <li><strong>Form.ErrorList</strong> - Display all form errors in a centralized location</li>
       </ul>
     </section>
   </div>

@@ -1,10 +1,11 @@
-import React, { createContext, useContext, cloneElement, isValidElement, useId } from 'react'
-import { useForm, UseFormReturn, FieldValues, SubmitHandler, UseFormProps, Controller, useFieldArray, FieldArrayPath, FieldArray } from 'react-hook-form'
+import React, { createContext, useContext, cloneElement, isValidElement, useId, useEffect, useRef } from 'react'
+import { useForm, UseFormReturn, FieldValues, SubmitHandler, UseFormProps, Controller, useFieldArray, FieldArrayPath, FieldArray, useWatch } from 'react-hook-form'
 
 interface FormContextValue {
   form: UseFormReturn<any>
   layout?: 'vertical' | 'horizontal' | 'inline'
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  labelWidth?: number
   listName?: string
 }
 
@@ -32,6 +33,8 @@ export interface FormProps<TFieldValues extends FieldValues = FieldValues>
   onFinish?: SubmitHandler<TFieldValues>
   initialValues?: UseFormProps<TFieldValues>['defaultValues']
   layout?: 'vertical' | 'horizontal' | 'inline'
+  /** Label width in pixels for horizontal layout (default: 80) */
+  labelWidth?: number
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   children: React.ReactNode
 }
@@ -46,6 +49,8 @@ export interface FormRule {
   validate?: (value: any) => boolean | string | Promise<boolean | string>
 }
 
+export type ValidateTrigger = 'onChange' | 'onBlur' | 'onSubmit' | ('onChange' | 'onBlur' | 'onSubmit')[]
+
 export interface FormItemProps {
   name?: string | string[]
   label?: string
@@ -56,6 +61,20 @@ export interface FormItemProps {
   inline?: boolean
   className?: string
   children: React.ReactElement
+  /** Tooltip text to show next to label */
+  tooltip?: string
+  /** Additional content below the form control */
+  extra?: React.ReactNode
+  /** Show validation feedback icon */
+  hasFeedback?: boolean
+  /** Field names that this field depends on for validation */
+  dependencies?: string[]
+  /** When to trigger validation */
+  validateTrigger?: ValidateTrigger
+  /** Initial value for this field (overrides Form's initialValues) */
+  initialValue?: any
+  /** Hide this field (still validates and submits) */
+  hidden?: boolean
 }
 
 export interface FormListProps<TFieldValues extends FieldValues = FieldValues> {
@@ -83,6 +102,7 @@ function FormRoot<TFieldValues extends FieldValues = FieldValues>({
   onFinish,
   initialValues,
   layout = 'vertical',
+  labelWidth = 60,
   size,
   children,
   className = '',
@@ -103,7 +123,7 @@ function FormRoot<TFieldValues extends FieldValues = FieldValues>({
   }
 
   return (
-    <FormContext.Provider value={{ form, layout, size }}>
+    <FormContext.Provider value={{ form, layout, labelWidth, size }}>
       <form onSubmit={handleSubmit} className={className} noValidate={noValidate} {...props}>
         {children}
       </form>
@@ -121,14 +141,21 @@ function FormItem({
   inline = false,
   className = '',
   children,
+  tooltip,
+  extra,
+  hasFeedback = false,
+  dependencies,
+  validateTrigger = 'onChange',
+  initialValue,
+  hidden = false,
 }: FormItemProps) {
-  const { form, size, listName, layout } = useFormContext()
+  const { form, size, listName, layout, labelWidth } = useFormContext()
   const inputId = useId()
   const errorId = useId()
 
   if (!name) {
     // Render without form control if no name provided
-    return <div className={`form-control ${inline ? 'w-auto' : 'w-full'} ${className}`}>{children}</div>
+    return <div className={`form-control ${inline ? 'w-auto' : 'w-full'} ${className}`} style={hidden ? { display: 'none' } : undefined}>{children}</div>
   }
 
   // Handle nested field names (for Form.List)
@@ -140,6 +167,46 @@ function FormItem({
   } else {
     fieldName = name
   }
+
+  // Set initial value if provided
+  useEffect(() => {
+    if (initialValue !== undefined) {
+      const currentValue = form.getValues(fieldName as any)
+      if (currentValue === undefined) {
+        form.setValue(fieldName as any, initialValue)
+      }
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Watch dependencies and re-validate when they change
+  const watchedDeps = useWatch({
+    control: form.control,
+    name: dependencies as any,
+    disabled: !dependencies || dependencies.length === 0,
+  })
+
+  // Use refs to avoid infinite loops
+  const formRef = useRef(form)
+  formRef.current = form
+  const prevDepsRef = useRef<string | undefined>(undefined)
+
+  useEffect(() => {
+    // Skip if no dependencies
+    if (!dependencies || dependencies.length === 0) return
+
+    // Skip initial render
+    if (prevDepsRef.current === undefined) {
+      prevDepsRef.current = JSON.stringify(watchedDeps)
+      return
+    }
+
+    // Only trigger if dependency values actually changed
+    const currentDeps = JSON.stringify(watchedDeps)
+    if (prevDepsRef.current !== currentDeps) {
+      prevDepsRef.current = currentDeps
+      formRef.current.trigger(fieldName as any)
+    }
+  }, [watchedDeps, dependencies, fieldName])
 
   // Get error by traversing the error object path
   const getErrorByPath = (path: string) => {
@@ -245,27 +312,75 @@ function FormItem({
     }
   }
 
+  // Normalize validateTrigger to array
+  const triggers = Array.isArray(validateTrigger) ? validateTrigger : [validateTrigger]
+  const shouldValidateOnChange = triggers.includes('onChange')
+  const shouldValidateOnBlur = triggers.includes('onBlur')
+
+  // Feedback icons
+  const FeedbackIcon = ({ hasError, isValidating }: { hasError: boolean; isValidating: boolean }) => {
+    if (isValidating) {
+      return (
+        <span className="loading loading-spinner loading-xs text-base-content/50" />
+      )
+    }
+    if (hasError) {
+      return (
+        <svg className="w-4 h-4 text-error" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      )
+    }
+    return (
+      <svg className="w-4 h-4 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+      </svg>
+    )
+  }
+
+  // Tooltip icon
+  const TooltipIcon = () => (
+    <div className="tooltip tooltip-top ml-1" data-tip={tooltip}>
+      <svg className="w-4 h-4 text-base-content/50 cursor-help" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    </div>
+  )
+
   return (
     <Controller
       name={fieldName}
       control={form.control}
       rules={validationRules}
-      render={({ field }) => {
+      render={({ field, fieldState }) => {
         const { value, onChange, onBlur, ref } = field
+        const isValidating = fieldState.isTouched && form.formState.isValidating
 
         // Clone the child element and inject form control props
         const childProps: any = {
           id: inputId,
           ref,
-          onBlur,
           'aria-invalid': error ? true : undefined,
           'aria-describedby': error ? errorId : undefined,
+        }
+
+        // Handle onBlur based on validateTrigger
+        childProps.onBlur = () => {
+          onBlur()
+          if (shouldValidateOnBlur) {
+            form.trigger(fieldName as any)
+          }
         }
 
         // Handle different value prop names (e.g., 'checked' for checkboxes)
         if (valuePropName === 'checked') {
           childProps.checked = value
-          childProps.onChange = (e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.checked)
+          childProps.onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+            onChange(e.target.checked)
+            if (shouldValidateOnChange) {
+              form.trigger(fieldName as any)
+            }
+          }
         } else {
           childProps.value = value || ''
           childProps.onChange = (eventOrValue: any) => {
@@ -275,6 +390,9 @@ function FormItem({
               onChange(eventOrValue.target.value)
             } else {
               onChange(eventOrValue)
+            }
+            if (shouldValidateOnChange) {
+              form.trigger(fieldName as any)
             }
           }
         }
@@ -298,20 +416,31 @@ function FormItem({
           : children
 
         const isHorizontal = layout === 'horizontal'
+        const isInline = layout === 'inline'
 
         return (
-          <div className={`form-control ${inline ? 'w-auto' : 'w-full'} ${className}`}>
+          <div className={`form-control ${inline ? 'w-auto' : 'w-full'} ${isHorizontal ? 'mb-4' : ''} ${isInline ? 'inline-flex mr-4' : ''} ${className}`} style={hidden ? { display: 'none' } : undefined}>
             <div className={isHorizontal ? 'flex items-center gap-4' : ''}>
               {label && (
-                <label htmlFor={inputId} className={`label ${isHorizontal ? 'flex-shrink-0' : 'mb-2'}`}>
-                  <span className="label-text">
+                <label
+                  htmlFor={inputId}
+                  className={`label ${isHorizontal ? 'flex-shrink-0 justify-end py-0' : ''} ${!isHorizontal && !isInline ? 'pb-1' : ''}`}
+                  style={isHorizontal ? { width: labelWidth } : undefined}
+                >
+                  <span className="label-text flex items-center">
                     {label}
                     {required && <span className="text-error ml-1">*</span>}
+                    {tooltip && <TooltipIcon />}
                   </span>
                 </label>
               )}
-              <div className={isHorizontal ? 'flex-1' : ''}>
+              <div className={`${isHorizontal ? 'flex-1' : ''} ${hasFeedback ? 'relative' : ''}`}>
                 {enhancedChild}
+                {hasFeedback && fieldState.isTouched && (
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                    <FeedbackIcon hasError={!!error} isValidating={isValidating} />
+                  </span>
+                )}
               </div>
             </div>
             {!isHorizontal && !inline && (
@@ -320,9 +449,12 @@ function FormItem({
               </p>
             )}
             {isHorizontal && (errorMessage || help) && (
-              <p id={errorId} className={`validator-hint ${errorMessage ? '!visible text-error' : ''} min-h-[1.25rem] ml-auto`} role={errorMessage ? 'alert' : undefined}>
+              <p id={errorId} className={`validator-hint ${errorMessage ? '!visible text-error' : ''} min-h-[1.25rem]`} role={errorMessage ? 'alert' : undefined}>
                 {errorMessage || (help && <span className="text-base-content/70">{help}</span>)}
               </p>
+            )}
+            {extra && (
+              <div className="text-sm text-base-content/60 mt-1">{extra}</div>
             )}
           </div>
         )
@@ -398,9 +530,62 @@ export function useFormInstance<TFieldValues extends FieldValues = FieldValues>(
   return enhancedInstance
 }
 
+export interface FormErrorListProps {
+  /** Specific field names to show errors for (shows all errors if not specified) */
+  fields?: string[]
+  /** Custom className */
+  className?: string
+}
+
+function FormErrorList({ fields, className = '' }: FormErrorListProps) {
+  const { form } = useFormContext()
+  const { errors } = form.formState
+
+  // Flatten nested errors into a list
+  const flattenErrors = (obj: any, prefix = ''): Array<{ field: string; message: string }> => {
+    const result: Array<{ field: string; message: string }> = []
+
+    for (const key in obj) {
+      const fullKey = prefix ? `${prefix}.${key}` : key
+      const value = obj[key]
+
+      if (value?.message) {
+        result.push({ field: fullKey, message: value.message as string })
+      } else if (typeof value === 'object' && value !== null) {
+        result.push(...flattenErrors(value, fullKey))
+      }
+    }
+
+    return result
+  }
+
+  const allErrors = flattenErrors(errors)
+  const filteredErrors = fields
+    ? allErrors.filter(e => fields.includes(e.field))
+    : allErrors
+
+  if (filteredErrors.length === 0) {
+    return null
+  }
+
+  return (
+    <ul className={`text-error text-sm space-y-1 ${className}`} role="alert">
+      {filteredErrors.map((error, index) => (
+        <li key={`${error.field}-${index}`} className="flex items-start gap-2">
+          <svg className="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>{error.message}</span>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
 export const Form = Object.assign(FormRoot, {
   Item: FormItem,
   List: FormList,
+  ErrorList: FormErrorList,
   useForm: useFormInstance,
 })
 
