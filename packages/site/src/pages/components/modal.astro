@@ -4,16 +4,32 @@ import ApiTable from '../../components/ApiTable.astro';
 import { Code } from 'astro:components';
 
 const modalApi = [
-  { property: 'open', description: 'Controlled open state', type: 'boolean' },
-  { property: 'onClose', description: 'Close handler', type: '() => void' },
-  { property: 'title', description: 'Modal title', type: 'React.ReactNode' },
-  { property: 'children', description: 'Modal content', type: 'React.ReactNode' },
-  { property: 'footer', description: 'Footer content', type: 'React.ReactNode' },
-  { property: 'width', description: 'Modal width', type: 'number | string', default: '520' },
+  { property: 'open', description: 'Controlled open state', type: 'boolean', default: 'false' },
+  { property: 'title', description: 'Modal title', type: 'React.ReactNode', default: '-' },
+  { property: 'children', description: 'Modal content', type: 'React.ReactNode', default: '-' },
+  { property: 'footer', description: 'Custom footer content (set to null to hide)', type: 'React.ReactNode', default: '-' },
+  { property: 'onOk', description: 'OK button click handler (shows default footer)', type: '() => void | Promise<void>', default: '-' },
+  { property: 'onCancel', description: 'Cancel button click handler', type: '() => void', default: '-' },
+  { property: 'onClose', description: 'Close handler (alias for onCancel)', type: '() => void', default: '-' },
+  { property: 'okText', description: 'OK button text', type: 'string', default: "'OK'" },
+  { property: 'cancelText', description: 'Cancel button text', type: 'string', default: "'Cancel'" },
+  { property: 'width', description: 'Modal width', type: 'number | string', default: '-' },
   { property: 'centered', description: 'Vertically center modal', type: 'boolean', default: 'false' },
-  { property: 'maskClosable', description: 'Close on mask click', type: 'boolean', default: 'true' },
-  { property: 'closable', description: 'Show close button', type: 'boolean', default: 'true' },
-  { property: 'className', description: 'Additional CSS classes', type: 'string' },
+  { property: 'position', description: 'Modal position (supports responsive object)', type: "'top' | 'middle' | 'bottom' | { base?, sm?, md?, lg?, xl?, '2xl'? }", default: '-' },
+  { property: 'align', description: 'Modal alignment', type: "'start' | 'end'", default: '-' },
+  { property: 'maskClosable', description: 'Close on backdrop click', type: 'boolean', default: 'true' },
+  { property: 'closable', description: 'Show close backdrop', type: 'boolean', default: 'true' },
+  { property: 'className', description: 'Additional CSS classes', type: 'string', default: '-' },
+];
+
+const modalFuncApi = [
+  { property: 'title', description: 'Modal title', type: 'React.ReactNode', default: '-' },
+  { property: 'content', description: 'Modal content', type: 'React.ReactNode', default: '-' },
+  { property: 'onOk', description: 'OK button click handler', type: '() => void | Promise<void>', default: '-' },
+  { property: 'onCancel', description: 'Cancel button click handler (confirm only)', type: '() => void', default: '-' },
+  { property: 'okText', description: 'OK button text', type: 'string', default: "'OK'" },
+  { property: 'cancelText', description: 'Cancel button text (confirm only)', type: 'string', default: "'Cancel'" },
+  { property: 'type', description: 'Modal type for styling', type: "'info' | 'success' | 'warning' | 'error'", default: '-' },
 ];
 
 const examples = [
@@ -21,10 +37,10 @@ const examples = [
     id: 'basic',
     title: 'Basic Modal',
     description: 'Simple modal with open/close functionality.',
-    code: `import React, { useState } from 'react'
+    code: `import { useState } from 'react'
 import { Modal, Button } from 'asterui'
 
-const App: React.FC = () => {
+export default function App() {
   const [open, setOpen] = useState(false)
 
   return (
@@ -42,23 +58,53 @@ const App: React.FC = () => {
       </Modal>
     </>
   )
-}
+}`,
+  },
+  {
+    id: 'default-footer',
+    title: 'Default Footer',
+    description: 'Modal with built-in OK/Cancel buttons using onOk and onCancel props.',
+    code: `import { useState } from 'react'
+import { Modal, Button } from 'asterui'
 
-export default App`,
+export default function App() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <Button type="primary" onClick={() => setOpen(true)}>
+        Open Modal
+      </Button>
+      <Modal
+        open={open}
+        onOk={() => {
+          setOpen(false)
+          Modal.success({ title: 'Submitted', content: 'Form submitted!' })
+        }}
+        onCancel={() => setOpen(false)}
+        title="Submit Form"
+        okText="Submit"
+        cancelText="Cancel"
+      >
+        <p>Click OK to submit or Cancel to close.</p>
+      </Modal>
+    </>
+  )
+}`,
   },
   {
     id: 'with-footer',
-    title: 'With Footer',
+    title: 'Custom Footer',
     description: 'Modal with custom footer buttons.',
-    code: `import React, { useState } from 'react'
+    code: `import { useState } from 'react'
 import { Modal, Button, Space } from 'asterui'
 
-const App: React.FC = () => {
+export default function App() {
   const [open, setOpen] = useState(false)
 
   const handleOk = () => {
-    console.log('OK clicked')
     setOpen(false)
+    Modal.success({ title: 'Success', content: 'Action completed!' })
   }
 
   return (
@@ -73,28 +119,88 @@ const App: React.FC = () => {
         footer={
           <Space direction="horizontal" size="sm">
             <Button onClick={() => setOpen(false)}>Cancel</Button>
-            <Button type="primary" onClick={handleOk}>
-              OK
-            </Button>
+            <Button type="primary" onClick={handleOk}>OK</Button>
           </Space>
         }
       >
-        <p>Are you sure you want to proceed with this action?</p>
+        <p>Are you sure you want to proceed?</p>
       </Modal>
     </>
   )
-}
+}`,
+  },
+  {
+    id: 'static-methods',
+    title: 'Static Methods',
+    description: 'Quick dialogs using Modal.info, Modal.success, Modal.warning, and Modal.error.',
+    code: `import { Modal, Button, Space } from 'asterui'
 
-export default App`,
+export default function App() {
+  return (
+    <Space direction="horizontal" size="sm" wrap>
+      <Button onClick={() => Modal.info({
+        title: 'Info',
+        content: 'This is an informational message.'
+      })}>
+        Info
+      </Button>
+      <Button onClick={() => Modal.success({
+        title: 'Success',
+        content: 'Operation completed successfully!'
+      })}>
+        Success
+      </Button>
+      <Button onClick={() => Modal.warning({
+        title: 'Warning',
+        content: 'Please proceed with caution.'
+      })}>
+        Warning
+      </Button>
+      <Button onClick={() => Modal.error({
+        title: 'Error',
+        content: 'Something went wrong.'
+      })}>
+        Error
+      </Button>
+    </Space>
+  )
+}`,
+  },
+  {
+    id: 'confirm',
+    title: 'Confirm Dialog',
+    description: 'Confirmation dialog with OK and Cancel buttons using Modal.confirm.',
+    code: `import { Modal, Button } from 'asterui'
+
+export default function App() {
+  return (
+    <Button
+      onClick={() =>
+        Modal.confirm({
+          title: 'Delete Item',
+          content: 'Are you sure you want to delete this item?',
+          okText: 'Delete',
+          cancelText: 'Cancel',
+          onOk: () => Modal.success({
+            title: 'Deleted',
+            content: 'Item has been deleted.'
+          }),
+        })
+      }
+    >
+      Delete Item
+    </Button>
+  )
+}`,
   },
   {
     id: 'centered',
     title: 'Centered Modal',
     description: 'Vertically centered modal.',
-    code: `import React, { useState } from 'react'
+    code: `import { useState } from 'react'
 import { Modal, Button } from 'asterui'
 
-const App: React.FC = () => {
+export default function App() {
   const [open, setOpen] = useState(false)
 
   return (
@@ -112,22 +218,20 @@ const App: React.FC = () => {
       </Modal>
     </>
   )
-}
-
-export default App`,
+}`,
   },
   {
     id: 'sizes',
     title: 'Modal Sizes',
     description: 'Different modal widths.',
-    code: `import React, { useState } from 'react'
+    code: `import { useState } from 'react'
 import { Modal, Button, Space } from 'asterui'
 
-const App: React.FC = () => {
+export default function App() {
   const [open, setOpen] = useState(false)
   const [width, setWidth] = useState<number | string>(520)
 
-  const showModal = (w: number | string, title: string) => {
+  const showModal = (w: number | string) => {
     setWidth(w)
     setOpen(true)
   }
@@ -135,15 +239,9 @@ const App: React.FC = () => {
   return (
     <>
       <Space direction="horizontal" size="sm" wrap>
-        <Button onClick={() => showModal(400, 'Small Modal')}>
-          Small (400px)
-        </Button>
-        <Button onClick={() => showModal(520, 'Default Modal')}>
-          Default (520px)
-        </Button>
-        <Button onClick={() => showModal(800, 'Large Modal')}>
-          Large (800px)
-        </Button>
+        <Button onClick={() => showModal(400)}>Small (400px)</Button>
+        <Button onClick={() => showModal(520)}>Default (520px)</Button>
+        <Button onClick={() => showModal(800)}>Large (800px)</Button>
       </Space>
       <Modal
         open={open}
@@ -155,9 +253,34 @@ const App: React.FC = () => {
       </Modal>
     </>
   )
-}
+}`,
+  },
+  {
+    id: 'responsive',
+    title: 'Responsive Position',
+    description: 'Modal position can change based on screen size using responsive position object.',
+    code: `import { useState } from 'react'
+import { Modal, Button } from 'asterui'
 
-export default App`,
+export default function App() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <Button type="primary" onClick={() => setOpen(true)}>
+        Responsive Modal
+      </Button>
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        title="Responsive Modal"
+        position={{ base: 'bottom', sm: 'middle' }}
+      >
+        <p>This modal appears at the bottom on mobile and centered on larger screens.</p>
+      </Modal>
+    </>
+  )
+}`,
   },
 ];
 ---
@@ -225,6 +348,31 @@ export default App`,
     <section class="mb-12">
       <h2 class="text-2xl font-bold mb-6">API</h2>
       <ApiTable title="Modal" data={modalApi} />
+      <div class="mt-6">
+        <ApiTable title="Modal.info/success/warning/error/confirm" data={modalFuncApi} />
+      </div>
+      <div class="mt-6">
+        <h3 class="text-lg font-semibold mb-2">Static Methods</h3>
+        <ul class="list-disc list-inside space-y-1 text-base-content/80">
+          <li><code class="bg-base-200 px-1 rounded">Modal.info(config)</code> - Information dialog</li>
+          <li><code class="bg-base-200 px-1 rounded">Modal.success(config)</code> - Success dialog</li>
+          <li><code class="bg-base-200 px-1 rounded">Modal.warning(config)</code> - Warning dialog</li>
+          <li><code class="bg-base-200 px-1 rounded">Modal.error(config)</code> - Error dialog</li>
+          <li><code class="bg-base-200 px-1 rounded">Modal.confirm(config)</code> - Confirmation dialog with OK/Cancel</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Accessibility -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">Accessibility</h2>
+      <ul class="list-disc list-inside space-y-2 text-base-content/80">
+        <li>Uses native <code class="bg-base-200 px-1 rounded">&lt;dialog&gt;</code> element for proper modal behavior</li>
+        <li>Focus is trapped within the modal when open</li>
+        <li>Pressing Escape closes the modal</li>
+        <li>Focus is restored to the trigger element when closed</li>
+        <li>Uses <code class="bg-base-200 px-1 rounded">aria-labelledby</code> and <code class="bg-base-200 px-1 rounded">aria-describedby</code> for screen readers</li>
+      </ul>
     </section>
   </div>
 </Layout>

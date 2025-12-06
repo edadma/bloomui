@@ -161,7 +161,7 @@ export { Window } from './components/Window'
 export type { WindowProps } from './components/Window'
 
 export { Modal } from './components/Modal'
-export type { ModalProps, ModalFuncProps } from './components/Modal'
+export type { ModalProps, ModalFuncProps, ModalPosition, ModalAlign, ResponsivePosition } from './components/Modal'
 
 export { Navbar } from './components/Navbar'
 export type { NavbarProps } from './components/Navbar'

@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useId } from 'react'
 import { createRoot } from 'react-dom/client'
 
+export type ModalPosition = 'top' | 'middle' | 'bottom'
+export type ModalAlign = 'start' | 'end'
+export type Breakpoint = 'base' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+
+export type ResponsivePosition = Partial<Record<Breakpoint, ModalPosition>>
+
 export interface ModalProps extends Omit<React.HTMLAttributes<HTMLDialogElement>, 'title'> {
   children: React.ReactNode
   title?: React.ReactNode
@@ -12,8 +18,9 @@ export interface ModalProps extends Omit<React.HTMLAttributes<HTMLDialogElement>
   cancelText?: string
   maskClosable?: boolean
   closable?: boolean
-  position?: 'top' | 'middle' | 'bottom'
-  align?: 'start' | 'end'
+  /** Modal position - can be a single value or responsive object */
+  position?: ModalPosition | ResponsivePosition
+  align?: ModalAlign
   /** Width of the modal box */
   width?: number | string
   /** Center the modal vertically */
@@ -93,23 +100,81 @@ export function Modal({
     }
   }, [closeHandler])
 
-  const positionClasses = {
+  // Static class mappings for positions (no interpolation per qa.md)
+  const positionClasses: Record<ModalPosition, string> = {
     top: 'modal-top',
     middle: 'modal-middle',
     bottom: 'modal-bottom',
   }
 
-  const alignClasses = {
+  // Responsive position class mappings for each breakpoint
+  const responsivePositionClasses: Record<Breakpoint, Record<ModalPosition, string>> = {
+    base: {
+      top: 'modal-top',
+      middle: 'modal-middle',
+      bottom: 'modal-bottom',
+    },
+    sm: {
+      top: 'sm:modal-top',
+      middle: 'sm:modal-middle',
+      bottom: 'sm:modal-bottom',
+    },
+    md: {
+      top: 'md:modal-top',
+      middle: 'md:modal-middle',
+      bottom: 'md:modal-bottom',
+    },
+    lg: {
+      top: 'lg:modal-top',
+      middle: 'lg:modal-middle',
+      bottom: 'lg:modal-bottom',
+    },
+    xl: {
+      top: 'xl:modal-top',
+      middle: 'xl:modal-middle',
+      bottom: 'xl:modal-bottom',
+    },
+    '2xl': {
+      top: '2xl:modal-top',
+      middle: '2xl:modal-middle',
+      bottom: '2xl:modal-bottom',
+    },
+  }
+
+  const alignClasses: Record<ModalAlign, string> = {
     start: 'modal-start',
     end: 'modal-end',
   }
 
-  // centered is an alias for position="middle"
-  const effectivePosition = centered ? 'middle' : position
+  // Build position classes - handle both simple and responsive values
+  const getPositionClasses = (): string[] => {
+    // centered is an alias for position="middle"
+    if (centered) {
+      return [positionClasses.middle]
+    }
+
+    if (!position) {
+      return []
+    }
+
+    // Simple string position
+    if (typeof position === 'string') {
+      return [positionClasses[position]]
+    }
+
+    // Responsive object position
+    const classes: string[] = []
+    for (const [breakpoint, pos] of Object.entries(position) as [Breakpoint, ModalPosition][]) {
+      if (pos) {
+        classes.push(responsivePositionClasses[breakpoint][pos])
+      }
+    }
+    return classes
+  }
 
   const classes = [
     'modal',
-    effectivePosition && positionClasses[effectivePosition],
+    ...getPositionClasses(),
     align && alignClasses[align],
     className,
   ]
