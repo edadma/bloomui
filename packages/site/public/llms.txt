@@ -97,6 +97,7 @@ npm install asterui
 
 - [Avatar](https://asterui.com/docs/avatar.md)
 - [Badge](https://asterui.com/docs/badge.md)
+- [Calendar](https://asterui.com/docs/calendar.md)
 - [Card](https://asterui.com/docs/card.md)
 - [Carousel](https://asterui.com/docs/carousel.md)
 - [Chart](https://asterui.com/docs/chart.md)

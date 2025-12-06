@@ -1,6 +1,6 @@
 {
   "name": "asterui",
-  "version": "0.12.1",
+  "version": "0.12.2",
   "description": "React UI component library with DaisyUI",
   "homepage": "https://asterui.com",
   "repository": {
@@ -67,6 +67,7 @@
   ],
   "license": "ISC",
   "dependencies": {
+    "@vinctus/calendar": "^0.2.1",
     "qrcode": "^1.5.4"
   }
 }

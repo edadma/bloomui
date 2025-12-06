@@ -31,6 +31,10 @@ export type { ChatProps } from './components/Chat'
 export { ColorPicker } from './components/ColorPicker'
 export type { ColorPickerProps } from './components/ColorPicker'
 
+export { Calendar } from './components/Calendar'
+export type { MonthCalendarProps, WeekCalendarProps, CalendarEvent, CalendarLocale } from './components/Calendar'
+export { en as calendarEn, fr as calendarFr } from './components/Calendar'
+
 export { Card } from './components/Card'
 export type { CardProps, CardGridProps } from './components/Card'
 
