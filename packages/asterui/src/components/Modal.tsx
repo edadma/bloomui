@@ -14,6 +14,12 @@ export interface ModalProps extends Omit<React.HTMLAttributes<HTMLDialogElement>
   closable?: boolean
   position?: 'top' | 'middle' | 'bottom'
   align?: 'start' | 'end'
+  /** Width of the modal box */
+  width?: number | string
+  /** Center the modal vertically */
+  centered?: boolean
+  /** Callback when modal is closed */
+  onClose?: () => void
 }
 
 export interface ModalFuncProps {
@@ -39,6 +45,9 @@ export function Modal({
   closable = true,
   position,
   align,
+  width,
+  centered,
+  onClose,
   className = '',
   ...rest
 }: ModalProps) {
@@ -47,6 +56,9 @@ export function Modal({
   const [loading, setLoading] = React.useState(false)
   const titleId = useId()
   const contentId = useId()
+
+  // Handle close - use onClose if provided, otherwise onCancel
+  const closeHandler = onClose || onCancel
 
   useEffect(() => {
     const dialog = dialogRef.current
@@ -71,15 +83,15 @@ export function Modal({
     const dialog = dialogRef.current
     if (!dialog) return
 
-    const handleClose = () => {
-      onCancel?.()
+    const onDialogClose = () => {
+      closeHandler?.()
     }
 
-    dialog.addEventListener('close', handleClose)
+    dialog.addEventListener('close', onDialogClose)
     return () => {
-      dialog.removeEventListener('close', handleClose)
+      dialog.removeEventListener('close', onDialogClose)
     }
-  }, [onCancel])
+  }, [closeHandler])
 
   const positionClasses = {
     top: 'modal-top',
@@ -92,9 +104,12 @@ export function Modal({
     end: 'modal-end',
   }
 
+  // centered is an alias for position="middle"
+  const effectivePosition = centered ? 'middle' : position
+
   const classes = [
     'modal',
-    position && positionClasses[position],
+    effectivePosition && positionClasses[effectivePosition],
     align && alignClasses[align],
     className,
   ]
@@ -115,10 +130,15 @@ export function Modal({
   }
 
   const handleBackdropClick = () => {
-    if (maskClosable && onCancel) {
-      onCancel()
+    if (maskClosable && closeHandler) {
+      closeHandler()
     }
   }
+
+  // Calculate modal-box style for custom width
+  const modalBoxStyle: React.CSSProperties = width
+    ? { width: typeof width === 'number' ? `${width}px` : width, maxWidth: '90vw' }
+    : {}
 
   // Render default footer if no custom footer provided and either onOk or onCancel exists
   const shouldRenderDefaultFooter = !footer && (onOk || onCancel)
@@ -133,7 +153,7 @@ export function Modal({
       aria-describedby={contentId}
       {...rest}
     >
-      <div className="modal-box">
+      <div className="modal-box" style={modalBoxStyle}>
         {title && (
           <h3 id={titleId} className="text-lg font-bold mb-4">
             {title}
