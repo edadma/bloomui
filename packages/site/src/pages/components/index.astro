@@ -11,7 +11,7 @@ const docPages = new Set([
   'collapse', 'colorpicker', 'container', 'contextmenu', 'countdown', 'datepicker', 'descriptions', 'diff', 'divider', 'drawer',
   'dropdown', 'empty', 'fieldset', 'fileinput', 'flex', 'floatbutton', 'footer', 'form', 'grid',
   'hero', 'image', 'indicator', 'input', 'inputnumber', 'join', 'kbd', 'label', 'layout',
-  'list', 'loading', 'masonry', 'mention', 'menu', 'modal', 'navbar', 'notification',
+  'list', 'loading', 'mask', 'masonry', 'mention', 'menu', 'modal', 'navbar', 'notification',
   'otpinput', 'pagelayout', 'pagination', 'phone', 'popconfirm', 'popover', 'progress', 'qrcode', 'radialprogress',
   'radio', 'range', 'rating', 'responsive', 'result', 'segmented', 'select', 'skeleton', 'space',
   'splitter', 'stack', 'stat', 'status', 'steps', 'table', 'tabs', 'tag', 'textarea', 'textrotate',
@@ -35,6 +35,7 @@ const componentCategories = [
     name: 'General',
     components: [
       { name: 'Kbd', slug: 'kbd', description: 'Display keyboard keys and shortcuts', props: ['size', 'children'] },
+      { name: 'Mask', slug: 'mask', description: 'Apply CSS masks to crop content into shapes', props: ['shape', 'half', 'children'] },
       { name: 'TextRotate', slug: 'textrotate', description: 'Animated text that cycles through multiple options', props: ['items', 'duration', 'centered', 'className'] },
       { name: 'Typography', slug: 'typography', description: 'Text display with Title, Text, Paragraph, and Link subcomponents', props: ['level', 'type', 'copyable', 'ellipsis', 'mark', 'code'] },
     ]

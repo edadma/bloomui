@@ -29,6 +29,9 @@ npm install asterui
 
 ### General
 
+- [Kbd](https://asterui.com/docs/kbd.md)
+- [Mask](https://asterui.com/docs/mask.md)
+- [TextRotate](https://asterui.com/docs/textrotate.md)
 - [Typography](https://asterui.com/docs/typography.md)
 
 ### Layout

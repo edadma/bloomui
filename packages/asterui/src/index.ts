@@ -130,6 +130,9 @@ export type { ListProps, ListRowProps } from './components/List'
 export { Loading } from './components/Loading'
 export type { LoadingProps } from './components/Loading'
 
+export { Mask } from './components/Mask'
+export type { MaskProps, MaskShape, MaskHalf } from './components/Mask'
+
 export { Masonry } from './components/Masonry'
 export type { MasonryProps } from './components/Masonry'
 
